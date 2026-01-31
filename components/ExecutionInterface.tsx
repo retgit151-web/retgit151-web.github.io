@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Terminal, Play, Power, Cpu, ChevronRight, Activity, RotateCcw } from 'lucide-react';
+import { Terminal, Play, Power, Cpu, ChevronRight, Activity, RotateCcw, Minus, Square, X } from 'lucide-react';
 
 const INTERFACE_PROJECTS = [
   { 
@@ -99,18 +99,77 @@ const INTERFACE_PROJECTS = [
   { 
     id: 'memory-forensics', 
     name: 'Windows Forensics Memory File Analyzer', 
-    lang: 'python/volatility', 
-    desc: "Automated analyzer for Windows memory dumps. It takes a raw file provided by the user and extracts hidden evidence automatically.",
+    lang: 'bash/volatility', 
+    desc: "Automated analyzer for Windows memory dumps using Volatility and multiple carving tools.",
     scriptLines: [
-      "(kali㉿kali)-[~] python3 vol_analyzer.py --file memory.raw",
-      "[!] Analyzing memory image: memory.raw",
-      "[+] System Profile: Windows 10 x64 (Build 19041)",
-      "[+] Scanning for hidden processes (psxview)...",
-      "[ALERT] PID 4210 (lsass.exe) - Memory mismatch detected. Potential DLL Injection.",
-      "[+] Checking for established network connections...",
-      "[!] Suspicious connection to 45.12.8.2 detected from 'svc-host.exe'",
-      "[+] Dumping kernel modules for signature analysis...",
-      "[SUCCESS] 4 unique malicious artifacts recovered. Report generated."
+      "(kali㉿kali)-[~] sudo ./WF_Project.sh",
+      " __      __   _                            _              ",
+      " \\ \\    / /  | |                          | |             ",
+      "  \\ \\  / /__ | | ___ ___  _ __ ___   ___  | |_ ___        ",
+      "   \\ \\/ / _ \\| |/ __/ _ \\| '_ ` _ \\ / _ \\ | __/ _ \\       ",
+      "    \\  / (_) | | (_| (_) | | | | | |  __/ | || (_) |      ",
+      "     \\/ \\___/|_|\\___\\___/|_| |_| |_|\\___|  \\__\\___/       ",
+      "                                                          ",
+      "                      _      __   ____               _    ",
+      "                     | |    / _| |  _ \\             (_)   ",
+      " __      _____  _ __ | | __| |_  | |_) |_ __ ___     _    ",
+      " \\ \\ /\\ / / _ \\| '__|| |/ _`  _| |  ___/ '__/ _ \\   | |   ",
+      "  \\ V  V / (_) | |   | | (_| |   | |   | | | (_) |  | |   ",
+      "   \\_/\\_/ \\___/|_|   |_|\\__,_|   |_|   |_|  \\___/   | |   ",
+      "                                                   _/ |   ",
+      "                                                  |__/    ",
+      "welcome to WF proj",
+      "[(:]you are root",
+      "[(:]please write mem file: memory.raw",
+      "[!]the memory file to analyze is: memory.raw",
+      "[(:]file exists",
+      "All results will be saved in: forensics_output_2026-02-15_14-30-00",
+      "--- Checking tools ---",
+      "[(:] volatility directory already installed.",
+      "[(:] foremost is installed",
+      "[(:] strings is installed",
+      "[(:] binwalk is installed",
+      "[(:] scalpel is installed",
+      "[(:] bulk_extractor is installed",
+      "[(:] exiftool is installed",
+      "[!!]Running multiple carvers to gather as much information as possible.",
+      "-----------Running Foremost---------",
+      "[*] Extracted 42 images, 12 documents to output directory.",
+      "-------------Running Strings---------",
+      "[*] Generated 1.2GB strings report.",
+      "-----------Running Binwalk---------",
+      "[*] Identified nested ZIP archives and PE headers.",
+      "---------Configuring and Running Scalpel----------",
+      "[*] Carving for jpg, png, pdf, doc, zip, rar...",
+      "---------Running Bulk Extractor---------------",
+      "[*] Extracting emails, credit card numbers, and PII.",
+      "---------------Running Exiftool-------------",
+      "[*] Metadata report generated.",
+      "[(:] memory.raw can be analyzed using volatility",
+      "[*] Running volatility imageinfo...",
+      "Suggested Profile(s) : Win7SP1x64, Win7SP0x64, Win2008R2SP0x64",
+      "[!] Using profile Win7SP1x64 for analysis.",
+      "[!] getting more information with volatility flags",
+      "[*]----------parsing memory using volatility pslist-----------",
+      "[*] Found 32 running processes (svchost.exe x12, explorer.exe, cmd.exe).",
+      "[*]----------parsing memory using volatility pstree-----------",
+      "[*] Identified suspicious parent-child relationship: svchost.exe -> powershell.exe",
+      "[*]----------parsing memory using volatility filescan-----------",
+      "[*] Scanned 4501 objects. Identified access to SAM and SYSTEM registry hives.",
+      "[*]----------parsing memory using volatility connections-----------",
+      "[*] Active connection to 185.156.72.7:4444 (ESTABLISHED)",
+      "[*]----------parsing memory using volatility sockets-----------",
+      "[*] Internal listening port 1337 detected.",
+      "[*]----------parsing memory using volatility hivelist-----------",
+      "[*] Registry hives located: \\SystemRoot\\System32\\Config\\SAM",
+      "[*] Scanning for strings: exe password username http dll...",
+      "[*] Found potential credential artifacts in strings output.",
+      "PCAP found: ./packets.pcap (Size: 42M)",
+      "--- Analysis Statistics ---",
+      "Total Time: 124 seconds",
+      "Total Files Found: 852",
+      "Report saved to: forensics_output_.../main_report.txt",
+      "[(:] Zip successful. Original folder removed."
     ]
   },
   { 
@@ -120,14 +179,24 @@ const INTERFACE_PROJECTS = [
     desc: "Automated Security Log Parser for Linux authentication logs. It specifically targets the /var/log/auth.log file to identify potential security breaches.",
     scriptLines: [
       "(kali㉿kali)-[~] python3 auth_parser.py",
-      "[!] Initializing LogSentinel parser...",
-      "[+] Accessing /var/log/auth.log system stream...",
-      "[+] Scanning for pattern matches: 'Failed password', 'Invalid user'",
-      "[ALERT] 42 failed login attempts detected from IP: 185.12.3.4",
-      "[!] User 'admin' targeted 12 times in 60 seconds.",
-      "[+] Geographical traceback: Moscow, RU",
-      "[SUCCESS] Threat identified: Brute-Force Attack.",
-      "[+] IP address pushed to local iptables blocklist."
+      "---auth log parsing resultes---",
+      "Time=[Feb 15 14:02:11] | sudo:session | USER=kali | COMMAND=/usr/bin/apt update",
+      "Time=[Feb 15 14:02:11] | note!!: session opened for user root by (uid=0) using sudo",
+      "Time=[Feb 15 14:03:05] |!!!!!ALERT!!!!! : authentication failure; logname=kali tty=/dev/pts/1",
+      "!!! RED FLAG DETECTED !!!Time=[Feb 15 14:04:42]| suspicus word detected:'etc/shadow'",
+      "Time=[Feb 15 14:04:42] | sudo:session | USER=kali | COMMAND=/usr/bin/cat /etc/shadow",
+      "!!! RED FLAG DETECTED !!!Time=[Feb 15 14:05:15]| suspicus word detected:'nmap'",
+      "Time=[Feb 15 14:05:15] | sudo:session | USER=kali | COMMAND=/usr/bin/nmap -sV 192.168.1.1",
+      "Time=[Feb 15 14:08:22] | New User created: New User: auditing_svc",
+      "Time=[Feb 15 14:08:55] | password changed for auditing_svc",
+      "Time=[Feb 15 14:10:04] | user auditing_svc Deleted ",
+      "Time=[Feb 15 14:12:48] | note!!: session opened for user root by (uid=0) using su",
+      "----------------------------------------",
+      "summary",
+      "----------------------------------------",
+      "!!failed login attempt Alerts!!: 1",
+      "sudo sessions: 3",
+      "su sessions: 1"
     ]
   },
   { 
@@ -176,8 +245,8 @@ const ExecutionInterface: React.FC = () => {
     setTimeout(() => {
       setIsInitializing(false);
       setIsReady(true);
-      setTerminalLines(prev => [...prev, `[SUCCESS] Virtualization layer established.`, `[READY] System environment stable.`]);
-    }, 1500);
+      setTerminalLines(prev => [...prev, `[SUCCESS] Environment initialized.`, `[READY] System ready.`]);
+    }, 2000);
   };
 
   const handleRun = async () => {
@@ -187,17 +256,40 @@ const ExecutionInterface: React.FC = () => {
     const linesToProcess = selectedProject.scriptLines;
 
     for (const line of linesToProcess) {
-      let delay = 100 + Math.random() * 200;
+      // Base delay for a slow, deliberate experience as requested
+      let delay = 350 + Math.random() * 500;
       
-      // Add extra pause for significant actions to feel more real
-      if (line.includes("Whois results") || line.includes("Nmap results") || line.includes("Displaying ALL files") || line.includes(" established to ")) {
-        delay = 1200;
+      // Heavy complex tasks now take significantly longer
+      if (
+        line.includes("Running Foremost") || 
+        line.includes("Configuring and Running Scalpel") || 
+        line.includes("parsing memory using volatility") || 
+        line.includes("Running volatility imageinfo") ||
+        line.includes("Running Bulk Extractor") ||
+        line.includes("---auth log parsing resultes---")
+      ) {
+        delay = 4000;
       }
-      if (line.includes("Starting installation") || line.includes("Scanning for hidden") || line.includes("Initiating credential audit")) {
-        delay = 2000;
+
+      if (
+        line.includes("Starting installation") || 
+        line.includes("Analyzing memory image") || 
+        line.includes("Initiating credential audit") || 
+        line.includes("Scanning for strings") ||
+        line.includes("Running Binwalk") ||
+        line.includes("summary")
+      ) {
+        delay = 5000;
       }
-      if (line.startsWith("(kali㉿kali)") || line.startsWith("$")) {
-        delay = 50; // Quick prompt display
+
+      // Slightly faster but still deliberate for command prompts or headers
+      if (line.startsWith("(kali㉿kali)") || line.startsWith("$") || line.startsWith("welcome to WF proj")) {
+        delay = 1000;
+      }
+
+      // Very long pause for "completing" big tasks
+      if (line.includes("[(:] Zip successful") || line.includes("[SUCCESS] Script execution finished") || line.startsWith("----------------")) {
+        delay = 3000;
       }
       
       await new Promise(resolve => setTimeout(resolve, delay));
@@ -214,138 +306,153 @@ const ExecutionInterface: React.FC = () => {
   };
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-4 gap-0 bg-zinc-950/40 rounded-2xl border border-white/5 overflow-hidden h-[500px]">
-      {/* Left Sidebar Navigation */}
-      <div className="md:col-span-1 border-r border-white/5 bg-zinc-900/20 flex flex-col overflow-hidden">
-        <div className="p-4 border-b border-white/5 bg-zinc-900/40 shrink-0">
-          <span className="text-[10px] font-sans font-black text-zinc-500 uppercase tracking-widest">Navigation</span>
+    <div className="flex flex-col rounded-xl overflow-hidden shadow-2xl border border-zinc-800 bg-zinc-950">
+      {/* OS Window Header */}
+      <div className="bg-zinc-900 border-b border-white/5 px-4 py-2 flex items-center justify-between">
+        <div className="flex items-center gap-2">
+          <div className="flex gap-1.5">
+            <div className="w-3 h-3 rounded-full bg-red-500/80" />
+            <div className="w-3 h-3 rounded-full bg-amber-500/80" />
+            <div className="w-3 h-3 rounded-full bg-emerald-500/80" />
+          </div>
         </div>
-        <div className="p-2 flex flex-col gap-1 overflow-y-auto flex-1 scrollbar-hide">
-          {INTERFACE_PROJECTS.map((proj) => (
-            <button
-              key={proj.id}
-              disabled={isRunning || isInitializing}
-              onClick={() => {
-                setSelectedId(proj.id);
-                handleReset();
-              }}
-              className={`flex flex-col items-start p-3 rounded-xl transition-all text-left shrink-0 ${
-                selectedId === proj.id 
-                  ? 'bg-brand-accent/10 border border-brand-accent/20' 
-                  : 'hover:bg-white/5 border border-transparent disabled:opacity-50'
-              }`}
-            >
-              <div className="flex items-center justify-between w-full">
-                <span className={`text-[10px] font-bold uppercase tracking-tight ${selectedId === proj.id ? 'text-brand-accent' : 'text-zinc-400'}`}>
-                  {proj.name}
-                </span>
-                {selectedId === proj.id && <ChevronRight size={10} className="text-brand-accent" />}
-              </div>
-              <span className="text-[8px] text-zinc-600 mt-1 uppercase font-mono">{proj.lang}</span>
-            </button>
-          ))}
+        <div className="flex items-center gap-4">
+           <span className="text-[10px] font-mono text-zinc-600">RAM: 14%</span>
+           <span className="text-[10px] font-mono text-zinc-600">CPU: 4%</span>
         </div>
       </div>
 
-      {/* Right Main Terminal Panel */}
-      <div className="md:col-span-3 flex flex-col bg-zinc-950 overflow-hidden relative">
-        {/* Terminal Header */}
-        <div className="flex items-center justify-between px-6 py-4 border-b border-white/5 bg-zinc-900/20 shrink-0">
-          <div className="flex items-center gap-2">
-            <span className="text-[10px] font-mono text-zinc-500 uppercase tracking-widest">
-              EXECUTION: <span className="text-zinc-300">{selectedProject.name}</span>
-            </span>
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-0 h-[500px]">
+        {/* Left Sidebar Navigation */}
+        <div className="md:col-span-1 border-r border-white/5 bg-zinc-900/20 flex flex-col overflow-hidden">
+          <div className="p-4 border-b border-white/5 bg-zinc-900/40 shrink-0">
+            <span className="text-[10px] font-sans font-black text-zinc-500 uppercase tracking-widest">Select Script</span>
           </div>
-          <button 
-            onClick={handleReset}
-            className="p-1 text-zinc-600 hover:text-zinc-400 transition-colors"
-            title="Clear Terminal"
-          >
-            <RotateCcw size={14} />
-          </button>
+          <div className="p-2 flex flex-col gap-1 overflow-y-auto flex-1 scrollbar-hide">
+            {INTERFACE_PROJECTS.map((proj) => (
+              <button
+                key={proj.id}
+                disabled={isRunning || isInitializing}
+                onClick={() => {
+                  setSelectedId(proj.id);
+                  handleReset();
+                }}
+                className={`flex flex-col items-start p-3 rounded-lg transition-all text-left shrink-0 ${
+                  selectedId === proj.id 
+                    ? 'bg-brand-accent/10 border border-brand-accent/20' 
+                    : 'hover:bg-white/5 border border-transparent disabled:opacity-50'
+                }`}
+              >
+                <div className="flex items-center justify-between w-full">
+                  <span className={`text-[10px] font-bold uppercase tracking-tight ${selectedId === proj.id ? 'text-brand-accent' : 'text-zinc-400'}`}>
+                    {proj.name}
+                  </span>
+                  {selectedId === proj.id && <ChevronRight size={10} className="text-brand-accent" />}
+                </div>
+                <span className="text-[8px] text-zinc-600 mt-1 uppercase font-mono">{proj.lang}</span>
+              </button>
+            ))}
+          </div>
         </div>
 
-        {/* Terminal Content Area */}
-        <div 
-          ref={scrollRef}
-          className="flex-1 p-6 font-mono text-xs overflow-y-auto scrollbar-hide bg-zinc-950 scroll-smooth"
-        >
-          <span className="text-brand-accent/40 block mb-2 opacity-50 font-mono"># Execution environment only</span>
-          
-          {terminalLines.length === 0 && (
-            <div className="mt-4 space-y-4">
-              <p className="text-zinc-600 italic">
-                Waiting for project initialization...
-              </p>
-              <div className="text-[10px] text-zinc-700 border-l border-zinc-800 pl-4 py-2">
-                 PROJECT: {selectedProject.name}<br/>
-                 DESCRIPTION: {selectedProject.desc}
-              </div>
+        {/* Right Main Terminal Panel */}
+        <div className="md:col-span-3 flex flex-col bg-zinc-950 overflow-hidden relative">
+          {/* Terminal Header */}
+          <div className="flex items-center justify-between px-6 py-4 border-b border-white/5 bg-zinc-900/20 shrink-0">
+            <div className="flex items-center gap-2">
+              <span className="text-[10px] font-mono text-zinc-500 uppercase tracking-widest">
+                SCRIPT: <span className="text-zinc-300">{selectedProject.name}</span>
+              </span>
             </div>
-          )}
-
-          {terminalLines.map((line, idx) => (
-            <motion.div 
-              key={idx}
-              initial={{ opacity: 0, x: -5 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.1 }}
-              className={`mb-1 whitespace-pre-wrap ${
-                line.startsWith('[SUCCESS]') ? 'text-emerald-500' :
-                line.startsWith('[READY]') ? 'text-brand-tech' :
-                line.startsWith('(kali㉿kali)') || line.startsWith('$') ? 'text-brand-accent font-bold' :
-                line.startsWith('[ALERT]') || line.startsWith('[!]') || line.startsWith('[!!!]') ? 'text-amber-500' :
-                line.startsWith('[=>]') || line.startsWith('==>') || line.startsWith('[(:]') ? 'text-zinc-100 drop-shadow-[0_0_5px_rgba(56,189,248,0.1)]' :
-                'text-zinc-400'
-              }`}
+            <button 
+              onClick={handleReset}
+              className="p-1 text-zinc-600 hover:text-zinc-400 transition-colors"
+              title="Clear Terminal"
             >
-              {line}
-            </motion.div>
-          ))}
-          {isRunning && (
-            <motion.span 
-              animate={{ opacity: [1, 0] }} 
-              transition={{ repeat: Infinity, duration: 0.8 }}
-              className="inline-block w-2 h-4 bg-brand-accent ml-1 align-middle"
-            />
-          )}
-        </div>
+              <RotateCcw size={14} />
+            </button>
+          </div>
 
-        {/* Action Buttons */}
-        <div className="px-6 py-4 border-t border-white/5 bg-zinc-900/10 shrink-0">
-          <div className="flex flex-wrap gap-4">
-            {!isReady ? (
-              <button 
-                onClick={handleInitialize}
-                disabled={isInitializing}
-                className="flex items-center gap-3 px-6 py-2.5 bg-zinc-900 hover:bg-zinc-800 border border-white/10 rounded-lg text-[10px] font-sans font-black uppercase tracking-widest transition-all hover:border-brand-accent/30 group disabled:opacity-50"
+          {/* Terminal Content Area */}
+          <div 
+            ref={scrollRef}
+            className="flex-1 p-6 font-mono text-xs overflow-y-auto scrollbar-hide bg-zinc-950 scroll-smooth"
+          >
+            {terminalLines.length === 0 && (
+              <div className="mt-4 space-y-4">
+                <p className="text-zinc-600 italic">
+                  Waiting for project initialization...
+                </p>
+                <div className="text-[10px] text-zinc-700 border-l border-zinc-800 pl-4 py-2">
+                   PROJECT: {selectedProject.name}<br/>
+                   DESCRIPTION: {selectedProject.desc}
+                </div>
+              </div>
+            )}
+
+            {terminalLines.map((line, idx) => (
+              <motion.div 
+                key={idx}
+                initial={{ opacity: 0, x: -5 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.1 }}
+                className={`mb-1 whitespace-pre-wrap ${
+                  line.startsWith('[SUCCESS]') ? 'text-emerald-500' :
+                  line.startsWith('[READY]') ? 'text-brand-tech' :
+                  line.startsWith('(kali㉿kali)') || line.startsWith('$') ? 'text-brand-accent font-bold' :
+                  line.startsWith('[ALERT]') || line.startsWith('[!]') || line.startsWith('[!!!]') || line.includes('!!! RED FLAG DETECTED !!!') || line.includes('!!!!!ALERT!!!!!') ? 'text-amber-500' :
+                  line.startsWith('[=>]') || line.startsWith('==>') || line.startsWith('[(:]') || line.includes('---auth log parsing resultes---') ? 'text-zinc-100 drop-shadow-[0_0_5px_rgba(56,189,248,0.1)]' :
+                  'text-zinc-400'
+                }`}
               >
-                <Power size={14} className={isInitializing ? "animate-spin text-brand-accent" : "text-zinc-500 group-hover:text-brand-accent"} />
-                <span>{isInitializing ? "Establishing..." : "Initialize System"}</span>
-              </button>
-            ) : (
-              <button 
-                onClick={handleRun}
-                disabled={isRunning}
-                className="flex items-center gap-3 px-8 py-2.5 bg-brand-accent/10 hover:bg-brand-accent/20 border border-brand-accent/20 rounded-lg text-[10px] font-sans font-black uppercase tracking-widest transition-all hover:shadow-[0_0_15px_rgba(56,189,248,0.15)] group disabled:opacity-50"
-              >
-                <Play size={14} className={`${isRunning ? "animate-pulse" : ""} text-brand-accent`} />
-                <span className="text-brand-accent">{isRunning ? "Running Script..." : "Run Script"}</span>
-              </button>
+                {line}
+              </motion.div>
+            ))}
+            {isRunning && (
+              <motion.span 
+                animate={{ opacity: [1, 0] }} 
+                transition={{ repeat: Infinity, duration: 0.8 }}
+                className="inline-block w-2 h-4 bg-brand-accent ml-1 align-middle"
+              />
             )}
           </div>
-        </div>
 
-        {/* Status Bar */}
-        <div className="px-6 py-2 border-t border-white/5 bg-zinc-900/40 flex justify-between items-center shrink-0">
-          <div className="flex items-center gap-4">
-             <span className={`text-[9px] font-mono uppercase tracking-tighter ${isReady ? 'text-emerald-500' : 'text-amber-500'}`}>
-               [SYSTEM: {isInitializing ? 'INITIALIZING' : isRunning ? 'BUSY' : isReady ? 'READY' : 'WAITING'}]
-             </span>
-             <div className="h-3 w-[1px] bg-zinc-800" />
-             <span className="text-[9px] font-mono text-zinc-600 uppercase tracking-tighter">NODE: RA-KALI-SOC-01</span>
+          {/* Action Buttons */}
+          <div className="px-6 py-4 border-t border-white/5 bg-zinc-900/10 shrink-0">
+            <div className="flex flex-wrap gap-4">
+              {!isReady ? (
+                <button 
+                  onClick={handleInitialize}
+                  disabled={isInitializing}
+                  className="flex items-center gap-3 px-6 py-2.5 bg-zinc-900 hover:bg-zinc-800 border border-white/10 rounded-lg text-[10px] font-sans font-black uppercase tracking-widest transition-all hover:border-brand-accent/30 group disabled:opacity-50"
+                >
+                  <Power size={14} className={isInitializing ? "animate-spin text-brand-accent" : "text-zinc-500 group-hover:text-brand-accent"} />
+                  <span>{isInitializing ? "Establishing..." : "Initialize System"}</span>
+                </button>
+              ) : (
+                <button 
+                  onClick={handleRun}
+                  disabled={isRunning}
+                  className="flex items-center gap-3 px-8 py-2.5 bg-brand-accent/10 hover:bg-brand-accent/20 border border-brand-accent/20 rounded-lg text-[10px] font-sans font-black uppercase tracking-widest transition-all hover:shadow-[0_0_15px_rgba(56,189,248,0.15)] group disabled:opacity-50"
+                >
+                  <Play size={14} className={`${isRunning ? "animate-pulse" : ""} text-brand-accent`} />
+                  <span className="text-brand-accent">{isRunning ? "Running Script..." : "Run Script"}</span>
+                </button>
+              )}
+            </div>
           </div>
-          <Cpu size={12} className={isRunning ? "text-brand-accent animate-spin-slow" : "text-zinc-700"} />
+
+          {/* Status Bar */}
+          <div className="px-6 py-2 border-t border-white/5 bg-zinc-900/40 flex justify-between items-center shrink-0">
+            <div className="flex items-center gap-4">
+               <span className={`text-[9px] font-mono uppercase tracking-tighter ${isReady ? 'text-emerald-500' : 'text-amber-500'}`}>
+                 [SYSTEM: {isInitializing ? 'INITIALIZING' : isRunning ? 'BUSY' : isReady ? 'READY' : 'WAITING'}]
+               </span>
+               <div className="h-3 w-[1px] bg-zinc-800" />
+               <span className="text-[9px] font-mono text-zinc-600 uppercase tracking-tighter">NODE: RA-KALI-SOC-01</span>
+            </div>
+            <Cpu size={12} className={isRunning ? "text-brand-accent animate-spin-slow" : "text-zinc-700"} />
+          </div>
         </div>
       </div>
     </div>
@@ -353,3 +460,4 @@ const ExecutionInterface: React.FC = () => {
 };
 
 export default ExecutionInterface;
+    

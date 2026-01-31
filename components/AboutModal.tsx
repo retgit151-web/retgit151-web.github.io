@@ -42,8 +42,8 @@ const AboutModal: React.FC<AboutModalProps> = ({ isOpen, onClose }) => {
                   <User size={28} className="text-brand-accent" />
                 </div>
                 <div>
-                  <h2 className="text-2xl font-black text-zinc-50 tracking-tight uppercase">Personnel Dossier</h2>
-                  <p className="text-[10px] text-zinc-500 font-bold uppercase tracking-widest">Subject: Reut Abergel</p>
+                  <h2 className="text-2xl font-black text-zinc-50 tracking-tight uppercase">About Me</h2>
+                  <p className="text-[10px] text-zinc-500 font-bold uppercase tracking-widest">Personal Profile</p>
                 </div>
               </div>
 
@@ -51,7 +51,7 @@ const AboutModal: React.FC<AboutModalProps> = ({ isOpen, onClose }) => {
                 <section className="relative">
                   <div className="flex items-center gap-3 mb-4">
                     <Music size={18} className="text-brand-tech" />
-                    <h3 className="text-xs font-black text-zinc-100 uppercase tracking-widest">Musical Background</h3>
+                    <h3 className="text-xs font-black text-zinc-100 uppercase tracking-widest">Music</h3>
                   </div>
                   <div className="space-y-4 text-zinc-400 leading-relaxed font-sans text-sm">
                     <p>
@@ -73,7 +73,7 @@ const AboutModal: React.FC<AboutModalProps> = ({ isOpen, onClose }) => {
                 <section>
                   <div className="flex items-center gap-3 mb-4">
                     <Gamepad2 size={18} className="text-brand-tech" />
-                    <h3 className="text-xs font-black text-zinc-100 uppercase tracking-widest">Digital Interests</h3>
+                    <h3 className="text-xs font-black text-zinc-100 uppercase tracking-widest">Gaming & Tech</h3>
                   </div>
                   <div className="p-4 rounded-xl bg-zinc-800/30 border border-white/5">
                     <p className="text-zinc-400 text-sm leading-relaxed">
@@ -82,12 +82,6 @@ const AboutModal: React.FC<AboutModalProps> = ({ isOpen, onClose }) => {
                     </p>
                   </div>
                 </section>
-
-                <div className="pt-4 flex justify-end">
-                   <div className="text-[10px] text-zinc-600 font-mono uppercase">
-                     [ FILE_STATUS: UNCLASSIFIED // NON-OPERATIONAL_DATA ]
-                   </div>
-                </div>
               </div>
             </div>
           </motion.div>

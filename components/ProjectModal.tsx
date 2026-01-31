@@ -65,7 +65,7 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) => {
                 </section>
 
                 <section>
-                  <h3 className="text-sm uppercase tracking-widest text-zinc-500 mb-3">Operational Outcome</h3>
+                  <h3 className="text-sm uppercase tracking-widest text-zinc-500 mb-3">Expected Output</h3>
                   <div className="bg-zinc-950 border border-white/5 rounded-2xl p-6 font-mono text-sm">
                     <div className="flex items-center gap-2 mb-4 text-emerald-400">
                       <ExternalLink size={16} />
@@ -82,7 +82,7 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) => {
 
               <aside className="space-y-6">
                 <div className="p-6 rounded-2xl bg-zinc-800/30 border border-white/5">
-                  <h3 className="text-sm font-semibold text-zinc-100 mb-4">Security Relevance</h3>
+                  <h3 className="text-sm font-semibold text-zinc-100 mb-4">Why it matters</h3>
                   <ul className="space-y-3 text-xs text-zinc-400">
                     <li className="flex items-start gap-2">
                       <div className="w-1 h-1 rounded-full bg-brand-accent mt-1.5 shrink-0" />

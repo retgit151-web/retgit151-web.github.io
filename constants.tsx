@@ -17,7 +17,7 @@ import {
   Ghost,
   ServerCog
 } from 'lucide-react';
-import { Project, Experience } from './types';
+import { Project, Certificate } from './types';
 
 export interface DetailedSkill {
   name: string;
@@ -79,22 +79,24 @@ export const PROJECTS: Project[] = [
   }
 ];
 
-export const EXPERIENCES: Experience[] = [
+export const CERTIFICATES: Certificate[] = [
   {
-    id: 'yeda-kol',
-    role: 'Systems Technician',
-    company: 'Yeda Kol',
-    period: '2019 - Present',
-    description: 'Responsible for hardware signal integrity and Layer 1 networking. Troubleshooting complex system failures in real-time high-stakes environments.',
-    transferableSkills: ['Hardware Troubleshooting', 'System Maintenance', 'Signal Flow']
+    id: 'cert-1',
+    title: 'Cyber Security Professional',
+    issuer: 'ThinkCyber',
+    date: '2026',
+    description: 'Comprehensive certification covering offensive and defensive security operations, network security, and forensics.',
+    url: 'https://thinkcyber.co.il',
+    pdf: 'Certificates/ThinkCyber_Certificate.pdf'
   },
   {
-    id: 'nono-mimi',
-    role: 'Operations Lead',
-    company: 'Nono Mimi Restaurant',
-    period: '2021 - 2024',
-    description: 'Managed high-velocity workflows under strict time constraints (SLA). Coordinated team response and resource allocation during peak operational load.',
-    transferableSkills: ['Crisis Management', 'Operational Efficiency', 'Team Leadership']
+    id: 'cert-2',
+    title: 'Cyber Security Qualification',
+    issuer: 'City & Guilds',
+    date: '2025',
+    description: 'Internationally recognized certification demonstrating practical proficiency in security principles.',
+    url: 'https://www.cityandguilds.com',
+    pdf: 'Certificates/City_and_Guilds_Certificate.pdf'
   }
 ];
 

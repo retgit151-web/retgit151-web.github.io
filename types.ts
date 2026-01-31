@@ -11,13 +11,14 @@ export interface Project {
   codeSnippet?: string;
 }
 
-export interface Experience {
+export interface Certificate {
   id: string;
-  role: string;
-  company: string;
-  period: string;
-  description: string;
-  transferableSkills: string[];
+  title: string;
+  issuer: string;
+  date: string;
+  description?: string;
+  url?: string;     // URL for the issuer's website
+  pdf?: string;     // Path to the local PDF file
 }
 
 export enum SkillCategory {
