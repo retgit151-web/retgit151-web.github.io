@@ -165,8 +165,7 @@ const App: React.FC = () => {
              <div className="relative z-10">
               <div className="flex justify-between items-center mb-8 pb-4 border-b border-white/5">
                 <div className="space-y-1">
-                  <span className="text-[10px] font-sans text-zinc-500 uppercase tracking-widest font-bold">Certifications</span>
-                  <h2 className="text-xl font-black text-zinc-100 uppercase tracking-tight">Professional Certificates</h2>
+                  <h2 className="text-xl font-black text-zinc-100 uppercase tracking-tight">Certificates</h2>
                 </div>
                 <div className="p-2.5 rounded-xl bg-zinc-800/50 border border-white/5">
                   <Award size={20} className="text-brand-accent" />

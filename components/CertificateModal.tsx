@@ -51,7 +51,6 @@ const CertificateModal: React.FC<CertificateModalProps> = ({ issuer, onClose }) 
                 </div>
                 <div>
                   <h2 className="text-2xl font-black text-zinc-50 tracking-tight uppercase">{issuer}</h2>
-                  <p className="text-[10px] text-zinc-500 font-bold uppercase tracking-widest">Certification Authority</p>
                 </div>
               </div>
 
