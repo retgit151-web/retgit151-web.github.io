@@ -1,15 +1,18 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Phone, MapPin, Linkedin, Download, User, Hash, Github } from 'lucide-react';
+import { Mail, Phone, MapPin, Linkedin, Download, User, Github } from 'lucide-react';
 
 interface IdentityHubProps {
   onAboutClick?: () => void;
 }
 
+const TARGET_NAME = "REUT ABERGEL";
+
 const IdentityHub: React.FC<IdentityHubProps> = ({ onAboutClick }) => {
   return (
     <div className="flex flex-col h-full items-center justify-center text-center p-8 relative overflow-hidden">
+      
       {/* Background Abstract Element */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-brand-accent/5 rounded-full blur-[140px] pointer-events-none" />
       
@@ -17,11 +20,14 @@ const IdentityHub: React.FC<IdentityHubProps> = ({ onAboutClick }) => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
-        className="relative z-10 w-full max-w-3xl"
+        className="relative z-10 w-full max-w-4xl flex flex-col items-center"
       >
-        <h1 className="text-6xl md:text-8xl font-black tracking-tighter text-zinc-50 mb-4 leading-none uppercase drop-shadow-2xl">
-          Reut Abergel
-        </h1>
+        {/* Main Name Header */}
+        <div className="relative mb-6 cursor-default select-none group">
+           <h1 className="text-6xl md:text-8xl font-black tracking-tighter leading-none uppercase drop-shadow-2xl text-zinc-50 transition-colors duration-300 group-hover:text-zinc-100">
+            {TARGET_NAME}
+           </h1>
+        </div>
 
         {/* Integrated Communication Details */}
         <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-4 mb-12 text-zinc-500">
@@ -41,7 +47,8 @@ const IdentityHub: React.FC<IdentityHubProps> = ({ onAboutClick }) => {
 
         {/* Action Dashboard */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-           <div className="flex items-center gap-2 px-6 py-3 bg-zinc-900/80 border border-white/5 rounded-xl backdrop-blur-md">
+           {/* Status Indicator */}
+           <div className="flex items-center gap-2 px-6 py-3 bg-zinc-900/80 border border-white/5 rounded-xl backdrop-blur-md hover:border-emerald-500/30 transition-colors">
               <span className="text-[10px] text-zinc-600 font-bold uppercase tracking-widest mr-2">Status</span>
               <span className="flex h-2 w-2 relative">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
