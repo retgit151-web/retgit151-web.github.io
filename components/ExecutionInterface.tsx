@@ -410,14 +410,14 @@ const ExecutionInterface: React.FC = () => {
                   setSelectedId(proj.id);
                   handleReset();
                 }}
-                className={`flex flex-col items-start p-3 rounded-lg transition-all text-left shrink-0 ${
+                className={`group flex flex-col items-start p-3 rounded-lg transition-all text-left shrink-0 ${
                   selectedId === proj.id 
                     ? 'bg-brand-accent/10 border border-brand-accent/20' 
                     : 'hover:bg-white/5 border border-transparent disabled:opacity-50'
                 }`}
               >
                 <div className="flex items-center justify-between w-full">
-                  <span className={`text-[10px] font-bold uppercase tracking-tight ${selectedId === proj.id ? 'text-brand-accent' : 'text-zinc-400'}`}>
+                  <span className={`text-[10px] font-bold uppercase tracking-tight transition-colors ${selectedId === proj.id ? 'text-brand-accent' : 'text-zinc-400 group-hover:text-brand-accent'}`}>
                     {proj.name}
                   </span>
                   {selectedId === proj.id && <ChevronRight size={10} className="text-brand-accent" />}
@@ -439,7 +439,7 @@ const ExecutionInterface: React.FC = () => {
             </div>
             <button 
               onClick={handleReset}
-              className="p-1 text-zinc-600 hover:text-zinc-400 transition-colors"
+              className="p-1 text-zinc-600 hover:text-brand-accent transition-all hover:drop-shadow-[0_0_8px_rgba(56,189,248,0.8)]"
               title="Clear Terminal"
             >
               <RotateCcw size={14} />
@@ -499,9 +499,9 @@ const ExecutionInterface: React.FC = () => {
                 <button 
                   onClick={handleInitialize}
                   disabled={isInitializing}
-                  className="flex items-center gap-3 px-6 py-2.5 bg-zinc-900 hover:bg-zinc-800 border border-white/10 rounded-lg text-[10px] font-sans font-black uppercase tracking-widest transition-all hover:border-brand-accent/30 group disabled:opacity-50"
+                  className="flex items-center gap-3 px-6 py-2.5 bg-zinc-900 hover:bg-zinc-800 border border-white/10 rounded-lg text-[10px] font-sans font-black uppercase tracking-widest transition-all hover:border-emerald-500/50 hover:shadow-[0_0_15px_rgba(16,185,129,0.4)] group disabled:opacity-50 hover:text-emerald-500"
                 >
-                  <Power size={14} className={isInitializing ? "animate-spin text-brand-accent" : "text-zinc-500 group-hover:text-brand-accent"} />
+                  <Power size={14} className={isInitializing ? "animate-spin text-emerald-500" : "text-zinc-500 group-hover:text-emerald-500"} />
                   <span>{isInitializing ? "Establishing..." : "Initialize System"}</span>
                 </button>
               ) : (

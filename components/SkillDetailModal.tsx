@@ -29,7 +29,7 @@ const SkillDetailModal: React.FC<SkillDetailModalProps> = ({ skill, onClose }) =
           exit={{ scale: 0.9, opacity: 0 }}
           className="relative w-full max-w-lg bg-zinc-900 border border-white/10 rounded-3xl shadow-2xl overflow-hidden"
         >
-          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-right from-brand-accent to-brand-tech" />
+          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-brand-accent to-brand-tech" />
           
           <div className="p-8 pt-10">
             <button 
@@ -39,7 +39,7 @@ const SkillDetailModal: React.FC<SkillDetailModalProps> = ({ skill, onClose }) =
               <X size={18} />
             </button>
 
-            <div className="flex items-center gap-4 mb-8">
+            <div className="flex items-center gap-4 mb-6">
               <div className="w-12 h-12 rounded-2xl bg-brand-accent/10 border border-brand-accent/20 flex items-center justify-center">
                 <ShieldCheck size={24} className="text-brand-accent" />
               </div>
@@ -47,10 +47,19 @@ const SkillDetailModal: React.FC<SkillDetailModalProps> = ({ skill, onClose }) =
             </div>
 
             <div className="space-y-6">
+              
+              {/* Description Section */}
+              <div className="p-4 rounded-xl bg-zinc-800/50 border border-white/5">
+                <p className="text-sm text-zinc-300 leading-relaxed font-sans">
+                  {skill.description}
+                </p>
+              </div>
+
+              {/* Competencies List */}
               <div>
                 <h3 className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest mb-4">Competency Breakdown</h3>
                 <div className="grid grid-cols-1 gap-3">
-                  {skill.explanation.split('|').map((point, i) => (
+                  {skill.competencies.map((point, i) => (
                     <motion.div 
                       key={i}
                       initial={{ x: -10, opacity: 0 }}
@@ -65,12 +74,6 @@ const SkillDetailModal: React.FC<SkillDetailModalProps> = ({ skill, onClose }) =
                     </motion.div>
                   ))}
                 </div>
-              </div>
-
-              <div className="p-4 rounded-xl bg-brand-accent/5 border border-brand-accent/10">
-                <p className="text-[10px] text-brand-accent font-bold uppercase tracking-widest leading-relaxed">
-                  Demonstrated proficiency through academic rigorous testing and practical project implementation.
-                </p>
               </div>
             </div>
           </div>

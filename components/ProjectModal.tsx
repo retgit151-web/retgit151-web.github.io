@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, ExternalLink, Code2 } from 'lucide-react';
+import { X, ExternalLink, Code2, Zap, FileText } from 'lucide-react';
 // Fix: iconMap is exported from constants.tsx, while Project is from types.ts
 import { Project } from '../types';
 import { iconMap } from '../constants';
@@ -56,20 +56,21 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) => {
                 </p>
               </section>
 
-              <section>
-                <h3 className="text-sm uppercase tracking-widest text-zinc-500 mb-3">Expected Output</h3>
-                <div className="bg-zinc-950 border border-white/5 rounded-2xl p-6 font-mono text-sm">
-                  <div className="flex items-center gap-2 mb-4 text-emerald-400">
-                    <ExternalLink size={16} />
-                    <span>{project.visualMetaphor}</span>
-                  </div>
-                  {project.codeSnippet && (
-                    <pre className="text-zinc-400 overflow-x-auto whitespace-pre-wrap">
-                      {project.codeSnippet}
-                    </pre>
-                  )}
-                </div>
-              </section>
+              {/* PDF Manual Button Section */}
+              {project.manualPdf && (
+                <section className="pt-4">
+                  <a 
+                    href={project.manualPdf} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center gap-3 w-full p-6 rounded-xl bg-zinc-800 border border-white/5 hover:bg-brand-accent/10 hover:border-brand-accent/20 text-zinc-300 hover:text-brand-accent transition-all group"
+                  >
+                    <FileText size={24} className="group-hover:scale-110 transition-transform" />
+                    <span className="font-bold uppercase tracking-widest text-sm">View Project Manual</span>
+                    <ExternalLink size={16} className="opacity-50 group-hover:opacity-100 transition-opacity ml-1" />
+                  </a>
+                </section>
+              )}
             </div>
           </div>
         </motion.div>

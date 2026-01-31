@@ -1,3 +1,4 @@
+
 export interface Project {
   id: string;
   title: string;
@@ -8,6 +9,7 @@ export interface Project {
   icon: string;
   metrics?: { label: string; value: string }[];
   codeSnippet?: string;
+  manualPdf?: string;
 }
 
 export interface Certificate {

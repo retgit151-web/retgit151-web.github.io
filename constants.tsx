@@ -20,8 +20,6 @@ import {
 import { Project, Certificate } from './types';
 
 // Certificate PDF Paths
-// We use direct string paths to avoid module resolution issues with non-JS files in browser environments.
-// These paths are relative to the public root (where index.html is).
 const introCyberPdf = './Certificates/INTRO_TO_CYBER_Certificates.pdf';
 const linuxFundPdf = './Certificates/linuxfund_Certificate.pdf';
 const netSecPdf = './Certificates/network_security_Certificate.pdf';
@@ -29,10 +27,12 @@ const netResearchPdf = './Certificates/NR_Certificates.pdf';
 const ptPdf = './Certificates/PT.pdf';
 const socPdf = './Certificates/soc_Certificates.pdf';
 const winForensicsPdf = './Certificates/Wf_Certificates.pdf';
+const cityGuildsIntroPdf = './Certificates/City_Guilds_Intro_Certificate.pdf';
 
 export interface DetailedSkill {
   name: string;
-  explanation: string;
+  description: string;
+  competencies: string[];
 }
 
 export interface SkillCategoryDetailed {
@@ -49,6 +49,7 @@ export const PROJECTS: Project[] = [
     visualMetaphor: 'System Status: Optimized',
     skills: ['Bash Scripting', 'System Administration', 'Resource Monitoring', 'Process Management'],
     icon: 'ServerCog',
+    manualPdf: './Manuals/Linux_Info_Automation_Manual.pdf',
     codeSnippet: 'Public IP: 185.x.x.x\nPrivate IP: 10.0.x.x\nMemory: Total 3.9G, Available 2.1G\nTop Process: gnome-shell (2.3%)'
   },
   {
@@ -59,16 +60,18 @@ export const PROJECTS: Project[] = [
     visualMetaphor: 'Anonymity: Active (Tor)',
     skills: ['Network Security', 'Tor/Nipe', 'SSH Automation', 'Audit Logging', 'Bash'],
     icon: 'Ghost',
+    manualPdf: './Manuals/Anonymous_Network_Scanner_Manual.pdf',
     codeSnippet: '[*] Starting remote Nmap scan on target: 185.156.72.7\n[!] You are anonymous. Country: NL\n[SUCCESS] Log saved to scan_log.txt'
   },
   {
     id: 'pt-vulnerability-scanning',
-    title: 'Automated Pentest Suite',
+    title: 'PT Vulnerability Scanning',
     description: 'A modular penetration testing framework that automates IP range validation, vulnerability mapping (Nmap to SearchSploit), and credential brute-forcing with Hydra.',
     longDescription: 'This tool automates the tedious phases of a penetration test to map attack surfaces efficiently. It features dynamic IP range validation using Nmap List Scan (-sL) and a "Full Scan" mode that converts Nmap XML outputs directly into SearchSploit queries to find relevant CVEs. Additionally, it includes an intelligent Hydra module that identifies open authentication services (SSH, FTP, RDP) and initiates targeted brute-force attacks using custom or default wordlists (rockyou.txt), exporting all findings to a structured workspace.',
     visualMetaphor: 'Vulnerabilities: Mapped',
     skills: ['Penetration Testing', 'Hydra', 'SearchSploit', 'Nmap NSE', 'Bash'],
     icon: 'Bug',
+    manualPdf: './Manuals/Automated_Pentest_Suite_Manual.pdf',
     codeSnippet: '[ALERT] Host 192.168.80.134: Vulnerable to CVE-2024-XXXX\n[+] Hydra: Cracking SSH on port 22...\n[SUCCESS] Password found: user:123456'
   },
   {
@@ -79,6 +82,7 @@ export const PROJECTS: Project[] = [
     visualMetaphor: 'Threats Detected: 3 High',
     skills: ['Python', 'Log Analysis', 'Regex', 'Threat Detection', 'Data Sanitization'],
     icon: 'ShieldAlert',
+    manualPdf: './Manuals/Python_Security_Log_Parser_Manual.pdf',
     codeSnippet: '!!! RED FLAG DETECTED !!! Time=[14:04:42] | Suspicious word: \'/etc/shadow\'\nTime=[14:05:15] | sudo:session | USER=kali | COMMAND=/usr/bin/nmap'
   },
   {
@@ -89,6 +93,7 @@ export const PROJECTS: Project[] = [
     visualMetaphor: 'Evidence: Extracted',
     skills: ['Memory Forensics', 'Volatility', 'File Carving', 'Malware Analysis', 'Bash'],
     icon: 'Microscope',
+    manualPdf: './Manuals/Windows_Memory_Forensics_Manual.pdf',
     codeSnippet: '[*] Identified suspicious parent-child: svchost.exe -> powershell.exe\n[*] Registry hives located: \\SystemRoot\\System32\\Config\\SAM\n[*] PCAP found: packets.pcap (42M)'
   }
 ];
@@ -156,6 +161,15 @@ export const CERTIFICATES: Certificate[] = [
     description: 'Investigative techniques for Windows systems, memory analysis, and artifact recovery.',
     url: 'https://thinkcyber.co.il',
     pdf: winForensicsPdf
+  },
+  {
+    id: 'city-guilds-intro',
+    title: 'Intro to Cyber Security',
+    issuer: 'City & Guilds',
+    date: '2026',
+    description: 'Accredited qualification covering fundamental cybersecurity concepts, threats, and defensive strategies.',
+    url: 'https://www.cityandguilds.com',
+    pdf: cityGuildsIntroPdf
   }
 ];
 
@@ -174,26 +188,95 @@ export const FULL_SKILLS_DETAILED: SkillCategoryDetailed[] = [
     items: [
       { 
         name: 'Cyber Fundamentals', 
-        explanation: 'Protocols | Windows Network Tools | Networking Fundamentals | OSI Layer Analysis | Kali Linux Environment | Text Manipulation' 
+        description: 'Establishing a strong core in networking protocols, OS fundamentals, and essential security tools.',
+        competencies: [
+            'Protocols', 
+            'Windows Network Tools', 
+            'Networking Fundamentals', 
+            'OSI', 
+            'Kali Linux', 
+            'Text Manipulation'
+        ]
       },
-      { name: 'Automation', explanation: 'Bash Scripting | Python Development for Security' }
+      { 
+        name: 'Automation', 
+        description: 'Developing scripts for automation, testing, and operational security tasks using Bash and Python.',
+        competencies: [
+            'Bash', 
+            'Python'
+        ]
+      }
     ] 
   },
   { 
     category: 'Offensive Security', 
     items: [
-      { name: 'Network Research', explanation: 'Network Services | Network Protocols Analysis | Scanning Tools | Wireshark | TCP/IP | Offline\\Online Brute-force | Trojans | Firewalls' },
-      { name: 'Penetration Testing', explanation: 'Enumeration | Exploitation | Post Exploitation | Payloads | Social Engineering | WebApp Security' },
-      { name: 'Network Security', explanation: 'Network Attacks | Domain Exploitation | PowerShell | Domain Security | Cryptography' }
+      { 
+        name: 'Network Research', 
+        description: 'Deep diving into network traffic, protocols, and services to identify vulnerabilities.',
+        competencies: [
+            'Network Services', 
+            'Network Protocols Analysis', 
+            'Scanning Tools', 
+            'Wireshark', 
+            'TCP/IP', 
+            'Offline/Online Brute-force',
+            'Trojans',
+            'Firewalls'
+        ]
+      },
+      { 
+        name: 'Penetration Testing', 
+        description: 'Practical offensive security techniques, vulnerability assessment, and exploitation.',
+        competencies: [
+            'Enumeration', 
+            'Exploitation', 
+            'Post Exploitation', 
+            'Payloads', 
+            'Social Engineering', 
+            'WebApp Security'
+        ]
+      },
+      { 
+        name: 'Network Security', 
+        description: 'Implementing domain security, hardening infrastructures, and analyzing network attacks.',
+        competencies: [
+            'Network Attacks', 
+            'Domain Exploitation', 
+            'PowerShell', 
+            'Domain Security', 
+            'Cryptography'
+        ]
+      }
     ] 
   },
   { 
     category: 'Defensive Operations', 
     items: [
-      { name: 'Windows Forensics', explanation: 'Carving Tools | Steganography | Volatility | Memory Analysis | Malware Analysis | Windows Events' },
+      { 
+        name: 'Windows Forensics', 
+        description: 'Investigative techniques for Windows systems, memory analysis, and artifact recovery.',
+        competencies: [
+            'Carving Tools', 
+            'Steganography', 
+            'Volatility', 
+            'Memory Analysis', 
+            'Malware Analysis', 
+            'Windows Events'
+        ]
+      },
       { 
         name: 'SOC Analyst', 
-        explanation: 'SIEM System (ELK, Splunk) | IPS/IDS | Log Analysis | Event Analysis | Firewalls | Incident Response Methodologies | Proactive Threat Hunting' 
+        description: 'Security Operations Center workflows, incident detection, and response strategies.',
+        competencies: [
+            'SIEM System (ELK, Splunk)', 
+            'IPS/IDS', 
+            'Log Analysis', 
+            'Event Analysis', 
+            'Firewalls',
+            'Threat Hunting', 
+            'Incident Response'
+        ]
       }
     ] 
   }

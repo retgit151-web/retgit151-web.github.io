@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Music, Gamepad2, User, Mic2, Guitar } from 'lucide-react';
+import { X, Music, Gamepad2, User, Mic2, Guitar, Sparkles } from 'lucide-react';
 
 interface AboutModalProps {
   isOpen: boolean;
@@ -48,6 +48,20 @@ const AboutModal: React.FC<AboutModalProps> = ({ isOpen, onClose }) => {
               </div>
 
               <div className="space-y-10">
+                <section>
+                   <div className="flex items-center gap-3 mb-4">
+                     <Sparkles size={18} className="text-brand-tech" />
+                     <h3 className="text-xs font-black text-zinc-100 uppercase tracking-widest">Key Traits</h3>
+                   </div>
+                   <div className="flex flex-wrap gap-2">
+                     {['Creative', 'Team Player', 'Problem Solver', 'High Work Ethic'].map(trait => (
+                        <span key={trait} className="px-3 py-1.5 rounded-lg bg-zinc-800 border border-white/5 text-[10px] font-bold text-zinc-300 uppercase tracking-wide cursor-default hover:border-brand-accent/30 transition-colors">
+                          {trait}
+                        </span>
+                     ))}
+                   </div>
+                </section>
+
                 <section className="relative">
                   <div className="flex items-center gap-3 mb-4">
                     <Music size={18} className="text-brand-tech" />

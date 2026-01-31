@@ -51,14 +51,14 @@ const IdentityHub: React.FC<IdentityHubProps> = ({ onAboutClick }) => {
            </div>
            
            <div className="flex items-center gap-3">
-             <button className="flex items-center gap-2 px-6 py-3 bg-zinc-100 hover:bg-white text-zinc-950 rounded-xl text-[11px] font-sans transition-all uppercase tracking-widest font-black group shadow-[0_0_20px_rgba(255,255,255,0.1)] hover:shadow-[0_0_25px_rgba(255,255,255,0.2)]">
+             <button className="flex items-center gap-2 px-6 py-3 bg-zinc-100 hover:bg-white text-zinc-950 hover:text-brand-accent rounded-xl text-[11px] font-sans transition-all uppercase tracking-widest font-black group shadow-[0_0_20px_rgba(255,255,255,0.1)] hover:shadow-[0_0_25px_rgba(255,255,255,0.2)]">
                <Download size={16} className="group-hover:-translate-y-0.5 transition-transform" />
                <span>Resume</span>
              </button>
 
              <button 
               onClick={onAboutClick}
-              className="flex items-center gap-2 px-6 py-3 bg-zinc-800 hover:bg-zinc-700 border border-white/5 rounded-xl text-[11px] font-sans transition-all text-zinc-300 uppercase tracking-widest font-black group"
+              className="flex items-center gap-2 px-6 py-3 bg-zinc-800 hover:bg-zinc-700 border border-white/5 rounded-xl text-[11px] font-sans transition-all text-zinc-300 hover:text-brand-accent uppercase tracking-widest font-black group"
              >
                <User size={16} className="group-hover:scale-110 transition-transform text-brand-accent" />
                <span>About Me</span>
