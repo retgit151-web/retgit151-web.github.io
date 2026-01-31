@@ -122,11 +122,11 @@ const App: React.FC = () => {
             </div>
           </GlassCard>
 
-          {/* --- SECTION 2: COMPETENCY & EXPERIENCE (Moved Up) --- */}
+          {/* --- SECTION 2: SKILLS AND CERTIFICATES (Moved Up) --- */}
           <div className="lg:col-span-4 mt-8 mb-2">
              <div className="flex items-center gap-3">
                <Shield size={20} className="text-brand-accent" />
-               <h3 className="text-sm font-black text-zinc-100 uppercase tracking-widest">Professional Expertise</h3>
+               <h3 className="text-sm font-black text-zinc-100 uppercase tracking-widest">Skills and Certificates</h3>
                <div className="h-[1px] flex-1 bg-zinc-800 ml-4" />
              </div>
           </div>
@@ -135,8 +135,7 @@ const App: React.FC = () => {
           <GlassCard id="skills" className="lg:col-span-2 p-8">
             <div className="flex justify-between items-center mb-8 pb-4 border-b border-white/5">
               <div className="space-y-1">
-                <span className="text-[10px] font-sans text-zinc-500 uppercase tracking-widest font-bold">Skills</span>
-                <h2 className="text-xl font-black text-zinc-100 uppercase tracking-tight">Technical Proficiency</h2>
+                <h2 className="text-xl font-black text-zinc-100 uppercase tracking-tight">Skills</h2>
               </div>
               <div className="p-2.5 rounded-xl bg-zinc-800/50 border border-white/5">
                 <Activity size={20} className="text-brand-accent" />
@@ -202,9 +201,6 @@ const App: React.FC = () => {
                   <div className="p-3 rounded-xl bg-zinc-900 border border-white/5 group-hover:bg-brand-accent/10 group-hover:border-brand-accent/20 transition-all">
                     <IconComp size={20} className="text-zinc-400 group-hover:text-brand-accent transition-colors" />
                   </div>
-                  <div className="px-2 py-1 rounded-md bg-zinc-900 border border-white/5 text-[9px] font-mono text-zinc-500 uppercase">
-                    v1.0
-                  </div>
                 </div>
                 
                 <div className="mt-6">
@@ -216,12 +212,7 @@ const App: React.FC = () => {
                   </p>
                 </div>
 
-                <div className="mt-4 pt-4 border-t border-white/5 flex items-center justify-between opacity-50 group-hover:opacity-100 transition-opacity">
-                   <div className="flex gap-1">
-                      {proj.skills.slice(0, 2).map(skill => (
-                        <span key={skill} className="text-[8px] px-1.5 py-0.5 bg-zinc-800 rounded text-zinc-400">{skill}</span>
-                      ))}
-                   </div>
+                <div className="mt-4 pt-4 border-t border-white/5 flex items-center justify-end opacity-50 group-hover:opacity-100 transition-opacity">
                    <ChevronRight size={14} className="text-brand-accent" />
                 </div>
               </GlassCard>
@@ -236,7 +227,7 @@ const App: React.FC = () => {
                <div className="h-[1px] flex-1 bg-zinc-800 ml-4" />
              </div>
              <p className="text-xs text-zinc-500 mt-2 ml-8 font-mono max-w-2xl">
-               Select a script from the list below to initialize a live simulation of my technical capabilities.
+               Select a script from the list below to initialize a live simulation
              </p>
           </div>
 

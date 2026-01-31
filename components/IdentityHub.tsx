@@ -19,19 +19,9 @@ const IdentityHub: React.FC<IdentityHubProps> = ({ onAboutClick }) => {
         transition={{ duration: 0.8 }}
         className="relative z-10 w-full max-w-3xl"
       >
-        <div className="inline-flex items-center gap-2 mb-6 px-3 py-1 rounded-full bg-brand-accent/5 border border-brand-accent/10">
-          <div className="w-1.5 h-1.5 rounded-full bg-brand-accent animate-pulse" />
-          <span className="text-[10px] font-mono font-bold text-brand-accent uppercase tracking-widest">
-            Cybersecurity Portfolio
-          </span>
-        </div>
-
         <h1 className="text-6xl md:text-8xl font-black tracking-tighter text-zinc-50 mb-4 leading-none uppercase drop-shadow-2xl">
           Reut Abergel
         </h1>
-        <p className="text-xs md:text-sm font-sans font-bold text-zinc-400 uppercase tracking-[0.4em] mb-10">
-          Cybersecurity Specialist & Analyst
-        </p>
 
         {/* Integrated Communication Details */}
         <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-4 mb-12 text-zinc-500">

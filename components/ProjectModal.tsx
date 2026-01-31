@@ -45,60 +45,31 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) => {
               </div>
               <div>
                 <h2 className="text-3xl font-bold text-zinc-50 mb-2">{project.title}</h2>
-                <div className="flex flex-wrap gap-2">
-                  {project.skills.map(s => (
-                    <span key={s} className="px-3 py-1 rounded-full bg-zinc-800 text-xs font-mono text-brand-tech">
-                      {s}
-                    </span>
-                  ))}
-                </div>
               </div>
             </header>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <div className="md:col-span-2 space-y-6">
-                <section>
-                  <h3 className="text-sm uppercase tracking-widest text-zinc-500 mb-3">Project Overview</h3>
-                  <p className="text-zinc-300 leading-relaxed text-lg">
-                    {project.longDescription}
-                  </p>
-                </section>
+            <div className="space-y-6">
+              <section>
+                <h3 className="text-sm uppercase tracking-widest text-zinc-500 mb-3">Project Overview</h3>
+                <p className="text-zinc-300 leading-relaxed text-lg">
+                  {project.longDescription}
+                </p>
+              </section>
 
-                <section>
-                  <h3 className="text-sm uppercase tracking-widest text-zinc-500 mb-3">Expected Output</h3>
-                  <div className="bg-zinc-950 border border-white/5 rounded-2xl p-6 font-mono text-sm">
-                    <div className="flex items-center gap-2 mb-4 text-emerald-400">
-                      <ExternalLink size={16} />
-                      <span>{project.visualMetaphor}</span>
-                    </div>
-                    {project.codeSnippet && (
-                      <pre className="text-zinc-400 overflow-x-auto whitespace-pre-wrap">
-                        {project.codeSnippet}
-                      </pre>
-                    )}
+              <section>
+                <h3 className="text-sm uppercase tracking-widest text-zinc-500 mb-3">Expected Output</h3>
+                <div className="bg-zinc-950 border border-white/5 rounded-2xl p-6 font-mono text-sm">
+                  <div className="flex items-center gap-2 mb-4 text-emerald-400">
+                    <ExternalLink size={16} />
+                    <span>{project.visualMetaphor}</span>
                   </div>
-                </section>
-              </div>
-
-              <aside className="space-y-6">
-                <div className="p-6 rounded-2xl bg-zinc-800/30 border border-white/5">
-                  <h3 className="text-sm font-semibold text-zinc-100 mb-4">Why it matters</h3>
-                  <ul className="space-y-3 text-xs text-zinc-400">
-                    <li className="flex items-start gap-2">
-                      <div className="w-1 h-1 rounded-full bg-brand-accent mt-1.5 shrink-0" />
-                      Provides high-fidelity data for threat prioritization.
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <div className="w-1 h-1 rounded-full bg-brand-accent mt-1.5 shrink-0" />
-                      Reduces detection-to-remediation latency.
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <div className="w-1 h-1 rounded-full bg-brand-accent mt-1.5 shrink-0" />
-                      Demonstrates proficiency in Linux auditing frameworks.
-                    </li>
-                  </ul>
+                  {project.codeSnippet && (
+                    <pre className="text-zinc-400 overflow-x-auto whitespace-pre-wrap">
+                      {project.codeSnippet}
+                    </pre>
+                  )}
                 </div>
-              </aside>
+              </section>
             </div>
           </div>
         </motion.div>

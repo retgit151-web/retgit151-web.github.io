@@ -20,14 +20,15 @@ import {
 import { Project, Certificate } from './types';
 
 // Certificate PDF Paths
-// Paths are relative to the public root (index.html).
-const introCyberPdf = 'Certificates/INTRO_TO_CYBER_Certificates.pdf';
-const linuxFundPdf = 'Certificates/linuxfund_Certificate.pdf';
-const netSecPdf = 'Certificates/network_security_Certificate.pdf';
-const netResearchPdf = 'Certificates/NR_Certificates.pdf';
-const ptPdf = 'Certificates/PT.pdf';
-const socPdf = 'Certificates/soc_Certificates.pdf';
-const winForensicsPdf = 'Certificates/Wf_Certificates.pdf';
+// We use direct string paths to avoid module resolution issues with non-JS files in browser environments.
+// These paths are relative to the public root (where index.html is).
+const introCyberPdf = './Certificates/INTRO_TO_CYBER_Certificates.pdf';
+const linuxFundPdf = './Certificates/linuxfund_Certificate.pdf';
+const netSecPdf = './Certificates/network_security_Certificate.pdf';
+const netResearchPdf = './Certificates/NR_Certificates.pdf';
+const ptPdf = './Certificates/PT.pdf';
+const socPdf = './Certificates/soc_Certificates.pdf';
+const winForensicsPdf = './Certificates/Wf_Certificates.pdf';
 
 export interface DetailedSkill {
   name: string;
@@ -42,50 +43,53 @@ export interface SkillCategoryDetailed {
 export const PROJECTS: Project[] = [
   {
     id: 'linux-info-automation',
-    title: 'Linux Info Automation',
-    description: 'The script’s job is to print a clean report about your machine, like ip address, MAC address, memory usage, and top 10 largest files.',
-    longDescription: 'A custom-built system auditing utility that generates comprehensive situational awareness reports. It captures critical metadata including network configurations (IP/MAC), memory utilization, and local storage state to facilitate rapid security compliance checks.',
-    visualMetaphor: 'Compliance Status: 100% Verified',
-    skills: ['System Auditing', 'Bash', 'Automation'],
+    title: 'Linux System Info Automation',
+    description: 'A "System info for everyone" script that generates an instant, clean report of critical machine data (IPs, MAC, CPU, Memory) for quick troubleshooting.',
+    longDescription: 'This project is a friendly, automated guide designed to provide instant visibility into a Linux system. It aggregates scattered system facts into a single, compact report. Key features include extracting Public/Private IPs, identifying the MAC address, analyzing the top 5 CPU-consuming processes, calculating memory usage in a human-readable format, and listing the top 10 largest files in the /home directory. It demonstrates proficiency in combining small Linux commands (awk, sed, sort, uniq, curl) into a practical, repeatable auditing tool.',
+    visualMetaphor: 'System Status: Optimized',
+    skills: ['Bash Scripting', 'System Administration', 'Resource Monitoring', 'Process Management'],
     icon: 'ServerCog',
-    codeSnippet: 'system_status: OK\nnetwork_interfaces: 3\nmemory_usage: 14%\ndisk_health: OPTIMAL'
+    codeSnippet: 'Public IP: 185.x.x.x\nPrivate IP: 10.0.x.x\nMemory: Total 3.9G, Available 2.1G\nTop Process: gnome-shell (2.3%)'
   },
   {
     id: 'network-research-anon',
-    title: 'Network research anonymous scanning',
-    description: "The script's role is to perform an anonymous Nmap and Whois network scan using Nipe, against an IP target provided by the user.",
-    longDescription: 'Anonymized signal flow suite that leverages Nipe to route all reconnaissance traffic through the Tor network. Designed for stealth operations, it allows for secure Nmap and Whois scans while maintaining complete OPSEC integrity.',
-    visualMetaphor: 'Anonymized Routing Active',
-    skills: ['Network Stealth', 'Nmap', 'Tor'],
-    icon: 'Ghost'
-  },
-  {
-    id: 'windows-forensics-analyzer',
-    title: 'Windows Forensics Memory File Analyzer',
-    description: "The script's role is to act as an automated Analyzer for Windows memory dumps. It takes a raw file provided by the user and extracts hidden evidence automatically.",
-    longDescription: 'Automated memory dump analyzer that identifies malicious artifacts within Windows environments. Utilizing the Volatility framework, it uncovers rootkits, hidden processes, and credential exposure that traditional tools miss.',
-    visualMetaphor: 'Artifact Analysis: Completed',
-    skills: ['Memory Forensics', 'Volatility', 'Threat Hunting'],
-    icon: 'Microscope'
-  },
-  {
-    id: 'python-log-parser',
-    title: 'Python log_parser',
-    description: 'The script’s role is to act as an Automated Security Log Parser for Linux authentication logs. It specifically targets the /var/log/auth.log file to identify potential security breaches.',
-    longDescription: 'A proactive SIEM component that monitors Linux authentication logs for anomalies. It identifies patterns of brute-force attempts and unauthorized access, categorizing risk levels based on attempt frequency and IP reputation.',
-    visualMetaphor: 'Log Analysis: Monitoring Active',
-    skills: ['IDS', 'Python', 'Log Analysis'],
-    icon: 'ShieldAlert',
-    codeSnippet: 'ALERT: Unauthorized Login Attempt Detected\nSOURCE_IP: 192.168.1.104\nTIMESTAMP: 14:02:55 UTC\nACTION: Logged & Blocked'
+    title: 'Anonymous Network Scanner',
+    description: 'An automated Nmap and Whois scanner that strictly enforces OPSEC by validating anonymity and routing traffic through Tor via Nipe.',
+    longDescription: 'A security-focused network research tool designed to perform reconnaissance while maintaining strict attacker anonymity. The script operates in two critical security stages: 1) Anonymity Check, verifying the IP is not local (e.g., IL) and activating Nipe (Tor) if exposed, and 2) Root Validation. It automates the installation of dependencies (sshpass, geoip-bin), connects to remote servers via SSH, performs Whois and Nmap scans, and generates a timestamped "Audit Trail" log (scan_log.txt) for reporting.',
+    visualMetaphor: 'Anonymity: Active (Tor)',
+    skills: ['Network Security', 'Tor/Nipe', 'SSH Automation', 'Audit Logging', 'Bash'],
+    icon: 'Ghost',
+    codeSnippet: '[*] Starting remote Nmap scan on target: 185.156.72.7\n[!] You are anonymous. Country: NL\n[SUCCESS] Log saved to scan_log.txt'
   },
   {
     id: 'pt-vulnerability-scanning',
-    title: 'pt vulnerability scanning',
-    description: 'The tool is designed to take an IP range, perform a full or basic scan, find vulnerabilities, and perform credential brute-forcing.',
-    longDescription: 'A penetration testing scanner designed to map attack surfaces. It performs full-scale vulnerability discovery and credential strength assessments across specified IP ranges, providing a prioritized risk report.',
-    visualMetaphor: 'Surface Scanning: 82% Discovery',
-    skills: ['Pentesting', 'Vulnerability Scan', 'Risk Assessment'],
-    icon: 'Bug'
+    title: 'Automated Pentest Suite',
+    description: 'A modular penetration testing framework that automates IP range validation, vulnerability mapping (Nmap to SearchSploit), and credential brute-forcing with Hydra.',
+    longDescription: 'This tool automates the tedious phases of a penetration test to map attack surfaces efficiently. It features dynamic IP range validation using Nmap List Scan (-sL) and a "Full Scan" mode that converts Nmap XML outputs directly into SearchSploit queries to find relevant CVEs. Additionally, it includes an intelligent Hydra module that identifies open authentication services (SSH, FTP, RDP) and initiates targeted brute-force attacks using custom or default wordlists (rockyou.txt), exporting all findings to a structured workspace.',
+    visualMetaphor: 'Vulnerabilities: Mapped',
+    skills: ['Penetration Testing', 'Hydra', 'SearchSploit', 'Nmap NSE', 'Bash'],
+    icon: 'Bug',
+    codeSnippet: '[ALERT] Host 192.168.80.134: Vulnerable to CVE-2024-XXXX\n[+] Hydra: Cracking SSH on port 22...\n[SUCCESS] Password found: user:123456'
+  },
+  {
+    id: 'python-log-parser',
+    title: 'Python Security Log Parser',
+    description: 'An automated log auditor for /var/log/auth.log that detects Red Flags, tracks user lifecycle events, and monitors privilege escalation attempts.',
+    longDescription: 'A lightweight SIEM-like utility built in Python to audit Linux authentication logs. It parses /var/log/auth.log to identify potential security breaches, such as brute-force attempts and unauthorized access. The script uses a "Red Flag" detection logic to spot high-risk keywords (e.g., nmap, nc, /etc/shadow) and tracks user lifecycle events (creation/deletion/password changes). It provides a statistical summary of sudo/su usage and failed login alerts, sanitizing raw log data into a readable security report.',
+    visualMetaphor: 'Threats Detected: 3 High',
+    skills: ['Python', 'Log Analysis', 'Regex', 'Threat Detection', 'Data Sanitization'],
+    icon: 'ShieldAlert',
+    codeSnippet: '!!! RED FLAG DETECTED !!! Time=[14:04:42] | Suspicious word: \'/etc/shadow\'\nTime=[14:05:15] | sudo:session | USER=kali | COMMAND=/usr/bin/nmap'
+  },
+  {
+    id: 'windows-forensics-analyzer',
+    title: 'Windows Memory Forensics',
+    description: 'An automated forensic artifact extractor for Windows memory dumps, integrating Volatility for RAM analysis and carvers like Binwalk and Foremost.',
+    longDescription: 'A comprehensive forensic automation tool that streamlines the analysis of raw Windows memory dumps. It eliminates manual setup by dynamically configuring tools like Scalpel (via sed) and installing missing dependencies (Volatility, Bulk Extractor). The script performs deep artifact recovery using file carvers (Foremost, Strings, Binwalk) to extract hidden files and network packets (PCAP). It leverages Volatility to identify OS profiles, running processes, and active network connections, wrapping all evidence in a timestamped, zipped case folder.',
+    visualMetaphor: 'Evidence: Extracted',
+    skills: ['Memory Forensics', 'Volatility', 'File Carving', 'Malware Analysis', 'Bash'],
+    icon: 'Microscope',
+    codeSnippet: '[*] Identified suspicious parent-child: svchost.exe -> powershell.exe\n[*] Registry hives located: \\SystemRoot\\System32\\Config\\SAM\n[*] PCAP found: packets.pcap (42M)'
   }
 ];
 

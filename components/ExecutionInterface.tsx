@@ -114,7 +114,7 @@ const INTERFACE_PROJECTS = [
       "                     | |    / _| |  _ \\             (_)   ",
       " __      _____  _ __ | | __| |_  | |_) |_ __ ___     _    ",
       " \\ \\ /\\ / / _ \\| '__|| |/ _`  _| |  ___/ '__/ _ \\   | |   ",
-      "  \\ V  V / (_) | |   | | (_| |   | |   | | | (_) |  | |   ",
+      "  \\ V  V / (_) | |   | | (_| |   | | | (_) |  | |   ",
       "   \\_/\\_/ \\___/|_|   |_|\\__,_|   |_|   |_|  \\___/   | |   ",
       "                                                   _/ |   ",
       "                                                  |__/    ",
@@ -181,16 +181,16 @@ const INTERFACE_PROJECTS = [
       "(kali㉿kali)-[~] python3 auth_parser.py",
       "---auth log parsing resultes---",
       "Time=[Feb 15 14:02:11] | sudo:session | USER=kali | COMMAND=/usr/bin/apt update",
-      "Time=[Feb 15 14:02:11] | note!!: session opened for user root by (uid=0) using sudo",
-      "Time=[Feb 15 14:03:05] |!!!!!ALERT!!!!! : authentication failure; logname=kali tty=/dev/pts/1",
-      "!!! RED FLAG DETECTED !!!Time=[Feb 15 14:04:42]| suspicus word detected:'etc/shadow'",
+      "Time=[Feb 15 14:02:11] | note!!: session opened for user root by  using sudo",
+      "Time=[Feb 15 14:03:05] |!!!!!ALERT!!!!! : authentication failure; logname=kali",
+      "!!! RED FLAG DETECTED !!!Time=[Feb 15 14:04:42]| suspicus word detected:'etc/shadow' ",
       "Time=[Feb 15 14:04:42] | sudo:session | USER=kali | COMMAND=/usr/bin/cat /etc/shadow",
-      "!!! RED FLAG DETECTED !!!Time=[Feb 15 14:05:15]| suspicus word detected:'nmap'",
+      "!!! RED FLAG DETECTED !!!Time=[Feb 15 14:05:15]| suspicus word detected:'nmap' ",
       "Time=[Feb 15 14:05:15] | sudo:session | USER=kali | COMMAND=/usr/bin/nmap -sV 192.168.1.1",
       "Time=[Feb 15 14:08:22] | New User created: New User: auditing_svc",
       "Time=[Feb 15 14:08:55] | password changed for auditing_svc",
       "Time=[Feb 15 14:10:04] | user auditing_svc Deleted ",
-      "Time=[Feb 15 14:12:48] | note!!: session opened for user root by (uid=0) using su",
+      "Time=[Feb 15 14:12:48] | note!!: session opened for user root by  using su",
       "----------------------------------------",
       "summary",
       "----------------------------------------",
@@ -205,15 +205,100 @@ const INTERFACE_PROJECTS = [
     lang: 'bash/nmap', 
     desc: "Designed to take an IP range, perform a full or basic scan, find vulnerabilities, and perform credential brute-forcing.",
     scriptLines: [
-      "(kali㉿kali)-[~] ./vuln_scan.sh 192.168.1.0/24",
-      "[!] Target network range: 192.168.1.0/24",
-      "[+] Performing host discovery (ARP scan)...",
-      "[+] 12 active nodes discovered.",
-      "[+] Launching vulnerability assessment (NSE scripts)...",
-      "[ALERT] Host 192.168.1.104: CVE-2024-XXXX (Critical RCE) - Vulnerable.",
-      "[!] Initiating credential audit (SSH/SMB)...",
-      "[SUCCESS] Credential cracked on 192.168.1.15: 'user:password123'",
-      "[+] Analysis complete. High-risk mitigation required on 2 nodes."
+      "(kali㉿kali)-[~] ./pt_project.sh",
+      // Matrix Noise
+      "00000000  2f 64 65 76 2f 75 72 61  6e 64 6f 6d 0a 2f 64 65  |/dev/urandom./de|",
+      "00000010  76 2f 75 72 61 6e 64 6f  6d 0a 2f 64 65 76 2f 75  |v/urandom./dev/u|",
+      "...",
+      " > SYSTEM ACCESS: GRANTED",
+      " > INITIALIZING PROJECT PROTOCOL...",
+      " ",
+      "      /=======================================================\\",
+      "     /                                                       /|",
+      "    /           PENETRATION TESTING PROJECT                 / |",
+      "   <=======================================================>  |",
+      "    \\                                                       \\ |",
+      "     \\               By Reut Abergel                         \\|",
+      "      \\=======================================================/",
+      "                               ||",
+      "                             __||__",
+      "                             \\    /",
+      "                              \\__/",
+      " ",
+      "please specify a directory to save the output in: scan_results",
+      "-----directory is scan_results----",
+      "please write a valid ip range with cider to scan: 192.168.1.0/24",
+      "---ip is 192.168.1.0/24----",
+      "checking if ip is valid, starting to scan",
+      "IP input is valid!",
+      "scanning ip 192.168.1.10",
+      "[(:]found active host: 192.168.1.10, saving...",
+      "scanning ip 192.168.1.15",
+      "[(:]found active host: 192.168.1.15, saving...",
+      "Scan complete. Results saved in scan_results/checkip_results/",
+      "Full: include Nmap Scripting Engine OR Basic: scans the network for TCP and UDP",
+      "---please choose method to scan([B]asic or [F]ull)---: F",
+      "you chose F for full scan with nmap scripts",
+      "range is 192.168.1.0/24",
+      "starting Full scan with nse (nmap script engine) this may take a while...:",
+      "you can press space for estimated time",
+      "enter a new dirctory to save the data: full_scan",
+      "[(:] Scanning IP: 192.168.1.10 (Please wait...)",
+      "[(:] Scanning IP: 192.168.1.15 (Please wait...)",
+      "--------------------------------------------------------",
+      "           SEARCHSPLOIT FINDINGS                        ",
+      "--------------------------------------------------------",
+      "---Results for: 192.168.1.10---",
+      "Exploit Title                                 |  Path",
+      "vsftpd 2.3.4 - Backdoor Command Execution     | unix/remote/17491.rb",
+      "-----------------------------------------------------------",
+      "!!!!!!!!!!!!!!!!!IMPORTANT FINDINGS ONLY!!!!!!!!!!!!!!!!!!!",
+      "-----------------------------------------------------------",
+      "Nmap scan report for 192.168.1.10",
+      "PORT     STATE SERVICE     VERSION",
+      "21/tcp   open  ftp         vsftpd 2.3.4",
+      "| vuln-exploit: vsftpd 2.3.4 backdoor",
+      "80/tcp   open  http        Apache httpd 2.4.41",
+      "===========================================================",
+      "Full scan complete! details saved in scan_results/full_scan",
+      "starting weak passwords check with hydra ",
+      "enter a user list or skip and use Default user list: ",
+      "enter path to a pass list or press enter and use the default (rockyou.txt): ",
+      "[(:] pass file found using /usr/share/wordlists/rockyou.txt",
+      "cheacking for open ports on 192.168.1.0/24:",
+      "[*] Found open port 22 on 192.168.1.15. Starting Hydra...",
+      "[DATA] 192.168.1.15:22 (ssh) -> login: user password: password123",
+      "hydra input saved in scan_results/full_scan ",
+      "-----------------------------------------------------------",
+      "                   INSPECT RESULTS                         ",
+      "-----------------------------------------------------------",
+      "Available Scan Reports:",
+      "192.168.1.10.txt",
+      "192.168.1.15.txt",
+      "Enter the IP you want to inspect (or 'q' to quit): q",
+      "Exiting inspection.",
+      "Do you want to zip the results and delete the original folder? (y/n): y",
+      "[(:] Zip successful saved as scan_info_2026.zip. Original folder removed.",
+      " ",
+      "       (^\\.            .^\\.)",
+      "       ((\\^^.        .^^))",
+      "         \\ ' \\.-----./   /",
+      "          \\              /",
+      "          (            )    _ ._ /\\",
+      "          ( (o  _  o)  )   \\./       )",
+      "          (0   \\^/   0)  \\\\      ___\\",
+      "          |            |   .)  \\",
+      "          /  \\    /    \\  (). ^",
+      "         /  \\ \\  / /    ( .. )",
+      "        (      _) (_/    ). ^",
+      "        (                )",
+      "         \\.            ./",
+      "           (__)----(__)",
+      " ",
+      "      .___________________________________________________.",
+      "      |                                                   |",
+      "      |          Thank you for using this tool!           |",
+      "      |___________________________________________________|"
     ]
   }
 ];
@@ -266,7 +351,9 @@ const ExecutionInterface: React.FC = () => {
         line.includes("parsing memory using volatility") || 
         line.includes("Running volatility imageinfo") ||
         line.includes("Running Bulk Extractor") ||
-        line.includes("---auth log parsing resultes---")
+        line.includes("---auth log parsing resultes---") ||
+        line.includes("starting Full scan with nse") ||
+        line.includes("Starting Hydra")
       ) {
         delay = 4000;
       }
@@ -277,7 +364,8 @@ const ExecutionInterface: React.FC = () => {
         line.includes("Initiating credential audit") || 
         line.includes("Scanning for strings") ||
         line.includes("Running Binwalk") ||
-        line.includes("summary")
+        line.includes("summary") ||
+        line.includes("Scan complete")
       ) {
         delay = 5000;
       }
@@ -307,21 +395,6 @@ const ExecutionInterface: React.FC = () => {
 
   return (
     <div className="flex flex-col rounded-xl overflow-hidden shadow-2xl border border-zinc-800 bg-zinc-950">
-      {/* OS Window Header */}
-      <div className="bg-zinc-900 border-b border-white/5 px-4 py-2 flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          <div className="flex gap-1.5">
-            <div className="w-3 h-3 rounded-full bg-red-500/80" />
-            <div className="w-3 h-3 rounded-full bg-amber-500/80" />
-            <div className="w-3 h-3 rounded-full bg-emerald-500/80" />
-          </div>
-        </div>
-        <div className="flex items-center gap-4">
-           <span className="text-[10px] font-mono text-zinc-600">RAM: 14%</span>
-           <span className="text-[10px] font-mono text-zinc-600">CPU: 4%</span>
-        </div>
-      </div>
-
       <div className="grid grid-cols-1 md:grid-cols-4 gap-0 h-[500px]">
         {/* Left Sidebar Navigation */}
         <div className="md:col-span-1 border-r border-white/5 bg-zinc-900/20 flex flex-col overflow-hidden">
@@ -397,11 +470,13 @@ const ExecutionInterface: React.FC = () => {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.1 }}
                 className={`mb-1 whitespace-pre-wrap ${
-                  line.startsWith('[SUCCESS]') ? 'text-emerald-500' :
-                  line.startsWith('[READY]') ? 'text-brand-tech' :
+                  line.startsWith('[SUCCESS]') || line.includes("Zip successful") || line.includes("Scan complete") ? 'text-emerald-500' :
+                  line.startsWith(' >') || line.includes("PENETRATION TESTING PROJECT") || line.includes("By Reut Abergel") || line.includes("Thank you for using this tool") ? 'text-blue-400 font-bold' :
+                  line.startsWith('[READY]') || line.includes("SYSTEM ACCESS: GRANTED") || line.includes("INITIALIZING PROJECT PROTOCOL") ? 'text-green-500' :
                   line.startsWith('(kali㉿kali)') || line.startsWith('$') ? 'text-brand-accent font-bold' :
-                  line.startsWith('[ALERT]') || line.startsWith('[!]') || line.startsWith('[!!!]') || line.includes('!!! RED FLAG DETECTED !!!') || line.includes('!!!!!ALERT!!!!!') ? 'text-amber-500' :
+                  line.startsWith('[ALERT]') || line.startsWith('[!]') || line.startsWith('[!!!]') || line.includes('!!! RED FLAG DETECTED !!!') || line.includes('!!!!!ALERT!!!!!') || line.includes('IMPORTANT FINDINGS ONLY') ? 'text-amber-500' :
                   line.startsWith('[=>]') || line.startsWith('==>') || line.startsWith('[(:]') || line.includes('---auth log parsing resultes---') ? 'text-zinc-100 drop-shadow-[0_0_5px_rgba(56,189,248,0.1)]' :
+                  line.includes("000000") ? 'text-green-500/50' :
                   'text-zinc-400'
                 }`}
               >
@@ -448,8 +523,6 @@ const ExecutionInterface: React.FC = () => {
                <span className={`text-[9px] font-mono uppercase tracking-tighter ${isReady ? 'text-emerald-500' : 'text-amber-500'}`}>
                  [SYSTEM: {isInitializing ? 'INITIALIZING' : isRunning ? 'BUSY' : isReady ? 'READY' : 'WAITING'}]
                </span>
-               <div className="h-3 w-[1px] bg-zinc-800" />
-               <span className="text-[9px] font-mono text-zinc-600 uppercase tracking-tighter">NODE: RA-KALI-SOC-01</span>
             </div>
             <Cpu size={12} className={isRunning ? "text-brand-accent animate-spin-slow" : "text-zinc-700"} />
           </div>
@@ -460,4 +533,3 @@ const ExecutionInterface: React.FC = () => {
 };
 
 export default ExecutionInterface;
-    
