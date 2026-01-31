@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Phone, MapPin, Linkedin, Download, User, Hash } from 'lucide-react';
+import { Mail, Phone, MapPin, Linkedin, Download, User, Hash, Github } from 'lucide-react';
 
 interface IdentityHubProps {
   onAboutClick?: () => void;
@@ -75,12 +75,21 @@ const IdentityHub: React.FC<IdentityHubProps> = ({ onAboutClick }) => {
              </button>
              
              <a 
-              href="https://linkedin.com" 
+              href="https://www.linkedin.com/in/reut-abergel-96753438a?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BjMGb4F2xRye1e9P57nSRVA%3D%3D" 
               target="_blank" 
               rel="noopener noreferrer"
               className="p-3 rounded-xl bg-zinc-800 hover:bg-[#0077b5] border border-white/5 transition-all text-zinc-400 hover:text-white group"
              >
                 <Linkedin size={18} className="group-hover:scale-110 transition-transform" />
+             </a>
+
+             <a 
+              href="https://github.com/retgit151-web/reut-abergel-projects-" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="p-3 rounded-xl bg-zinc-800 hover:bg-black border border-white/5 transition-all text-zinc-400 hover:text-white group"
+             >
+                <Github size={18} className="group-hover:scale-110 transition-transform" />
              </a>
            </div>
         </div>

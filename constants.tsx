@@ -9,7 +9,7 @@ import {
   Globe, 
   ShieldAlert, 
   Database, 
-  Lock,
+  Lock, 
   Search,
   Activity,
   Server,
@@ -18,6 +18,16 @@ import {
   ServerCog
 } from 'lucide-react';
 import { Project, Certificate } from './types';
+
+// Certificate PDF Paths
+// Paths are relative to the public root (index.html).
+const introCyberPdf = 'Certificates/INTRO_TO_CYBER_Certificates.pdf';
+const linuxFundPdf = 'Certificates/linuxfund_Certificate.pdf';
+const netSecPdf = 'Certificates/network_security_Certificate.pdf';
+const netResearchPdf = 'Certificates/NR_Certificates.pdf';
+const ptPdf = 'Certificates/PT.pdf';
+const socPdf = 'Certificates/soc_Certificates.pdf';
+const winForensicsPdf = 'Certificates/Wf_Certificates.pdf';
 
 export interface DetailedSkill {
   name: string;
@@ -81,22 +91,67 @@ export const PROJECTS: Project[] = [
 
 export const CERTIFICATES: Certificate[] = [
   {
-    id: 'cert-1',
-    title: 'Cyber Security Professional',
+    id: 'intro-cyber',
+    title: 'Intro to Cyber Security',
     issuer: 'ThinkCyber',
-    date: '2026',
-    description: 'Comprehensive certification covering offensive and defensive security operations, network security, and forensics.',
+    date: '2025',
+    description: 'Comprehensive introduction to cybersecurity fundamentals and core concepts.',
     url: 'https://thinkcyber.co.il',
-    pdf: 'Certificates/ThinkCyber_Certificate.pdf'
+    pdf: introCyberPdf
   },
   {
-    id: 'cert-2',
-    title: 'Cyber Security Qualification',
-    issuer: 'City & Guilds',
+    id: 'linux-fund',
+    title: 'Linux Fundamentals',
+    issuer: 'ThinkCyber',
     date: '2025',
-    description: 'Internationally recognized certification demonstrating practical proficiency in security principles.',
-    url: 'https://www.cityandguilds.com',
-    pdf: 'Certificates/City_and_Guilds_Certificate.pdf'
+    description: 'Essential Linux system administration, command line usage, and permissions management.',
+    url: 'https://thinkcyber.co.il',
+    pdf: linuxFundPdf
+  },
+  {
+    id: 'net-sec',
+    title: 'Network Security',
+    issuer: 'ThinkCyber',
+    date: '2025',
+    description: 'Deep dive into network protocols, secure architecture, and defense mechanisms.',
+    url: 'https://thinkcyber.co.il',
+    pdf: netSecPdf
+  },
+  {
+    id: 'net-research',
+    title: 'Network Research',
+    issuer: 'ThinkCyber',
+    date: '2025',
+    description: 'Advanced methodologies for network reconnaissance and traffic analysis.',
+    url: 'https://thinkcyber.co.il',
+    pdf: netResearchPdf
+  },
+  {
+    id: 'pt',
+    title: 'Penetration Testing',
+    issuer: 'ThinkCyber',
+    date: '2026',
+    description: 'Practical offensive security techniques, vulnerability assessment, and exploitation.',
+    url: 'https://thinkcyber.co.il',
+    pdf: ptPdf
+  },
+  {
+    id: 'soc',
+    title: 'SOC Analyst',
+    issuer: 'ThinkCyber',
+    date: '2026',
+    description: 'Security Operations Center workflows, incident detection, and response strategies.',
+    url: 'https://thinkcyber.co.il',
+    pdf: socPdf
+  },
+  {
+    id: 'win-forensics',
+    title: 'Windows Forensics',
+    issuer: 'ThinkCyber',
+    date: '2026',
+    description: 'Investigative techniques for Windows systems, memory analysis, and artifact recovery.',
+    url: 'https://thinkcyber.co.il',
+    pdf: winForensicsPdf
   }
 ];
 

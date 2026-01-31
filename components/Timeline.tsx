@@ -2,61 +2,70 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { CERTIFICATES } from '../constants';
-import { ExternalLink, FileText } from 'lucide-react';
+import { Folder, ChevronRight, FileText } from 'lucide-react';
 
 interface TimelineProps {
   onIssuerClick: (issuer: string) => void;
 }
 
 const Timeline: React.FC<TimelineProps> = ({ onIssuerClick }) => {
+  // Group certificates by issuer
+  const groupedCertificates = CERTIFICATES.reduce((acc, cert) => {
+    (acc[cert.issuer] = acc[cert.issuer] || []).push(cert);
+    return acc;
+  }, {} as Record<string, typeof CERTIFICATES>);
+
   return (
-    <div className="relative pl-6 space-y-8 before:absolute before:left-[11px] before:top-2 before:bottom-2 before:w-[2px] before:bg-zinc-800">
-      {CERTIFICATES.map((cert, index) => (
-        <motion.div 
-          key={cert.id}
-          initial={{ opacity: 0, x: -20 }}
-          whileInView={{ opacity: 1, x: 0 }}
+    <div className="flex flex-col gap-4">
+      {Object.entries(groupedCertificates).map(([issuer, certs], index) => (
+        <motion.div
+          key={issuer}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: index * 0.1 }}
-          className="relative"
+          onClick={() => onIssuerClick(issuer)}
+          className="group relative overflow-hidden rounded-xl bg-zinc-900/50 border border-white/5 hover:bg-zinc-800/80 hover:border-brand-accent/30 transition-all cursor-pointer p-4"
         >
-          <div className="absolute -left-[20px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-brand-accent shadow-[0_0_10px_rgba(56,189,248,0.5)] flex items-center justify-center">
-            <div className="w-1.5 h-1.5 bg-brand-accent rounded-full" />
-          </div>
-          <div className="mb-1">
-            {cert.pdf ? (
-              <a 
-                href={cert.pdf} 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="inline-flex items-center gap-2 group/title hover:text-brand-accent transition-colors cursor-pointer"
-                title="View Certificate PDF"
-              >
-                <h4 className="text-zinc-50 font-bold text-sm uppercase tracking-wide group-hover/title:text-brand-accent">{cert.title}</h4>
-                <FileText size={12} className="text-zinc-500 group-hover/title:text-brand-accent transition-colors" />
-              </a>
-            ) : (
-              <h4 className="text-zinc-50 font-bold text-sm uppercase tracking-wide">{cert.title}</h4>
-            )}
-            
-            <div className="flex justify-between items-center text-xs font-mono text-zinc-500 mt-1">
-              <button 
-                onClick={() => onIssuerClick(cert.issuer)}
-                className="text-brand-accent/80 font-bold hover:text-brand-accent hover:underline decoration-brand-accent/30 underline-offset-4 transition-all flex items-center gap-1 group cursor-pointer"
-              >
-                {cert.issuer}
-                <ExternalLink size={10} className="opacity-0 group-hover:opacity-100 transition-opacity" />
-              </button>
-              <span>{cert.date}</span>
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-4">
+              {/* Folder Icon container */}
+              <div className="w-12 h-12 rounded-lg bg-brand-accent/10 border border-brand-accent/20 flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
+                <Folder size={24} className="text-brand-accent fill-brand-accent/20" />
+              </div>
+              
+              <div>
+                <h4 className="text-zinc-100 font-bold text-sm uppercase tracking-wide group-hover:text-brand-accent transition-colors">
+                  {issuer}
+                </h4>
+                <div className="flex items-center gap-2 mt-1">
+                  <span className="text-[10px] font-mono text-zinc-500 bg-zinc-900 px-2 py-0.5 rounded border border-white/5">
+                    {certs.length} Files
+                  </span>
+                  <span className="text-[10px] text-zinc-600">
+                    Latest: {certs.reduce((latest, c) => (c.date > latest ? c.date : latest), '')}
+                  </span>
+                </div>
+              </div>
             </div>
+
+            <ChevronRight className="text-zinc-700 group-hover:text-brand-accent group-hover:translate-x-1 transition-all" size={18} />
           </div>
-          {cert.description && (
-            <p className="text-xs text-zinc-400 mt-2 leading-relaxed border-l-2 border-zinc-800 pl-3">
-              {cert.description}
-            </p>
-          )}
+
+          {/* Decorative file previews behind the folder logic */}
+          <div className="mt-4 flex gap-1 px-1 opacity-40 group-hover:opacity-60 transition-opacity">
+            {certs.slice(0, 5).map((_, i) => (
+              <div key={i} className="h-1 flex-1 rounded-full bg-zinc-700 group-hover:bg-brand-accent transition-colors" />
+            ))}
+          </div>
         </motion.div>
       ))}
+      
+      {Object.keys(groupedCertificates).length === 0 && (
+        <div className="text-center p-8 text-zinc-600 italic text-xs">
+          No certificate folders found.
+        </div>
+      )}
     </div>
   );
 };
