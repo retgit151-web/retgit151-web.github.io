@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Terminal, Play, Power, Cpu, ChevronRight, Activity, RotateCcw, Minus, Square, X } from 'lucide-react';
@@ -323,20 +322,27 @@ const ExecutionInterface: React.FC = () => {
     scrollToBottom();
   }, [terminalLines]);
 
-  const handleInitialize = () => {
-    setIsInitializing(true);
-    setTerminalLines(prev => [...prev, `# Initializing system environment for ${selectedProject.name}...`]);
-    
-    setTimeout(() => {
+  const handleExecute = async () => {
+    if (isRunning || isInitializing) return;
+
+    // STEP 1: INITIALIZATION
+    // If not ready, we run the initialization sequence first.
+    if (!isReady) {
+      setIsInitializing(true);
+      setTerminalLines(prev => [...prev, `# Initializing system environment for ${selectedProject.name}...`]);
+      
+      // Wait for "initialization"
+      await new Promise(resolve => setTimeout(resolve, 2000));
+      
       setIsInitializing(false);
       setIsReady(true);
       setTerminalLines(prev => [...prev, `[SUCCESS] Environment initialized.`, `[READY] System ready.`]);
-    }, 2000);
-  };
+      
+      // Brief pause before running script
+      await new Promise(resolve => setTimeout(resolve, 800));
+    }
 
-  const handleRun = async () => {
-    if (!isReady || isRunning) return;
-    
+    // STEP 2: RUN SCRIPT
     setIsRunning(true);
     const linesToProcess = selectedProject.scriptLines;
 
@@ -495,25 +501,29 @@ const ExecutionInterface: React.FC = () => {
           {/* Action Buttons */}
           <div className="px-6 py-4 border-t border-white/5 bg-zinc-900/10 shrink-0">
             <div className="flex flex-wrap gap-4">
-              {!isReady ? (
-                <button 
-                  onClick={handleInitialize}
-                  disabled={isInitializing}
-                  className="flex items-center gap-3 px-6 py-2.5 bg-zinc-900 hover:bg-zinc-800 border border-white/10 rounded-lg text-[10px] font-sans font-black uppercase tracking-widest transition-all hover:border-emerald-500/50 hover:shadow-[0_0_15px_rgba(16,185,129,0.4)] group disabled:opacity-50 hover:text-emerald-500 w-full sm:w-auto justify-center"
-                >
-                  <Power size={14} className={isInitializing ? "animate-spin text-emerald-500" : "text-zinc-500 group-hover:text-emerald-500"} />
-                  <span>{isInitializing ? "Establishing..." : "Initialize System"}</span>
-                </button>
-              ) : (
-                <button 
-                  onClick={handleRun}
-                  disabled={isRunning}
-                  className="flex items-center gap-3 px-8 py-2.5 bg-brand-accent/10 hover:bg-brand-accent/20 border border-brand-accent/20 rounded-lg text-[10px] font-sans font-black uppercase tracking-widest transition-all hover:shadow-[0_0_15px_rgba(56,189,248,0.15)] group disabled:opacity-50 w-full sm:w-auto justify-center"
-                >
-                  <Play size={14} className={`${isRunning ? "animate-pulse" : ""} text-brand-accent`} />
-                  <span className="text-brand-accent">{isRunning ? "Running Script..." : "Run Script"}</span>
-                </button>
-              )}
+              <button 
+                onClick={handleExecute}
+                disabled={isRunning || isInitializing}
+                className={`
+                  flex items-center gap-3 px-6 py-2.5 rounded-lg text-[10px] font-sans font-black uppercase tracking-widest transition-all w-full sm:w-auto justify-center group disabled:opacity-50
+                  ${!isReady 
+                    ? 'bg-zinc-900 hover:bg-zinc-800 border border-white/10 hover:border-emerald-500/50 hover:text-emerald-500 hover:shadow-[0_0_15px_rgba(16,185,129,0.4)]' 
+                    : 'bg-brand-accent/10 hover:bg-brand-accent/20 border border-brand-accent/20 hover:shadow-[0_0_15px_rgba(56,189,248,0.15)]'
+                  }
+                `}
+              >
+                {!isReady ? (
+                    <>
+                      <Power size={14} className={isInitializing ? "animate-spin text-emerald-500" : "text-zinc-500 group-hover:text-emerald-500"} />
+                      <span>{isInitializing ? "Initializing..." : "Initialize & Run"}</span>
+                    </>
+                ) : (
+                    <>
+                      <Play size={14} className={`${isRunning ? "animate-pulse" : ""} text-brand-accent`} />
+                      <span className="text-brand-accent">{isRunning ? "Running Script..." : "Re-Execute Script"}</span>
+                    </>
+                )}
+              </button>
             </div>
           </div>
 

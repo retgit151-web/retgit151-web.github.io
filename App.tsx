@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { 
@@ -7,6 +6,7 @@ import {
   Terminal, 
   Fingerprint,
   Trophy,
+  Medal,
   ChevronRight
 } from 'lucide-react';
 import GlassCard from './components/GlassCard';
@@ -59,7 +59,7 @@ const App: React.FC = () => {
           </GlassCard>
 
           {/* Academic Foundation (1x1) */}
-          <GlassCard className="lg:col-span-1 flex flex-col h-full min-h-[300px] md:min-h-full bg-zinc-900/40 relative overflow-hidden group">
+          <GlassCard hoverable={false} className="lg:col-span-1 flex flex-col h-full min-h-[300px] md:min-h-full bg-zinc-900/40 relative overflow-hidden">
             <div className="flex justify-between items-center mb-6 relative z-10">
               <span className="text-base font-black text-zinc-100 uppercase tracking-widest">Education</span>
               <div className="p-2.5 rounded-xl bg-zinc-800/50 border border-white/5">
@@ -164,7 +164,7 @@ const App: React.FC = () => {
                   <h2 className="text-xl font-black text-zinc-100 uppercase tracking-tight">Certificates</h2>
                 </div>
                 <div className="p-2.5 rounded-xl bg-zinc-800/50 border border-white/5">
-                  <Trophy size={20} className="text-brand-accent" />
+                  <Medal size={20} className="text-brand-accent" />
                 </div>
               </div>
               <Timeline onIssuerClick={setSelectedIssuer} />

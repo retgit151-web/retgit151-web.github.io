@@ -1,5 +1,5 @@
-
 import React, { useState, useEffect, useRef } from 'react';
+import { User } from 'lucide-react';
 import GlassCard from './GlassCard';
 
 const TYPING_SPEED = 10; // ms per char
@@ -46,14 +46,18 @@ const AboutSection: React.FC = () => {
   return (
     <GlassCard 
       id="about-me"
-      className="col-span-1 md:col-span-2 lg:col-span-4 min-h-[200px] flex flex-col gap-6 items-start relative group"
+      hoverable={false}
+      className="col-span-1 md:col-span-2 lg:col-span-4 min-h-[200px] flex flex-col gap-6 items-start relative"
     >
         {/* Glow behind */}
-        <div className="absolute -left-10 -top-10 w-[200px] h-[200px] bg-brand-tech/5 rounded-full blur-[80px] pointer-events-none group-hover:bg-brand-tech/10 transition-colors duration-1000" />
+        <div className="absolute -left-10 -top-10 w-[200px] h-[200px] bg-brand-tech/5 rounded-full blur-[80px] pointer-events-none transition-colors duration-1000" />
 
         {/* Left: Bio Content */}
         <div className="flex-1 w-full space-y-4 z-10" ref={sectionRef}>
-            <div className="flex items-center gap-3 border-b border-white/5 pb-4">
+            <div className="flex items-center gap-4 border-b border-white/5 pb-4">
+                <div className="p-2.5 rounded-xl bg-zinc-800/50 border border-white/5">
+                   <User size={20} className="text-brand-accent" />
+                </div>
                 <h3 className="text-sm font-black text-zinc-100 uppercase tracking-widest">About Me</h3>
             </div>
             
