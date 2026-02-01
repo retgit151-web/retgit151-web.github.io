@@ -20,14 +20,14 @@ import {
 import { Project, Certificate } from './types';
 
 // Certificate PDF Paths
-const introCyberPdf = './Certificates/INTRO_TO_CYBER_Certificates.pdf';
-const linuxFundPdf = './Certificates/linuxfund_Certificate.pdf';
-const netSecPdf = './Certificates/network_security_Certificate.pdf';
-const netResearchPdf = './Certificates/NR_Certificates.pdf';
-const ptPdf = './Certificates/PT.pdf';
-const socPdf = './Certificates/soc_Certificates.pdf';
-const winForensicsPdf = './Certificates/Wf_Certificates.pdf';
-const cityGuildsIntroPdf = './Certificates/City_Guilds_Intro_Certificate.pdf';
+const introCyberPdf = 'retgit151-web.github.io/retgit151-web.github.io/Certificates/INTRO_TO_CYBER_Certificates.pdf';
+const linuxFundPdf = 'retgit151-web.github.io/retgit151-web.github.io/Certificates/linuxfund_Certificate.pdf';
+const netSecPdf = 'retgit151-web.github.io/retgit151-web.github.io/Certificates/network_security_Certificate.pdf';
+const netResearchPdf = 'retgit151-web.github.io/retgit151-web.github.io/Certificates/NR_Certificates.pdf';
+const ptPdf = 'retgit151-web.github.io/retgit151-web.github.io/Certificates/PT.pdf';
+const socPdf = 'retgit151-web.github.io/retgit151-web.github.io/Certificates/soc_Certificates.pdf';
+const winForensicsPdf = 'retgit151-web.github.io/retgit151-web.github.io/Certificates/Wf_Certificates.pdf';
+const cityGuildsIntroPdf = 'retgit151-web.github.io/retgit151-web.github.io/Certificates/City_Guilds_Intro_Certificate.pdf';
 
 export interface DetailedSkill {
   name: string;
