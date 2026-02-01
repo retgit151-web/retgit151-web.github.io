@@ -13,8 +13,161 @@ const IdentityHub: React.FC<IdentityHubProps> = () => {
   return (
     <div className="flex flex-col h-full items-center justify-center text-center p-4 md:p-8 relative overflow-hidden">
       
-      {/* Background Abstract Element */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] md:w-[600px] md:h-[600px] bg-brand-accent/5 rounded-full blur-[80px] md:blur-[140px] pointer-events-none" />
+      <style>{`
+        /* 
+           CYBER BLOCK GLITCH v6 - RAW STATIC FRAMES
+           - Block Glitches: High frequency (kept).
+           - Static Line: Raw noise texture, no glow, blocky displacement, 1-frame duration.
+        */
+
+        @keyframes glitch-block-fast-1 {
+          0% { clip-path: inset(20% 30% 60% 10%); transform: translate(-6px, 3px); }
+          5% { clip-path: inset(100% 0 0 0); transform: translate(0, 0); }
+          15% { clip-path: inset(10% 10% 70% 40%); transform: translate(6px, -4px); }
+          20% { clip-path: inset(100% 0 0 0); transform: translate(0, 0); }
+          35% { clip-path: inset(50% 50% 20% 20%); transform: translate(-5px, 5px); }
+          40% { clip-path: inset(100% 0 0 0); transform: translate(0, 0); }
+          50% { clip-path: inset(0% 60% 80% 0%); transform: translate(5px, 0); }
+          55% { clip-path: inset(100% 0 0 0); transform: translate(0, 0); }
+          70% { clip-path: inset(60% 20% 10% 40%); transform: translate(-4px, 4px); }
+          75% { clip-path: inset(100% 0 0 0); transform: translate(0, 0); }
+          85% { clip-path: inset(40% 40% 40% 40%); transform: translate(6px, -3px); } 
+          90% { clip-path: inset(100% 0 0 0); transform: translate(0, 0); }
+          100% { clip-path: inset(100% 0 0 0); transform: translate(0, 0); }
+        }
+
+        @keyframes glitch-block-fast-2 {
+          0% { clip-path: inset(100% 0 0 0); transform: translate(0, 0); }
+          10% { clip-path: inset(5% 5% 70% 60%); transform: translate(5px, 3px); }
+          15% { clip-path: inset(100% 0 0 0); transform: translate(0, 0); }
+          30% { clip-path: inset(70% 10% 5% 50%); transform: translate(-5px, -2px); }
+          35% { clip-path: inset(100% 0 0 0); transform: translate(0, 0); }
+          50% { clip-path: inset(25% 60% 55% 10%); transform: translate(4px, 5px); }
+          55% { clip-path: inset(100% 0 0 0); transform: translate(0, 0); }
+          80% { clip-path: inset(40% 10% 40% 70%); transform: translate(-4px, 2px); }
+          85% { clip-path: inset(100% 0 0 0); transform: translate(0, 0); }
+          100% { clip-path: inset(100% 0 0 0); transform: translate(0, 0); }
+        }
+
+        @keyframes glitch-rare-snap {
+          0%, 85% { opacity: 0; clip-path: inset(100% 0 0 0); transform: translate(0); }
+          86% { opacity: 1; clip-path: inset(45% 0 45% 0); transform: translate(-15px, 0) skew(50deg); }
+          87% { opacity: 1; clip-path: inset(0 0 0 0); transform: translate(5px, 0) skew(-10deg); filter: blur(1px); }
+          88% { opacity: 1; clip-path: inset(10% 0 80% 0); transform: translate(10px, 0); }
+          89% { opacity: 0; clip-path: inset(100% 0 0 0); transform: translate(0); }
+          100% { opacity: 0; }
+        }
+
+        /* 
+           RAW STATIC FRAME FLASH 
+           - Uses steps(1) to ensure instant changes (no tweening).
+           - Only visible for ~1-2% of the timeline.
+           - Jumps vertically and horizontally (block distortion).
+        */
+        @keyframes raw-static-flash {
+          0% { opacity: 0; top: 0; height: 0; transform: translateX(0); }
+          
+          /* Flash 1: Top slice */
+          14% { opacity: 0; }
+          15% { opacity: 1; top: 15%; height: 4px; transform: translateX(-10px); }
+          16% { opacity: 0; }
+
+          /* Flash 2: Middle thick block */
+          38% { opacity: 0; }
+          39% { opacity: 1; top: 45%; height: 18px; transform: translateX(8px); }
+          40% { opacity: 0; }
+
+          /* Flash 3: Bottom thin line */
+          72% { opacity: 0; }
+          73% { opacity: 1; top: 80%; height: 2px; transform: translateX(-15px); }
+          74% { opacity: 0; }
+
+          /* Flash 4: Quick repeat mid-top */
+          91% { opacity: 0; }
+          92% { opacity: 1; top: 30%; height: 6px; transform: translateX(5px); }
+          93% { opacity: 0; }
+
+          100% { opacity: 0; }
+        }
+
+        .glitch-blocks {
+          position: relative;
+          color: #fafafa;
+          display: inline-block;
+        }
+
+        /* Main Block Layers */
+        .glitch-blocks::before,
+        .glitch-blocks::after {
+          content: attr(data-text);
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: #09090b;
+          opacity: 0;
+        }
+
+        /* CHANGED: Use .glitch-blocks:hover instead of .group:hover */
+        .glitch-blocks:hover::before {
+          opacity: 1;
+          z-index: 2;
+          animation: glitch-block-fast-1 0.7s steps(1) infinite;
+        }
+
+        .glitch-blocks:hover::after {
+          opacity: 1;
+          z-index: 1;
+          animation: glitch-block-fast-2 0.8s steps(1) infinite reverse;
+        }
+
+        /* Rare Snap Layer */
+        .glitch-snap-layer {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          opacity: 0;
+          pointer-events: none;
+          color: #fafafa;
+          z-index: 3;
+        }
+
+        .glitch-blocks:hover .glitch-snap-layer {
+           animation: glitch-rare-snap 1.5s linear infinite;
+        }
+
+        /* 
+           STATIC RAW LINE LAYER 
+           - High frequency noise (baseFrequency='3')
+           - No Glow
+           - Hard Mix
+        */
+        .static-line {
+          position: absolute;
+          left: 0;
+          width: 100%; /* Full width of container */
+          
+          /* Texture: Raw high-freq noise */
+          background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='3' numOctaves='1' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.8'/%3E%3C/svg%3E");
+          mix-blend-mode: hard-light;
+          opacity: 0;
+          z-index: 5;
+          pointer-events: none;
+          /* No shadow/glow requested */
+        }
+
+        .glitch-blocks:hover .static-line {
+          /* 2.5s loop, steps(1) for instant frame cuts */
+          animation: raw-static-flash 2.5s steps(1) infinite;
+        }
+        
+      `}</style>
+      
+      {/* Background Abstract Element - Kept subtle */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] md:w-[600px] md:h-[600px] bg-zinc-800/5 rounded-full blur-[80px] md:blur-[140px] pointer-events-none" />
       
       <motion.div 
         initial={{ opacity: 0, y: 20 }}
@@ -23,23 +176,30 @@ const IdentityHub: React.FC<IdentityHubProps> = () => {
         className="relative z-10 w-full max-w-4xl flex flex-col items-center"
       >
         {/* Main Name Header */}
-        <div className="relative mb-6 cursor-default select-none group">
-           <h1 className="text-4xl sm:text-6xl md:text-8xl font-black tracking-tighter leading-none uppercase drop-shadow-2xl text-zinc-50 transition-colors duration-300 group-hover:text-zinc-100">
+        <div className="relative mb-6 cursor-default select-none">
+           <h1 
+             className="relative text-4xl sm:text-6xl md:text-8xl font-black tracking-tighter leading-none uppercase drop-shadow-2xl text-zinc-50 glitch-blocks"
+             data-text={TARGET_NAME}
+           >
             {TARGET_NAME}
+            {/* Rare Distortion Layer Overlay */}
+            <span className="glitch-snap-layer" aria-hidden="true">{TARGET_NAME}</span>
+            {/* Raw Static Frame Line */}
+            <div className="static-line" aria-hidden="true"></div>
            </h1>
         </div>
 
         {/* Integrated Communication Details */}
         <div className="flex flex-wrap items-center justify-center gap-x-4 md:gap-x-8 gap-y-3 md:gap-y-4 mb-8 md:mb-12 text-zinc-500">
-          <div className="flex items-center gap-2 group cursor-default hover:text-brand-accent transition-colors">
+          <div className="flex items-center gap-2 group cursor-default hover:text-white transition-colors">
             <Mail size={14} />
             <span className="text-[10px] md:text-xs font-mono font-medium uppercase tracking-wider">Retgit151@gmail.com</span>
           </div>
-          <div className="flex items-center gap-2 group cursor-default hover:text-brand-accent transition-colors">
+          <div className="flex items-center gap-2 group cursor-default hover:text-white transition-colors">
             <Phone size={14} />
             <span className="text-[10px] md:text-xs font-mono font-medium uppercase tracking-wider">052-8570555</span>
           </div>
-          <div className="flex items-center gap-2 group cursor-default hover:text-brand-accent transition-colors">
+          <div className="flex items-center gap-2 group cursor-default hover:text-white transition-colors">
             <MapPin size={14} />
             <span className="text-[10px] md:text-xs font-mono font-medium uppercase tracking-wider">Kiryat Ono, Israel</span>
           </div>
@@ -62,7 +222,7 @@ const IdentityHub: React.FC<IdentityHubProps> = () => {
                  href="./Resume/Reut_Abergel_CV.pdf"
                  target="_blank"
                  rel="noopener noreferrer"
-                 className="flex items-center justify-center gap-2 px-6 py-3 bg-zinc-100 hover:bg-white text-zinc-950 hover:text-brand-accent rounded-xl text-[11px] font-sans transition-all uppercase tracking-widest font-black group shadow-[0_0_20px_rgba(255,255,255,0.1)] hover:shadow-[0_0_25px_rgba(255,255,255,0.2)]"
+                 className="flex items-center justify-center gap-2 px-6 py-3 bg-zinc-100 hover:bg-white text-zinc-950 hover:text-black rounded-xl text-[11px] font-sans transition-all uppercase tracking-widest font-black group shadow-[0_0_20px_rgba(255,255,255,0.1)] hover:shadow-[0_0_25px_rgba(255,255,255,0.2)]"
                >
                  <Download size={16} className="group-hover:-translate-y-0.5 transition-transform" />
                  <span>Resume</span>

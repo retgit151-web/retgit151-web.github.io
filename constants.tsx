@@ -31,11 +31,11 @@ const winForensicsPdf = '/Certificates/Wf_Certificates.pdf';
 const cityGuildsIntroPdf = '/Certificates/City_Guilds_Intro_Certificate.pdf';
 
 // Project Manual PDF Paths
-const linuxInfoManual = '/script_manual/Linux_Info_Automation_Manual.pdf';
-const anonScannerManual = '/script_manual/Anonymous_Network_Scanner_Manual.pdf';
-const pentestManual = '/script_manual/Automated_Pentest_Suite_Manual.pdf';
-const logParserManual = '/script_manual/Python_Security_Log_Parser_Manual.pdf';
-const forensicsManual = '/script_manual/Windows_Memory_Forensics_Manual.pdf';
+const linuxInfoManual = '/script_manual/Linux_Info_Automation.pdf';
+const anonScannerManual = '/script_manual/Network_Research_Anonymous_Enumeration.pdf';
+const pentestManual = '/script_manual/pt_vulnerability_scanning.pdf';
+const logParserManual = '/script_manual/Python_log_parser.pdf';
+const forensicsManual = '/script_manual/Windows_Forensics_Memory_File_Analyzer.pdf';
 
 export interface DetailedSkill {
   name: string;
