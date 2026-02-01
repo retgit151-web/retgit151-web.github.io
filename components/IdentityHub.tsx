@@ -1,15 +1,15 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Phone, MapPin, Linkedin, Download, User, Github } from 'lucide-react';
+import { Mail, Phone, MapPin, Linkedin, Download, Github } from 'lucide-react';
 
 interface IdentityHubProps {
-  onAboutClick?: () => void;
+  // No props needed anymore
 }
 
 const TARGET_NAME = "REUT ABERGEL";
 
-const IdentityHub: React.FC<IdentityHubProps> = ({ onAboutClick }) => {
+const IdentityHub: React.FC<IdentityHubProps> = () => {
   return (
     <div className="flex flex-col h-full items-center justify-center text-center p-4 md:p-8 relative overflow-hidden">
       
@@ -57,41 +57,34 @@ const IdentityHub: React.FC<IdentityHubProps> = ({ onAboutClick }) => {
               <span className="text-xs text-emerald-500 font-bold uppercase tracking-tight">Open to Work</span>
            </div>
            
-           <div className="flex flex-col sm:flex-row items-center gap-3 w-full sm:w-auto">
-             <div className="flex gap-3 w-full sm:w-auto">
-                 <button className="flex-1 sm:flex-none flex items-center justify-center gap-2 px-6 py-3 bg-zinc-100 hover:bg-white text-zinc-950 hover:text-brand-accent rounded-xl text-[11px] font-sans transition-all uppercase tracking-widest font-black group shadow-[0_0_20px_rgba(255,255,255,0.1)] hover:shadow-[0_0_25px_rgba(255,255,255,0.2)]">
-                   <Download size={16} className="group-hover:-translate-y-0.5 transition-transform" />
-                   <span>Resume</span>
-                 </button>
+           <div className="flex items-center gap-3 w-full sm:w-auto justify-center">
+               <a 
+                 href="./Resume/Reut_Abergel_CV.pdf"
+                 target="_blank"
+                 rel="noopener noreferrer"
+                 className="flex items-center justify-center gap-2 px-6 py-3 bg-zinc-100 hover:bg-white text-zinc-950 hover:text-brand-accent rounded-xl text-[11px] font-sans transition-all uppercase tracking-widest font-black group shadow-[0_0_20px_rgba(255,255,255,0.1)] hover:shadow-[0_0_25px_rgba(255,255,255,0.2)]"
+               >
+                 <Download size={16} className="group-hover:-translate-y-0.5 transition-transform" />
+                 <span>Resume</span>
+               </a>
 
-                 <button 
-                  onClick={onAboutClick}
-                  className="flex-1 sm:flex-none flex items-center justify-center gap-2 px-6 py-3 bg-zinc-800 hover:bg-zinc-700 border border-white/5 rounded-xl text-[11px] font-sans transition-all text-zinc-300 hover:text-brand-accent uppercase tracking-widest font-black group"
-                 >
-                   <User size={16} className="group-hover:scale-110 transition-transform text-brand-accent" />
-                   <span>About Me</span>
-                 </button>
-             </div>
-             
-             <div className="flex gap-3 w-full sm:w-auto">
-                 <a 
-                  href="https://www.linkedin.com/in/reut-abergel-96753438a?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BjMGb4F2xRye1e9P57nSRVA%3D%3D" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="flex-1 sm:flex-none flex justify-center items-center p-3 rounded-xl bg-zinc-800 hover:bg-[#0077b5] border border-white/5 transition-all text-zinc-400 hover:text-white group"
-                 >
-                    <Linkedin size={18} className="group-hover:scale-110 transition-transform" />
-                 </a>
+               <a 
+                href="https://www.linkedin.com/in/reut-abergel-96753438a?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BjMGb4F2xRye1e9P57nSRVA%3D%3D" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="flex items-center justify-center p-3 rounded-xl bg-zinc-800 hover:bg-[#0077b5] border border-white/5 transition-all text-zinc-400 hover:text-white group"
+               >
+                  <Linkedin size={18} className="group-hover:scale-110 transition-transform" />
+               </a>
 
-                 <a 
-                  href="https://github.com/retgit151-web/reut-abergel-projects-" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="flex-1 sm:flex-none flex justify-center items-center p-3 rounded-xl bg-zinc-800 hover:bg-black border border-white/5 transition-all text-zinc-400 hover:text-white group"
-                 >
-                    <Github size={18} className="group-hover:scale-110 transition-transform" />
-                 </a>
-             </div>
+               <a 
+                href="https://github.com/retgit151-web/reut-abergel-projects-" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="flex items-center justify-center p-3 rounded-xl bg-zinc-800 hover:bg-black border border-white/5 transition-all text-zinc-400 hover:text-white group"
+               >
+                  <Github size={18} className="group-hover:scale-110 transition-transform" />
+               </a>
            </div>
         </div>
       </motion.div>

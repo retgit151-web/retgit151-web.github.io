@@ -20,14 +20,15 @@ import {
 import { Project, Certificate } from './types';
 
 // Certificate PDF Paths
-const introCyberPdf = 'retgit151-web.github.io/retgit151-web.github.io/Certificates/INTRO_TO_CYBER_Certificates.pdf';
-const linuxFundPdf = 'retgit151-web.github.io/retgit151-web.github.io/Certificates/linuxfund_Certificate.pdf';
-const netSecPdf = 'retgit151-web.github.io/retgit151-web.github.io/Certificates/network_security_Certificate.pdf';
-const netResearchPdf = 'retgit151-web.github.io/retgit151-web.github.io/Certificates/NR_Certificates.pdf';
-const ptPdf = 'retgit151-web.github.io/retgit151-web.github.io/Certificates/PT.pdf';
-const socPdf = 'retgit151-web.github.io/retgit151-web.github.io/Certificates/soc_Certificates.pdf';
-const winForensicsPdf = 'retgit151-web.github.io/retgit151-web.github.io/Certificates/Wf_Certificates.pdf';
-const cityGuildsIntroPdf = 'retgit151-web.github.io/retgit151-web.github.io/Certificates/City_Guilds_Intro_Certificate.pdf';
+// Note: We use the root-relative path starting with '/'
+const introCyberPdf = '/Certificates/INTRO_TO_CYBER_Certificates.pdf';
+const linuxFundPdf = '/Certificates/linuxfund_Certificate.pdf';
+const netSecPdf = '/Certificates/network_security_Certificate.pdf';
+const netResearchPdf = '/Certificates/NR_Certificates.pdf';
+const ptPdf = '/Certificates/PT.pdf';
+const socPdf = '/Certificates/soc_Certificates.pdf';
+const winForensicsPdf = '/Certificates/Wf_Certificates.pdf';
+const cityGuildsIntroPdf = '/Certificates/City_Guilds_Intro_Certificate.pdf';
 
 export interface DetailedSkill {
   name: string;
@@ -49,18 +50,18 @@ export const PROJECTS: Project[] = [
     visualMetaphor: 'System Status: Optimized',
     skills: ['Bash Scripting', 'System Administration', 'Resource Monitoring', 'Process Management'],
     icon: 'ServerCog',
-    manualPdf: './Manuals/Linux_Info_Automation_Manual.pdf',
+    manualPdf: '/Manuals/Linux_Info_Automation_Manual.pdf',
     codeSnippet: 'Public IP: 185.x.x.x\nPrivate IP: 10.0.x.x\nMemory: Total 3.9G, Available 2.1G\nTop Process: gnome-shell (2.3%)'
   },
   {
     id: 'network-research-anon',
-    title: 'Anonymous Network Scanner',
+    title: 'Network Research Anonymous Enumeration',
     description: 'An automated Nmap and Whois scanner that strictly enforces OPSEC by validating anonymity and routing traffic through Tor via Nipe.',
     longDescription: 'A security-focused network research tool designed to perform reconnaissance while maintaining strict attacker anonymity. The script operates in two critical security stages: 1) Anonymity Check, verifying the IP is not local (e.g., IL) and activating Nipe (Tor) if exposed, and 2) Root Validation. It automates the installation of dependencies (sshpass, geoip-bin), connects to remote servers via SSH, performs Whois and Nmap scans, and generates a timestamped "Audit Trail" log (scan_log.txt) for reporting.',
     visualMetaphor: 'Anonymity: Active (Tor)',
     skills: ['Network Security', 'Tor/Nipe', 'SSH Automation', 'Audit Logging', 'Bash'],
     icon: 'Ghost',
-    manualPdf: './Manuals/Anonymous_Network_Scanner_Manual.pdf',
+    manualPdf: '/Manuals/Anonymous_Network_Scanner_Manual.pdf',
     codeSnippet: '[*] Starting remote Nmap scan on target: 185.156.72.7\n[!] You are anonymous. Country: NL\n[SUCCESS] Log saved to scan_log.txt'
   },
   {
@@ -71,7 +72,7 @@ export const PROJECTS: Project[] = [
     visualMetaphor: 'Vulnerabilities: Mapped',
     skills: ['Penetration Testing', 'Hydra', 'SearchSploit', 'Nmap NSE', 'Bash'],
     icon: 'Bug',
-    manualPdf: './Manuals/Automated_Pentest_Suite_Manual.pdf',
+    manualPdf: '/Manuals/Automated_Pentest_Suite_Manual.pdf',
     codeSnippet: '[ALERT] Host 192.168.80.134: Vulnerable to CVE-2024-XXXX\n[+] Hydra: Cracking SSH on port 22...\n[SUCCESS] Password found: user:123456'
   },
   {
@@ -82,7 +83,7 @@ export const PROJECTS: Project[] = [
     visualMetaphor: 'Threats Detected: 3 High',
     skills: ['Python', 'Log Analysis', 'Regex', 'Threat Detection', 'Data Sanitization'],
     icon: 'ShieldAlert',
-    manualPdf: './Manuals/Python_Security_Log_Parser_Manual.pdf',
+    manualPdf: '/Manuals/Python_Security_Log_Parser_Manual.pdf',
     codeSnippet: '!!! RED FLAG DETECTED !!! Time=[14:04:42] | Suspicious word: \'/etc/shadow\'\nTime=[14:05:15] | sudo:session | USER=kali | COMMAND=/usr/bin/nmap'
   },
   {
@@ -93,7 +94,7 @@ export const PROJECTS: Project[] = [
     visualMetaphor: 'Evidence: Extracted',
     skills: ['Memory Forensics', 'Volatility', 'File Carving', 'Malware Analysis', 'Bash'],
     icon: 'Microscope',
-    manualPdf: './Manuals/Windows_Memory_Forensics_Manual.pdf',
+    manualPdf: '/Manuals/Windows_Memory_Forensics_Manual.pdf',
     codeSnippet: '[*] Identified suspicious parent-child: svchost.exe -> powershell.exe\n[*] Registry hives located: \\SystemRoot\\System32\\Config\\SAM\n[*] PCAP found: packets.pcap (42M)'
   }
 ];

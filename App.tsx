@@ -2,25 +2,19 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { 
-  Download, 
-  ChevronRight, 
-  Award, 
   Shield, 
-  Search, 
   LayoutDashboard, 
-  CheckCircle2, 
-  Cpu, 
   Terminal, 
-  Zap,
   Fingerprint,
-  Trophy
+  Trophy,
+  ChevronRight
 } from 'lucide-react';
 import GlassCard from './components/GlassCard';
 import IdentityHub from './components/IdentityHub';
+import AboutSection from './components/AboutSection';
 import Timeline from './components/Timeline';
 import ProjectModal from './components/ProjectModal';
 import SkillDetailModal from './components/SkillDetailModal';
-import AboutModal from './components/AboutModal';
 import CertificateModal from './components/CertificateModal';
 import ExecutionInterface from './components/ExecutionInterface';
 import { PROJECTS, iconMap, FULL_SKILLS_DETAILED, DetailedSkill } from './constants';
@@ -30,7 +24,6 @@ const App: React.FC = () => {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [selectedSkill, setSelectedSkill] = useState<DetailedSkill | null>(null);
   const [selectedIssuer, setSelectedIssuer] = useState<string | null>(null);
-  const [isAboutOpen, setIsAboutOpen] = useState(false);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -60,9 +53,9 @@ const App: React.FC = () => {
           {/* --- SECTION 1: IDENTITY & FOUNDATION --- */}
           
           {/* Identity Hub (3x1) */}
-          <GlassCard id="about" className="lg:col-span-3 min-h-[400px] md:min-h-[460px] relative overflow-hidden group">
+          <GlassCard className="lg:col-span-3 min-h-[400px] md:min-h-[460px] relative overflow-hidden group">
             <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-brand-accent/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
-            <IdentityHub onAboutClick={() => setIsAboutOpen(true)} />
+            <IdentityHub />
           </GlassCard>
 
           {/* Academic Foundation (1x1) */}
@@ -108,7 +101,10 @@ const App: React.FC = () => {
             </div>
           </GlassCard>
 
-          {/* --- SECTION 2: SKILLS AND CERTIFICATES (Moved Up) --- */}
+          {/* --- SECTION 2: ABOUT ME (New Section) --- */}
+          <AboutSection />
+
+          {/* --- SECTION 3: SKILLS AND CERTIFICATES --- */}
           <div className="lg:col-span-4 mt-8 mb-2">
              <div className="flex items-center gap-3">
                <Shield size={20} className="text-brand-accent" />
@@ -168,14 +164,14 @@ const App: React.FC = () => {
                   <h2 className="text-xl font-black text-zinc-100 uppercase tracking-tight">Certificates</h2>
                 </div>
                 <div className="p-2.5 rounded-xl bg-zinc-800/50 border border-white/5">
-                  <Award size={20} className="text-brand-accent" />
+                  <Trophy size={20} className="text-brand-accent" />
                 </div>
               </div>
               <Timeline onIssuerClick={setSelectedIssuer} />
              </div>
           </GlassCard>
 
-          {/* --- SECTION 3: PROJECTS --- */}
+          {/* --- SECTION 4: PROJECTS --- */}
           <div className="lg:col-span-4 mt-8 mb-4">
              <div className="flex items-center gap-3">
                 <LayoutDashboard size={20} className="text-brand-accent" />
@@ -233,7 +229,7 @@ const App: React.FC = () => {
             })}
           </div>
 
-          {/* --- SECTION 4: LIVE EXECUTION --- */}
+          {/* --- SECTION 5: LIVE EXECUTION --- */}
           <div className="lg:col-span-4 mt-8 mb-2">
              <div className="flex items-center gap-3">
                <Terminal size={20} className="text-brand-accent" />
@@ -260,10 +256,6 @@ const App: React.FC = () => {
       <SkillDetailModal 
         skill={selectedSkill} 
         onClose={() => setSelectedSkill(null)} 
-      />
-      <AboutModal
-        isOpen={isAboutOpen}
-        onClose={() => setIsAboutOpen(false)}
       />
       <CertificateModal 
         issuer={selectedIssuer}

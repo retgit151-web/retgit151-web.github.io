@@ -31,7 +31,7 @@ const INTERFACE_PROJECTS = [
   },
   { 
     id: 'anon-scan', 
-    name: 'Network research anonymous scanning', 
+    name: 'Network Research Anonymous Enumeration', 
     lang: 'bash', 
     desc: "Perform an anonymous Nmap and Whois network scan using Nipe, against an IP target provided by the user.",
     scriptLines: [
