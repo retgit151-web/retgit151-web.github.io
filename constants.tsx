@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { 
   ShieldCheck, 
@@ -63,7 +62,7 @@ export const PROJECTS: Project[] = [
   {
     id: 'network-research-anon',
     title: 'Network Research Anonymous Enumeration',
-    description: 'An automated Nmap and Whois scanner that strictly enforces OPSEC by validating anonymity and routing traffic through Tor via Nipe.',
+    description: 'Automates the detection of exposed SSH services and validate access controls.',
     longDescription: 'A security-focused network research tool designed to perform reconnaissance while maintaining strict attacker anonymity. The script operates in two critical security stages: 1) Anonymity Check, verifying the IP is not local (e.g., IL) and activating Nipe (Tor) if exposed, and 2) Root Validation. It automates the installation of dependencies (sshpass, geoip-bin), connects to remote servers via SSH, performs Whois and Nmap scans, and generates a timestamped "Audit Trail" log (scan_log.txt) for reporting.',
     visualMetaphor: 'Anonymity: Active (Tor)',
     skills: ['Network Security', 'Tor/Nipe', 'SSH Automation', 'Audit Logging', 'Bash'],
@@ -74,7 +73,7 @@ export const PROJECTS: Project[] = [
   {
     id: 'pt-vulnerability-scanning',
     title: 'PT Vulnerability Scanning',
-    description: 'A modular penetration testing framework that automates IP range validation, vulnerability mapping (Nmap to SearchSploit), and credential brute-forcing with Hydra.',
+    description: 'Automation to map services and vulnerabilities on the entire ip range',
     longDescription: 'This tool automates the tedious phases of a penetration test to map attack surfaces efficiently. It features dynamic IP range validation using Nmap List Scan (-sL) and a "Full Scan" mode that converts Nmap XML outputs directly into SearchSploit queries to find relevant CVEs. Additionally, it includes an intelligent Hydra module that identifies open authentication services (SSH, FTP, RDP) and initiates targeted brute-force attacks using custom or default wordlists (rockyou.txt), exporting all findings to a structured workspace.',
     visualMetaphor: 'Vulnerabilities: Mapped',
     skills: ['Penetration Testing', 'Hydra', 'SearchSploit', 'Nmap NSE', 'Bash'],
