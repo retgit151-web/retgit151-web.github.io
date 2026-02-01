@@ -191,7 +191,7 @@ const IdentityHub: React.FC<IdentityHubProps> = () => {
 
         {/* Role Subtitle */}
         <div className="mb-8 md:mb-10 cursor-default select-none">
-            <span className="text-lg md:text-2xl font-mono font-medium text-zinc-500 uppercase tracking-[0.3em]">
+            <span className="text-xl md:text-3xl font-mono font-medium text-zinc-500 uppercase tracking-[0.3em]">
                 {TARGET_ROLE}
             </span>
         </div>
@@ -199,23 +199,23 @@ const IdentityHub: React.FC<IdentityHubProps> = () => {
         {/* Integrated Communication Details */}
         <div className="flex flex-wrap items-center justify-center gap-x-6 md:gap-x-10 gap-y-4 md:gap-y-6 mb-10 md:mb-14 text-zinc-500">
           <div className="flex items-center gap-3 group cursor-default hover:text-white transition-colors">
-            <Mail size={20} />
-            <span className="text-sm md:text-base font-mono font-medium uppercase tracking-wider">Retgit151@gmail.com</span>
+            <Mail size={24} />
+            <span className="text-base md:text-lg font-mono font-medium uppercase tracking-wider">Retgit151@gmail.com</span>
           </div>
           <div className="flex items-center gap-3 group cursor-default hover:text-white transition-colors">
-            <Phone size={20} />
-            <span className="text-sm md:text-base font-mono font-medium uppercase tracking-wider">052-8570555</span>
+            <Phone size={24} />
+            <span className="text-base md:text-lg font-mono font-medium uppercase tracking-wider">052-8570555</span>
           </div>
           <div className="flex items-center gap-3 group cursor-default hover:text-white transition-colors">
-            <MapPin size={20} />
-            <span className="text-sm md:text-base font-mono font-medium uppercase tracking-wider">Kiryat Ono, Israel</span>
+            <MapPin size={24} />
+            <span className="text-base md:text-lg font-mono font-medium uppercase tracking-wider">Kiryat Ono, Israel</span>
           </div>
         </div>
 
         {/* Action Dashboard */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto">
            {/* Status Indicator - Refactored: Removed "Status" label, larger text, green dot only */}
-           <div className="flex items-center justify-center gap-3 px-6 py-4 bg-zinc-900/80 border border-emerald-500/30 shadow-[0_0_15px_rgba(16,185,129,0.2)] rounded-xl backdrop-blur-md w-full sm:w-auto">
+           <div className="flex items-center justify-center gap-3 px-6 h-14 bg-zinc-900/80 border border-emerald-500/30 shadow-[0_0_15px_rgba(16,185,129,0.2)] rounded-xl backdrop-blur-md w-full sm:w-auto">
               <span className="flex h-3 w-3 relative shrink-0">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
@@ -228,7 +228,7 @@ const IdentityHub: React.FC<IdentityHubProps> = () => {
                  href="/Resume/Resume-Reut Abergel.pdf"
                  target="_blank"
                  rel="noopener noreferrer"
-                 className="flex items-center justify-center gap-3 px-8 py-4 bg-zinc-100 hover:bg-white text-zinc-950 hover:text-black rounded-xl transition-all uppercase tracking-widest font-black group shadow-[0_0_20px_rgba(255,255,255,0.1)] hover:shadow-[0_0_25px_rgba(255,255,255,0.2)]"
+                 className="flex items-center justify-center gap-3 px-8 h-14 bg-zinc-100 hover:bg-white text-zinc-950 hover:text-black rounded-xl transition-all uppercase tracking-widest font-black group shadow-[0_0_20px_rgba(255,255,255,0.1)] hover:shadow-[0_0_25px_rgba(255,255,255,0.2)]"
                >
                  <Download size={22} className="group-hover:-translate-y-0.5 transition-transform" />
                  <span className="text-sm md:text-base">Resume</span>
@@ -238,18 +238,18 @@ const IdentityHub: React.FC<IdentityHubProps> = () => {
                 href="https://www.linkedin.com/in/reut-abergel-96753438a?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BjMGb4F2xRye1e9P57nSRVA%3D%3D" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="flex items-center justify-center p-4 rounded-xl bg-zinc-800 hover:bg-[#0077b5] border border-white/5 transition-all text-zinc-400 hover:text-white group"
+                className="flex items-center justify-center h-14 w-14 rounded-xl bg-zinc-800 hover:bg-[#0077b5] border border-white/5 transition-all text-zinc-400 hover:text-white group"
                >
-                  <Linkedin size={22} className="group-hover:scale-110 transition-transform" />
+                  <Linkedin size={24} className="group-hover:scale-110 transition-transform" />
                </a>
 
                <a 
                 href="https://github.com/retgit151-web/reut-abergel-projects-" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="flex items-center justify-center p-4 rounded-xl bg-zinc-800 hover:bg-black border border-white/5 transition-all text-zinc-400 hover:text-white group"
+                className="flex items-center justify-center h-14 w-14 rounded-xl bg-zinc-800 hover:bg-black border border-white/5 transition-all text-zinc-400 hover:text-white group"
                >
-                  <Github size={22} className="group-hover:scale-110 transition-transform" />
+                  <Github size={24} className="group-hover:scale-110 transition-transform" />
                </a>
            </div>
         </div>
