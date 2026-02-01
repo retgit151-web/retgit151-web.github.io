@@ -1,11 +1,11 @@
 
 import React, { useState, useEffect, useRef } from 'react';
-import { User, Music, Gamepad2, Sparkles, Terminal } from 'lucide-react';
+import { Sparkles } from 'lucide-react';
 import GlassCard from './GlassCard';
 
 const TYPING_SPEED = 25; // ms per char
 
-const BIO_TEXT = "I am a Cybersecurity Specialist with a unique background in the arts. My journey began in music, leading ensembles and performing with top artists, which honed my creativity and discipline. Now, I channel that same passion into securing digital architectures, solving complex problems, and exploring new technologies.";
+const BIO_TEXT = "I'm an enthusiastic junior cybersecurity graduate seeking opportunities in both offensive and defensive security. I thrive on investigation, and I have a proven ability to learn and adapt to new complex technologies.  Having worked and studied in teams my whole life, I deeply value collaboration and clear communication. Outside of security, I apply my competitive drive to gaming and find creative focus through music, both of which keep my problem-solving skills sharp and my perspective fresh.";
 
 const AboutSection: React.FC = () => {
   const [text, setText] = useState('');
@@ -49,21 +49,15 @@ const AboutSection: React.FC = () => {
   return (
     <GlassCard 
       id="about-me"
-      className="col-span-1 md:col-span-2 lg:col-span-4 min-h-[300px] flex flex-col md:flex-row gap-8 items-start relative group"
+      className="col-span-1 md:col-span-2 lg:col-span-4 min-h-[250px] flex flex-col gap-8 items-start relative group"
     >
         {/* Glow behind */}
         <div className="absolute -left-10 -top-10 w-[200px] h-[200px] bg-brand-tech/5 rounded-full blur-[80px] pointer-events-none group-hover:bg-brand-tech/10 transition-colors duration-1000" />
 
-        {/* Left: Terminal / Bio */}
+        {/* Left: Bio Content */}
         <div className="flex-1 w-full space-y-6 z-10" ref={sectionRef}>
             <div className="flex items-center gap-3 border-b border-white/5 pb-4">
-                <Terminal className="text-brand-accent" size={20} />
-                <h3 className="text-sm font-black text-zinc-100 uppercase tracking-widest">User Profile</h3>
-                <div className="ml-auto flex gap-1.5">
-                    <div className="w-2 h-2 rounded-full bg-red-500/20 border border-red-500/50" />
-                    <div className="w-2 h-2 rounded-full bg-yellow-500/20 border border-yellow-500/50" />
-                    <div className="w-2 h-2 rounded-full bg-emerald-500/20 border border-emerald-500/50" />
-                </div>
+                <h3 className="text-sm font-black text-zinc-100 uppercase tracking-widest">About Me</h3>
             </div>
             
             <div className="font-mono text-sm md:text-base text-zinc-400 leading-relaxed min-h-[100px]">
@@ -90,35 +84,6 @@ const AboutSection: React.FC = () => {
                     ))}
                 </div>
             </div>
-        </div>
-
-        {/* Right: Interests Cards */}
-        <div className={`w-full md:w-1/3 flex flex-col gap-4 transition-all duration-1000 delay-500 z-10 ${isTypingComplete ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'}`}>
-             {/* Music */}
-             <div className="p-4 rounded-xl bg-zinc-900/40 border border-white/5 hover:border-brand-accent/30 transition-colors group/card">
-                <div className="flex items-center gap-3 mb-2">
-                    <div className="p-2 rounded-lg bg-zinc-800 text-brand-accent group-hover/card:bg-brand-accent group-hover/card:text-zinc-900 transition-colors">
-                        <Music size={16} />
-                    </div>
-                    <h4 className="text-xs font-black text-zinc-200 uppercase">Musician</h4>
-                </div>
-                <p className="text-[11px] text-zinc-500 leading-relaxed">
-                    Former guitarist & ensemble leader. Performed with <span className="text-zinc-300">Tuna</span>, <span className="text-zinc-300">Eden Ben Zaken</span>, and <span className="text-zinc-300">Subliminal</span>.
-                </p>
-             </div>
-
-             {/* Gaming */}
-             <div className="p-4 rounded-xl bg-zinc-900/40 border border-white/5 hover:border-brand-tech/30 transition-colors group/card">
-                <div className="flex items-center gap-3 mb-2">
-                    <div className="p-2 rounded-lg bg-zinc-800 text-brand-tech group-hover/card:bg-brand-tech group-hover/card:text-zinc-900 transition-colors">
-                        <Gamepad2 size={16} />
-                    </div>
-                    <h4 className="text-xs font-black text-zinc-200 uppercase">Gamer</h4>
-                </div>
-                <p className="text-[11px] text-zinc-500 leading-relaxed">
-                    Avid gamer passionate about system performance, hardware, and immersive tech.
-                </p>
-             </div>
         </div>
     </GlassCard>
   );

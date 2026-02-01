@@ -30,6 +30,13 @@ const socPdf = '/Certificates/soc_Certificates.pdf';
 const winForensicsPdf = '/Certificates/Wf_Certificates.pdf';
 const cityGuildsIntroPdf = '/Certificates/City_Guilds_Intro_Certificate.pdf';
 
+// Project Manual PDF Paths
+const linuxInfoManual = '/script_manual/Linux_Info_Automation_Manual.pdf';
+const anonScannerManual = '/script_manual/Anonymous_Network_Scanner_Manual.pdf';
+const pentestManual = '/script_manual/Automated_Pentest_Suite_Manual.pdf';
+const logParserManual = '/script_manual/Python_Security_Log_Parser_Manual.pdf';
+const forensicsManual = '/script_manual/Windows_Memory_Forensics_Manual.pdf';
+
 export interface DetailedSkill {
   name: string;
   description: string;
@@ -50,7 +57,7 @@ export const PROJECTS: Project[] = [
     visualMetaphor: 'System Status: Optimized',
     skills: ['Bash Scripting', 'System Administration', 'Resource Monitoring', 'Process Management'],
     icon: 'ServerCog',
-    manualPdf: '/Manuals/Linux_Info_Automation_Manual.pdf',
+    manualPdf: linuxInfoManual,
     codeSnippet: 'Public IP: 185.x.x.x\nPrivate IP: 10.0.x.x\nMemory: Total 3.9G, Available 2.1G\nTop Process: gnome-shell (2.3%)'
   },
   {
@@ -61,7 +68,7 @@ export const PROJECTS: Project[] = [
     visualMetaphor: 'Anonymity: Active (Tor)',
     skills: ['Network Security', 'Tor/Nipe', 'SSH Automation', 'Audit Logging', 'Bash'],
     icon: 'Ghost',
-    manualPdf: '/Manuals/Anonymous_Network_Scanner_Manual.pdf',
+    manualPdf: anonScannerManual,
     codeSnippet: '[*] Starting remote Nmap scan on target: 185.156.72.7\n[!] You are anonymous. Country: NL\n[SUCCESS] Log saved to scan_log.txt'
   },
   {
@@ -72,7 +79,7 @@ export const PROJECTS: Project[] = [
     visualMetaphor: 'Vulnerabilities: Mapped',
     skills: ['Penetration Testing', 'Hydra', 'SearchSploit', 'Nmap NSE', 'Bash'],
     icon: 'Bug',
-    manualPdf: '/Manuals/Automated_Pentest_Suite_Manual.pdf',
+    manualPdf: pentestManual,
     codeSnippet: '[ALERT] Host 192.168.80.134: Vulnerable to CVE-2024-XXXX\n[+] Hydra: Cracking SSH on port 22...\n[SUCCESS] Password found: user:123456'
   },
   {
@@ -83,7 +90,7 @@ export const PROJECTS: Project[] = [
     visualMetaphor: 'Threats Detected: 3 High',
     skills: ['Python', 'Log Analysis', 'Regex', 'Threat Detection', 'Data Sanitization'],
     icon: 'ShieldAlert',
-    manualPdf: '/Manuals/Python_Security_Log_Parser_Manual.pdf',
+    manualPdf: logParserManual,
     codeSnippet: '!!! RED FLAG DETECTED !!! Time=[14:04:42] | Suspicious word: \'/etc/shadow\'\nTime=[14:05:15] | sudo:session | USER=kali | COMMAND=/usr/bin/nmap'
   },
   {
@@ -94,7 +101,7 @@ export const PROJECTS: Project[] = [
     visualMetaphor: 'Evidence: Extracted',
     skills: ['Memory Forensics', 'Volatility', 'File Carving', 'Malware Analysis', 'Bash'],
     icon: 'Microscope',
-    manualPdf: '/Manuals/Windows_Memory_Forensics_Manual.pdf',
+    manualPdf: forensicsManual,
     codeSnippet: '[*] Identified suspicious parent-child: svchost.exe -> powershell.exe\n[*] Registry hives located: \\SystemRoot\\System32\\Config\\SAM\n[*] PCAP found: packets.pcap (42M)'
   }
 ];
