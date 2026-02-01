@@ -46,27 +46,27 @@ const App: React.FC = () => {
     <div className="min-h-screen font-sans selection:bg-brand-accent/30 selection:text-white antialiased">
       {/* Background Layer */}
       <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none bg-zinc-950">
-        <div className="absolute top-[5%] left-[10%] w-[600px] h-[600px] bg-brand-accent/5 blur-[140px] rounded-full animate-pulse-slow" />
-        <div className="absolute bottom-[10%] right-[5%] w-[500px] h-[500px] bg-brand-tech/5 blur-[140px] rounded-full" />
+        <div className="absolute top-[5%] left-[10%] w-[300px] h-[300px] md:w-[600px] md:h-[600px] bg-brand-accent/5 blur-[80px] md:blur-[140px] rounded-full animate-pulse-slow" />
+        <div className="absolute bottom-[10%] right-[5%] w-[250px] h-[250px] md:w-[500px] md:h-[500px] bg-brand-tech/5 blur-[80px] md:blur-[140px] rounded-full" />
       </div>
 
-      <main className="pt-12 pb-20 px-4 md:px-8 max-w-8xl mx-auto">
+      <main className="pt-8 md:pt-12 pb-20 px-4 md:px-8 max-w-8xl mx-auto">
         <motion.div 
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6"
         >
           {/* --- SECTION 1: IDENTITY & FOUNDATION --- */}
           
           {/* Identity Hub (3x1) */}
-          <GlassCard id="about" className="lg:col-span-3 min-h-[460px] relative overflow-hidden group">
+          <GlassCard id="about" className="lg:col-span-3 min-h-[400px] md:min-h-[460px] relative overflow-hidden group">
             <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-brand-accent/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
             <IdentityHub onAboutClick={() => setIsAboutOpen(true)} />
           </GlassCard>
 
           {/* Academic Foundation (1x1) */}
-          <GlassCard className="lg:col-span-1 flex flex-col h-full bg-zinc-900/40 relative overflow-hidden group">
+          <GlassCard className="lg:col-span-1 flex flex-col h-full min-h-[300px] md:min-h-full bg-zinc-900/40 relative overflow-hidden group">
             <div className="flex justify-between items-center mb-6 relative z-10">
               <span className="text-base font-black text-zinc-100 uppercase tracking-widest">Education</span>
               <div className="p-2.5 rounded-xl bg-zinc-800/50 border border-white/5">
@@ -75,7 +75,7 @@ const App: React.FC = () => {
             </div>
             
             <div className="relative h-full flex flex-col justify-center z-10 px-2 pb-4">
-              <div className="flex flex-col h-full justify-around relative">
+              <div className="flex flex-col h-full justify-around relative gap-8 md:gap-0">
                 {/* Connecting Line */}
                 <div className="absolute left-[5px] top-6 bottom-6 w-[1px] bg-gradient-to-b from-transparent via-zinc-700 to-transparent" />
                 
@@ -118,12 +118,12 @@ const App: React.FC = () => {
           </div>
 
           {/* Competency Matrix (Left Side) */}
-          <GlassCard id="skills" className="lg:col-span-2 p-8 relative overflow-hidden">
+          <GlassCard id="skills" className="lg:col-span-2 p-4 md:p-8 relative overflow-hidden">
             {/* Glow Effect */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-brand-accent/5 rounded-full blur-[120px] pointer-events-none" />
             
             <div className="relative z-10">
-              <div className="flex justify-between items-center mb-8 pb-4 border-b border-white/5">
+              <div className="flex justify-between items-center mb-6 md:mb-8 pb-4 border-b border-white/5">
                 <div className="space-y-1">
                   <h2 className="text-xl font-black text-zinc-100 uppercase tracking-tight">Skills</h2>
                 </div>
@@ -131,7 +131,7 @@ const App: React.FC = () => {
                   <Fingerprint size={20} className="text-brand-accent" />
                 </div>
               </div>
-              <div className="space-y-10">
+              <div className="space-y-8 md:space-y-10">
                 {FULL_SKILLS_DETAILED.map(cat => (
                   <div key={cat.category} className="space-y-4">
                     <h4 className="flex items-center gap-2 text-[10px] font-black text-brand-accent uppercase tracking-widest">
@@ -163,7 +163,7 @@ const App: React.FC = () => {
              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-brand-accent/5 rounded-full blur-[120px] pointer-events-none" />
 
              <div className="relative z-10">
-              <div className="flex justify-between items-center mb-8 pb-4 border-b border-white/5">
+              <div className="flex justify-between items-center mb-6 md:mb-8 pb-4 border-b border-white/5">
                 <div className="space-y-1">
                   <h2 className="text-xl font-black text-zinc-100 uppercase tracking-tight">Certificates</h2>
                 </div>
@@ -208,7 +208,7 @@ const App: React.FC = () => {
                   id={idx === 0 ? "projects" : undefined}
                   key={proj.id}
                   onClick={() => setSelectedProject(proj)}
-                  className={`flex flex-col justify-between h-full min-h-[220px] group cursor-pointer hover:border-brand-accent/30 transition-colors ${spanClass}`}
+                  className={`flex flex-col justify-between h-full min-h-[200px] md:min-h-[220px] group cursor-pointer hover:border-brand-accent/30 transition-colors ${spanClass}`}
                 >
                   <div className="flex justify-between items-start">
                     <div className="p-3 rounded-xl bg-zinc-900 border border-white/5 group-hover:bg-brand-accent/10 group-hover:border-brand-accent/20 transition-all">

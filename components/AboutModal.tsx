@@ -25,29 +25,29 @@ const AboutModal: React.FC<AboutModalProps> = ({ isOpen, onClose }) => {
             initial={{ scale: 0.9, opacity: 0, y: 20 }}
             animate={{ scale: 1, opacity: 1, y: 0 }}
             exit={{ scale: 0.9, opacity: 0, y: 20 }}
-            className="relative w-full max-w-2xl bg-zinc-900 border border-white/10 rounded-3xl shadow-2xl overflow-hidden"
+            className="relative w-full max-w-2xl bg-zinc-900 border border-white/10 rounded-3xl shadow-2xl overflow-hidden max-h-[90vh] overflow-y-auto"
           >
             <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-brand-accent via-brand-tech to-brand-accent animate-pulse" />
             
-            <div className="p-8 md:p-12">
+            <div className="p-6 md:p-12">
               <button 
                 onClick={onClose}
-                className="absolute top-6 right-6 p-2 rounded-full bg-zinc-800 hover:bg-zinc-700 text-zinc-400 transition-colors"
+                className="absolute top-4 right-4 md:top-6 md:right-6 p-2 rounded-full bg-zinc-800 hover:bg-zinc-700 text-zinc-400 transition-colors z-10"
               >
                 <X size={18} />
               </button>
 
-              <div className="flex items-center gap-4 mb-10">
-                <div className="w-14 h-14 rounded-2xl bg-brand-accent/10 border border-brand-accent/20 flex items-center justify-center">
-                  <User size={28} className="text-brand-accent" />
+              <div className="flex items-center gap-4 mb-8 md:mb-10 mt-2 md:mt-0">
+                <div className="w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-brand-accent/10 border border-brand-accent/20 flex items-center justify-center shrink-0">
+                  <User size={24} className="md:w-[28px] md:h-[28px] text-brand-accent" />
                 </div>
                 <div>
-                  <h2 className="text-2xl font-black text-zinc-50 tracking-tight uppercase">About Me</h2>
+                  <h2 className="text-xl md:text-2xl font-black text-zinc-50 tracking-tight uppercase">About Me</h2>
                   <p className="text-[10px] text-zinc-500 font-bold uppercase tracking-widest">Personal Profile</p>
                 </div>
               </div>
 
-              <div className="space-y-10">
+              <div className="space-y-8 md:space-y-10">
                 <section>
                    <div className="flex items-center gap-3 mb-4">
                      <Sparkles size={18} className="text-brand-tech" />

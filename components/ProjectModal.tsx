@@ -33,25 +33,25 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) => {
         >
           <button 
             onClick={onClose}
-            className="absolute top-6 right-6 p-2 rounded-full bg-zinc-800 hover:bg-zinc-700 text-zinc-400 transition-colors"
+            className="absolute top-4 right-4 md:top-6 md:right-6 p-2 rounded-full bg-zinc-800 hover:bg-zinc-700 text-zinc-400 transition-colors z-10"
           >
             <X size={20} />
           </button>
 
-          <div className="flex flex-col gap-8">
-            <header className="flex items-start gap-6">
-              <div className="p-4 rounded-2xl bg-brand-accent/10 border border-brand-accent/20">
-                <IconComp className="w-12 h-12 text-brand-accent" />
+          <div className="flex flex-col gap-6 md:gap-8">
+            <header className="flex items-start gap-4 md:gap-6 pr-8">
+              <div className="p-3 md:p-4 rounded-2xl bg-brand-accent/10 border border-brand-accent/20 shrink-0">
+                <IconComp className="w-8 h-8 md:w-12 md:h-12 text-brand-accent" />
               </div>
               <div>
-                <h2 className="text-3xl font-bold text-zinc-50 mb-2">{project.title}</h2>
+                <h2 className="text-2xl md:text-3xl font-bold text-zinc-50 mb-2 leading-tight">{project.title}</h2>
               </div>
             </header>
 
             <div className="space-y-6">
               <section>
                 <h3 className="text-sm uppercase tracking-widest text-zinc-500 mb-3">Project Overview</h3>
-                <p className="text-zinc-300 leading-relaxed text-lg">
+                <p className="text-zinc-300 leading-relaxed text-base md:text-lg">
                   {project.longDescription}
                 </p>
               </section>
@@ -63,11 +63,11 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) => {
                     href={project.manualPdf} 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="flex items-center justify-center gap-3 w-full p-6 rounded-xl bg-zinc-800 border border-white/5 hover:bg-brand-accent/10 hover:border-brand-accent/20 text-zinc-300 hover:text-brand-accent transition-all group"
+                    className="flex items-center justify-center gap-3 w-full p-4 md:p-6 rounded-xl bg-zinc-800 border border-white/5 hover:bg-brand-accent/10 hover:border-brand-accent/20 text-zinc-300 hover:text-brand-accent transition-all group"
                   >
-                    <FileText size={24} className="group-hover:scale-110 transition-transform" />
-                    <span className="font-bold uppercase tracking-widest text-sm">View Project Manual</span>
-                    <ExternalLink size={16} className="opacity-50 group-hover:opacity-100 transition-opacity ml-1" />
+                    <FileText size={20} className="md:w-6 md:h-6 group-hover:scale-110 transition-transform" />
+                    <span className="font-bold uppercase tracking-widest text-xs md:text-sm">View Project Manual</span>
+                    <ExternalLink size={14} className="opacity-50 group-hover:opacity-100 transition-opacity ml-1 md:w-4 md:h-4" />
                   </a>
                 </section>
               )}

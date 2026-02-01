@@ -394,10 +394,10 @@ const ExecutionInterface: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col rounded-xl overflow-hidden shadow-2xl border border-zinc-800 bg-zinc-950">
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-0 h-[500px]">
+    <div className="flex flex-col rounded-xl overflow-hidden shadow-2xl border border-zinc-800 bg-zinc-950 h-auto md:h-[500px]">
+      <div className="flex flex-col md:grid md:grid-cols-4 gap-0 h-full">
         {/* Left Sidebar Navigation */}
-        <div className="md:col-span-1 border-r border-white/5 bg-zinc-900/20 flex flex-col overflow-hidden">
+        <div className="w-full md:col-span-1 border-b md:border-b-0 md:border-r border-white/5 bg-zinc-900/20 flex flex-col overflow-hidden h-[180px] md:h-auto shrink-0">
           <div className="p-4 border-b border-white/5 bg-zinc-900/40 shrink-0">
             <span className="text-[10px] font-sans font-black text-zinc-500 uppercase tracking-widest">Select Script</span>
           </div>
@@ -429,7 +429,7 @@ const ExecutionInterface: React.FC = () => {
         </div>
 
         {/* Right Main Terminal Panel */}
-        <div className="md:col-span-3 flex flex-col bg-zinc-950 overflow-hidden relative">
+        <div className="w-full md:col-span-3 flex flex-col bg-zinc-950 overflow-hidden relative h-[450px] md:h-auto">
           {/* Terminal Header */}
           <div className="flex items-center justify-between px-6 py-4 border-b border-white/5 bg-zinc-900/20 shrink-0">
             <div className="flex items-center gap-2">
@@ -499,7 +499,7 @@ const ExecutionInterface: React.FC = () => {
                 <button 
                   onClick={handleInitialize}
                   disabled={isInitializing}
-                  className="flex items-center gap-3 px-6 py-2.5 bg-zinc-900 hover:bg-zinc-800 border border-white/10 rounded-lg text-[10px] font-sans font-black uppercase tracking-widest transition-all hover:border-emerald-500/50 hover:shadow-[0_0_15px_rgba(16,185,129,0.4)] group disabled:opacity-50 hover:text-emerald-500"
+                  className="flex items-center gap-3 px-6 py-2.5 bg-zinc-900 hover:bg-zinc-800 border border-white/10 rounded-lg text-[10px] font-sans font-black uppercase tracking-widest transition-all hover:border-emerald-500/50 hover:shadow-[0_0_15px_rgba(16,185,129,0.4)] group disabled:opacity-50 hover:text-emerald-500 w-full sm:w-auto justify-center"
                 >
                   <Power size={14} className={isInitializing ? "animate-spin text-emerald-500" : "text-zinc-500 group-hover:text-emerald-500"} />
                   <span>{isInitializing ? "Establishing..." : "Initialize System"}</span>
@@ -508,7 +508,7 @@ const ExecutionInterface: React.FC = () => {
                 <button 
                   onClick={handleRun}
                   disabled={isRunning}
-                  className="flex items-center gap-3 px-8 py-2.5 bg-brand-accent/10 hover:bg-brand-accent/20 border border-brand-accent/20 rounded-lg text-[10px] font-sans font-black uppercase tracking-widest transition-all hover:shadow-[0_0_15px_rgba(56,189,248,0.15)] group disabled:opacity-50"
+                  className="flex items-center gap-3 px-8 py-2.5 bg-brand-accent/10 hover:bg-brand-accent/20 border border-brand-accent/20 rounded-lg text-[10px] font-sans font-black uppercase tracking-widest transition-all hover:shadow-[0_0_15px_rgba(56,189,248,0.15)] group disabled:opacity-50 w-full sm:w-auto justify-center"
                 >
                   <Play size={14} className={`${isRunning ? "animate-pulse" : ""} text-brand-accent`} />
                   <span className="text-brand-accent">{isRunning ? "Running Script..." : "Run Script"}</span>
