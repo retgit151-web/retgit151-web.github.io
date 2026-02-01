@@ -57,7 +57,6 @@ const SkillDetailModal: React.FC<SkillDetailModalProps> = ({ skill, onClose }) =
 
               {/* Competencies List */}
               <div>
-                <h3 className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest mb-4">Competency Breakdown</h3>
                 <div className="grid grid-cols-1 gap-3">
                   {skill.competencies.map((point, i) => (
                     <motion.div 
@@ -65,7 +64,7 @@ const SkillDetailModal: React.FC<SkillDetailModalProps> = ({ skill, onClose }) =
                       initial={{ x: -10, opacity: 0 }}
                       animate={{ x: 0, opacity: 1 }}
                       transition={{ delay: i * 0.05 }}
-                      className="flex items-center gap-3 p-4 rounded-xl bg-white/5 border border-white/5 group hover:bg-white/10 hover:border-brand-accent/30 transition-all cursor-default"
+                      className="flex items-center gap-3 p-4 rounded-xl bg-white/5 border border-white/5 cursor-default"
                     >
                       <ChevronRight size={14} className="text-brand-accent" />
                       <span className="text-sm font-sans font-medium text-zinc-300">

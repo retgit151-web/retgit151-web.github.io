@@ -8,6 +8,7 @@ interface IdentityHubProps {
 }
 
 const TARGET_NAME = "REUT ABERGEL";
+const TARGET_ROLE = "CYBER SECURITY ANALYST";
 
 const IdentityHub: React.FC<IdentityHubProps> = () => {
   return (
@@ -176,7 +177,7 @@ const IdentityHub: React.FC<IdentityHubProps> = () => {
         className="relative z-10 w-full max-w-4xl flex flex-col items-center"
       >
         {/* Main Name Header */}
-        <div className="relative mb-6 cursor-default select-none">
+        <div className="relative mb-3 cursor-default select-none">
            <h1 
              className="relative text-4xl sm:text-6xl md:text-8xl font-black tracking-tighter leading-none uppercase drop-shadow-2xl text-zinc-50 glitch-blocks"
              data-text={TARGET_NAME}
@@ -187,6 +188,13 @@ const IdentityHub: React.FC<IdentityHubProps> = () => {
             {/* Raw Static Frame Line */}
             <div className="static-line" aria-hidden="true"></div>
            </h1>
+        </div>
+
+        {/* Role Subtitle */}
+        <div className="mb-8 cursor-default select-none">
+            <span className="text-sm md:text-lg font-mono font-medium text-zinc-500 uppercase tracking-[0.3em]">
+                {TARGET_ROLE}
+            </span>
         </div>
 
         {/* Integrated Communication Details */}

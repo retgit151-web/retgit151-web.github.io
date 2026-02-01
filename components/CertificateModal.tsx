@@ -62,10 +62,10 @@ const CertificateModal: React.FC<CertificateModalProps> = ({ issuer, onClose }) 
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: idx * 0.1 }}
-                    className="group flex flex-col p-5 rounded-2xl bg-white/5 border border-white/5 hover:border-brand-accent/30 hover:bg-white/10 transition-all h-full"
+                    className="flex flex-col p-5 rounded-2xl bg-white/5 border border-white/5 transition-all h-full"
                   >
                     <div className="flex justify-between items-start mb-3 gap-3">
-                      <h3 className="text-sm font-bold text-zinc-200 group-hover:text-brand-accent transition-colors line-clamp-2">
+                      <h3 className="text-sm font-bold text-zinc-200 transition-colors line-clamp-2">
                         {cert.title}
                       </h3>
                       <div className="flex gap-2 shrink-0">
@@ -74,7 +74,7 @@ const CertificateModal: React.FC<CertificateModalProps> = ({ issuer, onClose }) 
                             href={cert.pdf}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="flex items-center gap-2 px-2 py-1.5 rounded-lg bg-brand-accent/10 hover:bg-brand-accent/20 border border-brand-accent/20 text-brand-accent text-[10px] font-bold uppercase tracking-wider transition-all"
+                            className="flex items-center gap-2 px-2 py-1.5 rounded-lg bg-brand-accent/10 hover:bg-brand-accent/20 border border-brand-accent/20 text-brand-accent text-[10px] font-bold uppercase tracking-wider transition-all hover:scale-105 hover:shadow-[0_0_15px_rgba(56,189,248,0.4)]"
                             title="View Certificate PDF"
                           >
                             <FileText size={12} />
