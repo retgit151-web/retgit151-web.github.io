@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { 
   Shield, 
@@ -24,6 +24,11 @@ const App: React.FC = () => {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [selectedSkill, setSelectedSkill] = useState<DetailedSkill | null>(null);
   const [selectedIssuer, setSelectedIssuer] = useState<string | null>(null);
+  
+  const projectsRef = useRef<HTMLDivElement>(null);
+  const skillsRef = useRef<HTMLDivElement>(null);
+  const certificatesRef = useRef<HTMLDivElement>(null);
+  const terminalRef = useRef<HTMLDivElement>(null);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -32,6 +37,35 @@ const App: React.FC = () => {
       transition: { 
         staggerChildren: 0.1
       }
+    }
+  };
+
+  const scrollToSection = (e: React.MouseEvent<HTMLElement>) => {
+    e.currentTarget.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
+
+  const handleProjectClick = (proj: Project) => {
+    // Removed scrollIntoView to prevent jarring jumps on mobile when clicking bottom projects
+    setSelectedProject(proj);
+  };
+
+  const handleSkillClick = (skill: DetailedSkill) => {
+    if (skillsRef.current) {
+      skillsRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+    setSelectedSkill(skill);
+  };
+
+  const handleCertificateClick = (issuer: string) => {
+    if (certificatesRef.current) {
+      certificatesRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+    setSelectedIssuer(issuer);
+  };
+
+  const handleTerminalSelect = () => {
+    if (terminalRef.current) {
+      terminalRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   };
 
@@ -61,9 +95,9 @@ const App: React.FC = () => {
           {/* Academic Foundation (1x1) */}
           <GlassCard hoverable={false} className="lg:col-span-1 flex flex-col h-full min-h-[300px] md:min-h-full bg-zinc-900/40 relative overflow-hidden">
             <div className="flex justify-between items-center mb-6 relative z-10">
-              <span className="text-base font-black text-zinc-100 uppercase tracking-widest">Education</span>
-              <div className="p-2.5 rounded-xl bg-zinc-800/50 border border-white/5">
-                <Trophy size={20} className="text-brand-accent" />
+              <span className="text-base font-black text-zinc-100 uppercase tracking-widest transition-colors">Education</span>
+              <div className="p-2.5 rounded-xl bg-zinc-800/50 border border-white/5 transition-colors">
+                <Trophy size={20} className="text-brand-accent transition-transform" />
               </div>
             </div>
             
@@ -105,26 +139,36 @@ const App: React.FC = () => {
           <AboutSection />
 
           {/* --- SECTION 3: SKILLS AND CERTIFICATES --- */}
-          <div className="lg:col-span-4 mt-8 mb-2">
+          <div 
+            className="lg:col-span-4 mt-8 mb-2 scroll-mt-24 cursor-pointer group"
+            onClick={scrollToSection}
+          >
              <div className="flex items-center gap-3">
-               <Shield size={20} className="text-brand-accent" />
-               <h3 className="text-sm font-black text-zinc-100 uppercase tracking-widest">Skills and Certificates</h3>
-               <div className="h-[1px] flex-1 bg-zinc-800 ml-4" />
+               <Shield size={20} className="text-brand-accent group-hover:text-white transition-colors duration-300" />
+               <h3 className="text-sm font-black text-zinc-100 group-hover:text-brand-accent uppercase tracking-widest transition-colors duration-300">Skills and Certificates</h3>
+               <div className="h-[1px] flex-1 bg-zinc-800 ml-4 group-hover:bg-zinc-700 transition-colors duration-300" />
              </div>
           </div>
 
           {/* Competency Matrix (Left Side) */}
-          <GlassCard id="skills" className="lg:col-span-2 p-4 md:p-8 relative overflow-hidden">
+          <GlassCard 
+            ref={skillsRef}
+            id="skills" 
+            className="lg:col-span-2 p-4 md:p-8 relative overflow-hidden scroll-mt-24"
+          >
             {/* Glow Effect */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-brand-accent/5 rounded-full blur-[120px] pointer-events-none" />
             
             <div className="relative z-10">
-              <div className="flex justify-between items-center mb-6 md:mb-8 pb-4 border-b border-white/5">
+              <div 
+                className="flex justify-between items-center mb-6 md:mb-8 pb-4 border-b border-white/5 scroll-mt-24 cursor-pointer group"
+                onClick={scrollToSection}
+              >
                 <div className="space-y-1">
-                  <h2 className="text-xl font-black text-zinc-100 uppercase tracking-tight">Skills</h2>
+                  <h2 className="text-xl font-black text-zinc-100 group-hover:text-brand-accent uppercase tracking-tight transition-colors duration-300">Skills</h2>
                 </div>
-                <div className="p-2.5 rounded-xl bg-zinc-800/50 border border-white/5">
-                  <Fingerprint size={20} className="text-brand-accent" />
+                <div className="p-2.5 rounded-xl bg-zinc-800/50 border border-white/5 group-hover:border-brand-accent/20 transition-colors duration-300">
+                  <Fingerprint size={20} className="text-brand-accent group-hover:scale-110 transition-transform duration-300" />
                 </div>
               </div>
               <div className="space-y-8 md:space-y-10">
@@ -138,7 +182,7 @@ const App: React.FC = () => {
                       {cat.items.map(skill => (
                         <li key={skill.name}>
                           <button 
-                            onClick={() => setSelectedSkill(skill)}
+                            onClick={() => handleSkillClick(skill)}
                             className="w-full group flex items-center justify-between p-3 rounded-lg bg-zinc-900/50 hover:bg-zinc-800 border border-transparent hover:border-white/5 transition-all text-left"
                           >
                             <span className="text-xs font-bold text-zinc-400 group-hover:text-brand-accent transition-colors uppercase tracking-wider">{skill.name}</span>
@@ -154,29 +198,40 @@ const App: React.FC = () => {
           </GlassCard>
 
           {/* Certificates (Right Side) */}
-          <GlassCard id="certificates" className="lg:col-span-2 min-h-[400px] relative overflow-hidden">
+          <GlassCard 
+            ref={certificatesRef}
+            id="certificates" 
+            className="lg:col-span-2 min-h-[400px] relative overflow-hidden scroll-mt-24"
+          >
              {/* Glow Effect */}
              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-brand-accent/5 rounded-full blur-[120px] pointer-events-none" />
 
              <div className="relative z-10">
-              <div className="flex justify-between items-center mb-6 md:mb-8 pb-4 border-b border-white/5">
+              <div 
+                className="flex justify-between items-center mb-6 md:mb-8 pb-4 border-b border-white/5 scroll-mt-24 cursor-pointer group"
+                onClick={scrollToSection}
+              >
                 <div className="space-y-1">
-                  <h2 className="text-xl font-black text-zinc-100 uppercase tracking-tight">Certificates</h2>
+                  <h2 className="text-xl font-black text-zinc-100 group-hover:text-brand-accent uppercase tracking-tight transition-colors duration-300">Certificates</h2>
                 </div>
-                <div className="p-2.5 rounded-xl bg-zinc-800/50 border border-white/5">
-                  <Medal size={20} className="text-brand-accent" />
+                <div className="p-2.5 rounded-xl bg-zinc-800/50 border border-white/5 group-hover:border-brand-accent/20 transition-colors duration-300">
+                  <Medal size={20} className="text-brand-accent group-hover:scale-110 transition-transform duration-300" />
                 </div>
               </div>
-              <Timeline onIssuerClick={setSelectedIssuer} />
+              <Timeline onIssuerClick={handleCertificateClick} />
              </div>
           </GlassCard>
 
           {/* --- SECTION 4: PROJECTS --- */}
-          <div className="lg:col-span-4 mt-8 mb-4">
+          <div 
+            ref={projectsRef}
+            className="lg:col-span-4 mt-8 mb-4 scroll-mt-24 cursor-pointer group"
+            onClick={scrollToSection}
+          >
              <div className="flex items-center gap-3">
-                <LayoutDashboard size={20} className="text-brand-accent" />
-                <h3 className="text-sm font-black text-zinc-100 uppercase tracking-widest">Projects</h3>
-                <div className="h-[1px] flex-1 bg-zinc-800 ml-4" />
+                <LayoutDashboard size={20} className="text-brand-accent group-hover:text-white transition-colors duration-300" />
+                <h3 className="text-sm font-black text-zinc-100 group-hover:text-brand-accent uppercase tracking-widest transition-colors duration-300">Projects</h3>
+                <div className="h-[1px] flex-1 bg-zinc-800 ml-4 group-hover:bg-zinc-700 transition-colors duration-300" />
              </div>
           </div>
 
@@ -203,7 +258,7 @@ const App: React.FC = () => {
                 <GlassCard 
                   id={idx === 0 ? "projects" : undefined}
                   key={proj.id}
-                  onClick={() => setSelectedProject(proj)}
+                  onClick={() => handleProjectClick(proj)}
                   className={`flex flex-col justify-between h-full min-h-[200px] md:min-h-[220px] group cursor-pointer hover:border-brand-accent/30 transition-colors ${spanClass}`}
                 >
                   <div className="flex justify-between items-start">
@@ -230,19 +285,23 @@ const App: React.FC = () => {
           </div>
 
           {/* --- SECTION 5: LIVE EXECUTION --- */}
-          <div className="lg:col-span-4 mt-8 mb-2">
+          <div 
+            ref={terminalRef}
+            className="lg:col-span-4 mt-8 mb-2 scroll-mt-24 cursor-pointer group"
+            onClick={scrollToSection}
+          >
              <div className="flex items-center gap-3">
-               <Terminal size={20} className="text-brand-accent" />
-               <h3 className="text-sm font-black text-zinc-100 uppercase tracking-widest">Try My Projects</h3>
-               <div className="h-[1px] flex-1 bg-zinc-800 ml-4" />
+               <Terminal size={20} className="text-brand-accent group-hover:text-white transition-colors duration-300" />
+               <h3 className="text-sm font-black text-zinc-100 group-hover:text-brand-accent uppercase tracking-widest transition-colors duration-300">Try My Projects</h3>
+               <div className="h-[1px] flex-1 bg-zinc-800 ml-4 group-hover:bg-zinc-700 transition-colors duration-300" />
              </div>
-             <p className="text-xs text-zinc-500 mt-2 ml-8 font-mono max-w-2xl">
+             <p className="text-xs text-zinc-500 mt-2 ml-8 font-mono max-w-2xl group-hover:text-zinc-400 transition-colors duration-300">
                Select a script from the list below to initialize a live simulation
              </p>
           </div>
 
           <div className="lg:col-span-4 mb-8">
-             <ExecutionInterface />
+             <ExecutionInterface onSelect={handleTerminalSelect} />
           </div>
 
         </motion.div>

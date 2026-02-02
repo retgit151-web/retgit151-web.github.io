@@ -55,10 +55,10 @@ const AboutSection: React.FC = () => {
         {/* Left: Bio Content */}
         <div className="flex-1 w-full space-y-4 z-10" ref={sectionRef}>
             <div className="flex items-center gap-4 border-b border-white/5 pb-4">
-                <div className="p-2.5 rounded-xl bg-zinc-800/50 border border-white/5">
-                   <User size={20} className="text-brand-accent" />
+                <div className="p-2.5 rounded-xl bg-zinc-800/50 border border-white/5 transition-colors">
+                   <User size={20} className="text-brand-accent transition-transform" />
                 </div>
-                <h3 className="text-sm font-black text-zinc-100 uppercase tracking-widest">About Me</h3>
+                <h3 className="text-sm font-black text-zinc-100 uppercase tracking-widest transition-colors">About Me</h3>
             </div>
             
             <div className="font-mono text-sm md:text-base text-zinc-400 leading-relaxed min-h-[60px]">

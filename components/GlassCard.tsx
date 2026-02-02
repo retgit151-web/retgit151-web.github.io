@@ -1,5 +1,4 @@
-
-import React from 'react';
+import React, { forwardRef } from 'react';
 import { motion } from 'framer-motion';
 
 interface GlassCardProps {
@@ -11,15 +10,16 @@ interface GlassCardProps {
   id?: string;
 }
 
-const GlassCard: React.FC<GlassCardProps> = ({ 
+const GlassCard = forwardRef<HTMLDivElement, GlassCardProps>(({ 
   children, 
   className = '', 
   onClick,
   hoverable = true,
   id
-}) => {
+}, ref) => {
   return (
     <motion.div
+      ref={ref}
       // Apply the id to the actual DOM element
       id={id}
       whileHover={hoverable ? { 
@@ -45,6 +45,6 @@ const GlassCard: React.FC<GlassCardProps> = ({
       {children}
     </motion.div>
   );
-};
+});
 
 export default GlassCard;

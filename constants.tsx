@@ -50,7 +50,7 @@ export interface SkillCategoryDetailed {
 export const PROJECTS: Project[] = [
   {
     id: 'linux-info-automation',
-    title: 'Linux System Info Automation',
+    title: 'Linux Info Automation',
     description: 'A "System info for everyone" script that generates an instant, clean report of critical machine data (IPs, MAC, CPU, Memory) for quick troubleshooting.',
     longDescription: 'This project is a friendly, automated guide designed to provide instant visibility into a Linux system. It aggregates scattered system facts into a single, compact report. Key features include extracting Public/Private IPs, identifying the MAC address, analyzing the top 5 CPU-consuming processes, calculating memory usage in a human-readable format, and listing the top 10 largest files in the /home directory. It demonstrates proficiency in combining small Linux commands (awk, sed, sort, uniq, curl) into a practical, repeatable auditing tool.',
     visualMetaphor: 'System Status: Optimized',
@@ -72,7 +72,7 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 'pt-vulnerability-scanning',
-    title: 'PT Vulnerability Scanning',
+    title: 'pt vulnerability scanning',
     description: 'Automation to map services and vulnerabilities on the entire ip range',
     longDescription: 'This tool automates the tedious phases of a penetration test to map attack surfaces efficiently. It features dynamic IP range validation using Nmap List Scan (-sL) and a "Full Scan" mode that converts Nmap XML outputs directly into SearchSploit queries to find relevant CVEs. Additionally, it includes an intelligent Hydra module that identifies open authentication services (SSH, FTP, RDP) and initiates targeted brute-force attacks using custom or default wordlists (rockyou.txt), exporting all findings to a structured workspace.',
     visualMetaphor: 'Vulnerabilities: Mapped',
@@ -83,7 +83,7 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 'python-log-parser',
-    title: 'Python Security Log Parser',
+    title: 'Python Log Parser',
     description: 'An automated log auditor for /var/log/auth.log that detects Red Flags, tracks user lifecycle events, and monitors privilege escalation attempts.',
     longDescription: 'A lightweight SIEM-like utility built in Python to audit Linux authentication logs. It parses /var/log/auth.log to identify potential security breaches, such as brute-force attempts and unauthorized access. The script uses a "Red Flag" detection logic to spot high-risk keywords (e.g., nmap, nc, /etc/shadow) and tracks user lifecycle events (creation/deletion/password changes). It provides a statistical summary of sudo/su usage and failed login alerts, sanitizing raw log data into a readable security report.',
     visualMetaphor: 'Threats Detected: 3 High',
@@ -94,7 +94,7 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 'windows-forensics-analyzer',
-    title: 'Windows Memory Forensics',
+    title: 'Windows Forensics Memory File Analyzer',
     description: 'An automated forensic artifact extractor for Windows memory dumps, integrating Volatility for RAM analysis and carvers like Binwalk and Foremost.',
     longDescription: 'A comprehensive forensic automation tool that streamlines the analysis of raw Windows memory dumps. It eliminates manual setup by dynamically configuring tools like Scalpel (via sed) and installing missing dependencies (Volatility, Bulk Extractor). The script performs deep artifact recovery using file carvers (Foremost, Strings, Binwalk) to extract hidden files and network packets (PCAP). It leverages Volatility to identify OS profiles, running processes, and active network connections, wrapping all evidence in a timestamped, zipped case folder.',
     visualMetaphor: 'Evidence: Extracted',

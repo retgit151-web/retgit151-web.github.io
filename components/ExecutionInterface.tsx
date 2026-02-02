@@ -173,7 +173,7 @@ const INTERFACE_PROJECTS = [
   },
   { 
     id: 'log-parser', 
-    name: 'Python log_parser', 
+    name: 'Python Log Parser', 
     lang: 'python', 
     desc: "Automated Security Log Parser for Linux authentication logs. It specifically targets the /var/log/auth.log file to identify potential security breaches.",
     scriptLines: [
@@ -302,7 +302,11 @@ const INTERFACE_PROJECTS = [
   }
 ];
 
-const ExecutionInterface: React.FC = () => {
+interface ExecutionInterfaceProps {
+  onSelect?: () => void;
+}
+
+const ExecutionInterface: React.FC<ExecutionInterfaceProps> = ({ onSelect }) => {
   const [selectedId, setSelectedId] = useState(INTERFACE_PROJECTS[0].id);
   const [terminalLines, setTerminalLines] = useState<string[]>([]);
   const [isInitializing, setIsInitializing] = useState(false);
@@ -325,32 +329,22 @@ const ExecutionInterface: React.FC = () => {
   const handleExecute = async () => {
     if (isRunning || isInitializing) return;
 
-    // STEP 1: INITIALIZATION
-    // If not ready, we run the initialization sequence first.
     if (!isReady) {
       setIsInitializing(true);
       setTerminalLines(prev => [...prev, `# Initializing system environment for ${selectedProject.name}...`]);
-      
-      // Wait for "initialization"
       await new Promise(resolve => setTimeout(resolve, 2000));
-      
       setIsInitializing(false);
       setIsReady(true);
       setTerminalLines(prev => [...prev, `[SUCCESS] Environment initialized.`, `[READY] System ready.`]);
-      
-      // Brief pause before running script
       await new Promise(resolve => setTimeout(resolve, 800));
     }
 
-    // STEP 2: RUN SCRIPT
     setIsRunning(true);
     const linesToProcess = selectedProject.scriptLines;
 
     for (const line of linesToProcess) {
-      // Base delay for a slow, deliberate experience as requested
       let delay = 350 + Math.random() * 500;
       
-      // Heavy complex tasks now take significantly longer
       if (
         line.includes("Running Foremost") || 
         line.includes("Configuring and Running Scalpel") || 
@@ -376,12 +370,10 @@ const ExecutionInterface: React.FC = () => {
         delay = 5000;
       }
 
-      // Slightly faster but still deliberate for command prompts or headers
       if (line.startsWith("(kali㉿kali)") || line.startsWith("$") || line.startsWith("welcome to WF proj")) {
         delay = 1000;
       }
 
-      // Very long pause for "completing" big tasks
       if (line.includes("[(:] Zip successful") || line.includes("[SUCCESS] Script execution finished") || line.startsWith("----------------")) {
         delay = 3000;
       }
@@ -402,12 +394,14 @@ const ExecutionInterface: React.FC = () => {
   return (
     <div className="flex flex-col rounded-xl overflow-hidden shadow-2xl border border-zinc-800 bg-zinc-950 h-auto md:h-[500px]">
       <div className="flex flex-col md:grid md:grid-cols-4 gap-0 h-full">
-        {/* Left Sidebar Navigation */}
-        <div className="w-full md:col-span-1 border-b md:border-b-0 md:border-r border-white/5 bg-zinc-900/20 flex flex-col overflow-hidden h-[180px] md:h-auto shrink-0">
-          <div className="p-4 border-b border-white/5 bg-zinc-900/40 shrink-0">
+        {/* Navigation Sidebar (Desktop) / Tab Bar (Mobile) */}
+        <div className="w-full md:col-span-1 border-b md:border-b-0 md:border-r border-white/5 bg-zinc-900/20 flex flex-col md:h-auto shrink-0">
+          <div className="hidden md:block p-4 border-b border-white/5 bg-zinc-900/40 shrink-0">
             <span className="text-[10px] font-sans font-black text-zinc-500 uppercase tracking-widest">Select Script</span>
           </div>
-          <div className="p-2 flex flex-col gap-1 overflow-y-auto flex-1 scrollbar-hide">
+          
+          {/* Scrollable List of Tabs - Optimized for Mobile Readability */}
+          <div className="p-3 flex flex-row md:flex-col gap-2 overflow-x-auto md:overflow-y-auto scrollbar-hide">
             {INTERFACE_PROJECTS.map((proj) => (
               <button
                 key={proj.id}
@@ -415,20 +409,21 @@ const ExecutionInterface: React.FC = () => {
                 onClick={() => {
                   setSelectedId(proj.id);
                   handleReset();
+                  if (onSelect) onSelect();
                 }}
-                className={`group flex flex-col items-start p-3 rounded-lg transition-all text-left shrink-0 ${
-                  selectedId === proj.id 
-                    ? 'bg-brand-accent/10 border border-brand-accent/20' 
-                    : 'hover:bg-white/5 border border-transparent disabled:opacity-50'
-                }`}
+                className={`
+                  flex items-center gap-3 px-4 py-2.5 rounded-full md:rounded-lg transition-all text-left shrink-0 w-auto md:w-full border whitespace-nowrap
+                  ${selectedId === proj.id 
+                    ? 'bg-brand-accent text-zinc-950 border-brand-accent shadow-[0_0_15px_rgba(56,189,248,0.3)]' 
+                    : 'bg-zinc-900/40 border-white/5 text-zinc-400 hover:bg-zinc-800 hover:border-white/10'
+                  }
+                  disabled:opacity-50
+                `}
               >
-                <div className="flex items-center justify-between w-full">
-                  <span className={`text-[10px] font-bold uppercase tracking-tight transition-colors ${selectedId === proj.id ? 'text-brand-accent' : 'text-zinc-400 group-hover:text-brand-accent'}`}>
-                    {proj.name}
-                  </span>
-                  {selectedId === proj.id && <ChevronRight size={10} className="text-brand-accent" />}
-                </div>
-                <span className="text-[8px] text-zinc-600 mt-1 uppercase font-mono">{proj.lang}</span>
+                <span className={`text-[10px] font-black uppercase tracking-tight`}>
+                  {proj.name}
+                </span>
+                {/* Removed the language indicator span here */}
               </button>
             ))}
           </div>
@@ -440,7 +435,7 @@ const ExecutionInterface: React.FC = () => {
           <div className="flex items-center justify-between px-6 py-4 border-b border-white/5 bg-zinc-900/20 shrink-0">
             <div className="flex items-center gap-2">
               <span className="text-[10px] font-mono text-zinc-500 uppercase tracking-widest">
-                SCRIPT: <span className="text-zinc-300">{selectedProject.name}</span>
+                LOADED: <span className="text-zinc-300">{selectedProject.name}</span>
               </span>
             </div>
             <button 

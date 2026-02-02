@@ -198,14 +198,20 @@ const IdentityHub: React.FC<IdentityHubProps> = () => {
 
         {/* Integrated Communication Details */}
         <div className="flex flex-wrap items-center justify-center gap-x-6 md:gap-x-10 gap-y-4 md:gap-y-6 mb-10 md:mb-14 text-zinc-500">
-          <div className="flex items-center gap-3 group cursor-default hover:text-white transition-colors">
+          <a 
+            href="mailto:Retgit151@gmail.com"
+            className="flex items-center gap-3 group cursor-pointer hover:text-white transition-colors"
+          >
             <Mail size={24} />
             <span className="text-base md:text-lg font-mono font-medium uppercase tracking-wider">Retgit151@gmail.com</span>
-          </div>
-          <div className="flex items-center gap-3 group cursor-default hover:text-white transition-colors">
+          </a>
+          <a 
+            href="tel:0528570555"
+            className="flex items-center gap-3 group cursor-pointer hover:text-white transition-colors"
+          >
             <Phone size={24} />
             <span className="text-base md:text-lg font-mono font-medium uppercase tracking-wider">052-8570555</span>
-          </div>
+          </a>
           <div className="flex items-center gap-3 group cursor-default hover:text-white transition-colors">
             <MapPin size={24} />
             <span className="text-base md:text-lg font-mono font-medium uppercase tracking-wider">Kiryat Ono, Israel</span>
