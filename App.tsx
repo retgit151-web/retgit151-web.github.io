@@ -298,6 +298,9 @@ const App: React.FC = () => {
              <p className="text-xs text-zinc-500 mt-2 ml-8 font-mono max-w-2xl group-hover:text-zinc-400 transition-colors duration-300">
                Select a script from the list below to initialize a live simulation
              </p>
+             <p className="text-[10px] text-zinc-600 mt-1 ml-8 font-mono max-w-2xl italic group-hover:text-zinc-500 transition-colors duration-300">
+               * Note: These simulations are for demonstration purposes and are not as accurate as running in a real Bash terminal. It is recommended to download the scripts from GitHub and try them yourself.
+             </p>
           </div>
 
           <div className="lg:col-span-4 mb-8">
