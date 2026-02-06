@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Terminal, Play, Power, Cpu, RotateCcw } from 'lucide-react';
+import { Terminal, Play, Power, Cpu, RotateCcw, Square } from 'lucide-react';
 
 const INTERFACE_PROJECTS = [
   { 
@@ -220,8 +220,6 @@ const INTERFACE_PROJECTS = [
     desc: "Designed to take an IP range, perform a full or basic scan, find vulnerabilities, and perform credential brute-forcing.",
     scriptLines: [
       "(kali㉿kali)-[~] ./pt_project.sh",
-      // Hexdump effect
-      "00000000  2f 64 65 76 2f 75 72 61  6e 64 6f 6d 0a 2f 64 65  |/dev/urandom./de|",
       "[+] SYSTEM ACCESS: GRANTED",
       "[*] INITIALIZING PROJECT PROTOCOL...",
       " ",
@@ -365,6 +363,8 @@ const ExecutionInterface: React.FC<ExecutionInterfaceProps> = ({ onSelect }) => 
   const [isReady, setIsReady] = useState(false);
   const [isRunning, setIsRunning] = useState(false);
   
+  const isCancelledRef = useRef(false);
+  
   const scrollRef = useRef<HTMLDivElement>(null);
   const selectedProject = INTERFACE_PROJECTS.find(p => p.id === selectedId) || INTERFACE_PROJECTS[0];
 
@@ -374,9 +374,18 @@ const ExecutionInterface: React.FC<ExecutionInterfaceProps> = ({ onSelect }) => 
     }
   }, [terminalLines, activeTypingLine, progressDuration]);
 
-  const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
+  // interruptible delay
+  const smartDelay = async (ms: number) => {
+    const steps = Math.ceil(ms / 100);
+    for (let i = 0; i < steps; i++) {
+        if (isCancelledRef.current) return;
+        await new Promise(r => setTimeout(r, 100));
+    }
+  };
 
   const typeText = async (fullLine: string) => {
+    if (isCancelledRef.current) return;
+
     // Heuristic to split prompt and input
     let prompt = "";
     let toType = "";
@@ -399,8 +408,6 @@ const ExecutionInterface: React.FC<ExecutionInterfaceProps> = ({ onSelect }) => 
       toType = fullLine.substring(lastColon + 2);
     } else if (fullLine.endsWith("? (y/n)") || fullLine.endsWith("? y") || fullLine === "y") {
         // Handle "Display created files? (y/n)" next line "y"
-        // But in our scriptLines, "y" is often a separate line or appended
-        // If line is just "y", treating it as user input
         prompt = "> ";
         toType = fullLine;
     } else {
@@ -411,20 +418,33 @@ const ExecutionInterface: React.FC<ExecutionInterfaceProps> = ({ onSelect }) => 
 
     // Determine typing speed (human like)
     setActiveTypingLine(prompt);
-    await delay(300); // Wait before typing
+    await smartDelay(300); // Wait before typing
+    if (isCancelledRef.current) return;
 
     for (let i = 0; i < toType.length; i++) {
+      if (isCancelledRef.current) return;
       setActiveTypingLine(prompt + toType.substring(0, i + 1));
-      await delay(50 + Math.random() * 100); // Random typing delay
+      await smartDelay(50 + Math.random() * 100); // Random typing delay
     }
     
-    await delay(400); // Pause after typing
+    await smartDelay(400); // Pause after typing
+    if (isCancelledRef.current) return;
+    
     setTerminalLines(prev => [...prev, prompt + toType]);
     setActiveTypingLine(null);
   };
 
   const handleExecute = async () => {
-    if (isRunning || isInitializing) return;
+    if (isInitializing) return; // Wait for init
+
+    if (isRunning) {
+        // Stop functionality
+        isCancelledRef.current = true;
+        return;
+    }
+
+    // Start functionality
+    isCancelledRef.current = false;
 
     if (!isReady) {
       setIsInitializing(true);
@@ -438,25 +458,33 @@ const ExecutionInterface: React.FC<ExecutionInterfaceProps> = ({ onSelect }) => 
       ];
 
       for (const line of bootLines) {
+        if (isCancelledRef.current) break;
         setTerminalLines(prev => [...prev, line]);
-        await delay(400);
+        await new Promise(r => setTimeout(r, 400));
       }
       
       setIsInitializing(false);
+      
+      if (isCancelledRef.current) {
+         setTerminalLines(prev => [...prev, "^C [Init Aborted]"]);
+         return; 
+      }
+      
       setIsReady(true);
-      await delay(500);
+      await new Promise(r => setTimeout(r, 500));
     }
 
     setIsRunning(true);
     setTerminalLines([]); // Clear previous run
     
-    // Simulate user typing the start command
-    // We construct the start command based on script name if possible, or just use the first line if it looks like a command
-    // Actually, the first line of every script in INTERFACE_PROJECTS is the command to run.
-    
     const lines = selectedProject.scriptLines;
 
     for (const line of lines) {
+      if (isCancelledRef.current) {
+          setTerminalLines(prev => [...prev, "^C", "[!] Script execution stopped by user."]);
+          break;
+      }
+
       const heavyDuration = getHeavyTaskDuration(line);
       
       // Check if it's a user command/input
@@ -474,22 +502,28 @@ const ExecutionInterface: React.FC<ExecutionInterfaceProps> = ({ onSelect }) => 
         
         if (heavyDuration > 0) {
           setProgressDuration(heavyDuration);
-          await delay(heavyDuration);
+          await smartDelay(heavyDuration);
           setProgressDuration(null);
         } else {
           // Normal output scrolling
-          await delay(20 + Math.random() * 30);
+          await smartDelay(20 + Math.random() * 30);
         }
       }
     }
     
     setIsRunning(false);
+    setActiveTypingLine(null);
+    setProgressDuration(null);
   };
 
   const handleReset = () => {
+    isCancelledRef.current = true;
+    setIsRunning(false);
+    setIsInitializing(false);
     setTerminalLines([]);
     setIsReady(false);
-    setIsRunning(false);
+    setActiveTypingLine(null);
+    setProgressDuration(null);
   };
 
   return (
@@ -602,7 +636,7 @@ const ExecutionInterface: React.FC<ExecutionInterfaceProps> = ({ onSelect }) => 
             <div className="flex flex-wrap gap-4">
               <button 
                 onClick={handleExecute}
-                disabled={isRunning || isInitializing}
+                disabled={isInitializing}
                 className={`
                   flex items-center gap-3 px-6 py-2.5 rounded-lg text-[10px] font-sans font-black uppercase tracking-widest transition-all w-full sm:w-auto justify-center group disabled:opacity-50
                   ${!isReady 
@@ -618,8 +652,12 @@ const ExecutionInterface: React.FC<ExecutionInterfaceProps> = ({ onSelect }) => 
                     </>
                 ) : (
                     <>
-                      <Play size={14} className={`${isRunning ? "animate-pulse" : ""} text-brand-accent`} />
-                      <span className="text-brand-accent">{isRunning ? "Running Script..." : "Re-Execute Script"}</span>
+                      {isRunning ? (
+                          <Square size={14} className="text-brand-accent fill-brand-accent animate-pulse" />
+                      ) : (
+                          <Play size={14} className={`${isRunning ? "animate-pulse" : ""} text-brand-accent`} />
+                      )}
+                      <span className="text-brand-accent">{isRunning ? "Stop Process" : "Re-Execute Script"}</span>
                     </>
                 )}
               </button>

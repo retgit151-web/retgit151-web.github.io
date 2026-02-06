@@ -295,10 +295,10 @@ const App: React.FC = () => {
                <h3 className="text-sm font-black text-zinc-100 group-hover:text-brand-accent uppercase tracking-widest transition-colors duration-300">Try My Projects</h3>
                <div className="h-[1px] flex-1 bg-zinc-800 ml-4 group-hover:bg-zinc-700 transition-colors duration-300" />
              </div>
-             <p className="text-xs text-zinc-500 mt-2 ml-8 font-mono max-w-2xl group-hover:text-zinc-400 transition-colors duration-300">
+             <p className="text-xs text-zinc-300 mt-2 ml-8 font-mono max-w-2xl group-hover:text-zinc-200 transition-colors duration-300">
                Select a script from the list below to initialize a live simulation
              </p>
-             <p className="text-[10px] text-zinc-600 mt-1 ml-8 font-mono max-w-2xl italic group-hover:text-zinc-500 transition-colors duration-300">
+             <p className="text-[10px] text-zinc-400 mt-1 ml-8 font-mono max-w-2xl italic group-hover:text-zinc-300 transition-colors duration-300">
                * Note: These simulations are for demonstration purposes and are not as accurate as running in a real Bash terminal. It is recommended to download the scripts from GitHub and try them yourself.
              </p>
           </div>

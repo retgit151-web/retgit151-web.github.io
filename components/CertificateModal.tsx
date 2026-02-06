@@ -44,6 +44,11 @@ const CertificateModal: React.FC<CertificateModalProps> = ({ issuer, onClose }) 
                 <div>
                   <h2 className="text-lg sm:text-xl font-black text-zinc-50 tracking-tight uppercase line-clamp-1">{issuer}</h2>
                   <p className="text-[10px] text-zinc-500 font-bold uppercase tracking-widest hidden sm:block">Accredited Certifications</p>
+                  {issuer === 'ThinkCyber' && (
+                    <p className="text-[11px] text-zinc-400 mt-1 hidden sm:block font-medium">
+                      Finished a defensive cybersecurity course at John Bryce and got a certificate for every module
+                    </p>
+                  )}
                 </div>
               </div>
               
