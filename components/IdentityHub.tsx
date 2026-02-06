@@ -231,7 +231,7 @@ const IdentityHub: React.FC<IdentityHubProps> = () => {
            
            <div className="flex items-center gap-3 w-full sm:w-auto justify-center">
                <a 
-                 href="/Resume/Resume-Reut Abergel.pdf"
+                 href="/resume/Resume.pdf"
                  target="_blank"
                  rel="noopener noreferrer"
                  className="flex items-center justify-center gap-3 px-8 h-14 bg-zinc-100 hover:bg-white text-zinc-950 hover:text-black rounded-xl transition-all uppercase tracking-widest font-black group shadow-[0_0_20px_rgba(255,255,255,0.1)] hover:shadow-[0_0_25px_rgba(255,255,255,0.2)]"
