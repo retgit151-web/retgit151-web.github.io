@@ -57,6 +57,11 @@ const App: React.FC = () => {
   };
 
   const handleCertificateClick = (issuer: string) => {
+    if (issuer === 'Think Cyber') {
+      window.open('https://digitalcredentials.cityandguilds.com/profile/eu-reutabergel850454/wallet', '_blank');
+      return;
+    }
+
     if (certificatesRef.current) {
       certificatesRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }

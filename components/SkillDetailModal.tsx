@@ -1,7 +1,6 @@
-
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, ShieldCheck, ChevronRight } from 'lucide-react';
+import { X, ShieldCheck } from 'lucide-react';
 import { DetailedSkill } from '../constants';
 
 interface SkillDetailModalProps {
@@ -66,7 +65,7 @@ const SkillDetailModal: React.FC<SkillDetailModalProps> = ({ skill, onClose }) =
                       transition={{ delay: i * 0.05 }}
                       className="flex items-center gap-3 p-4 rounded-xl bg-white/5 border border-white/5 cursor-default"
                     >
-                      <ChevronRight size={14} className="text-brand-accent" />
+                      <span className="text-brand-accent font-mono text-lg leading-none select-none">*</span>
                       <span className="text-sm font-sans font-medium text-zinc-300">
                         {point.trim()}
                       </span>

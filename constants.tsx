@@ -27,7 +27,6 @@ const netResearchPdf = '/Certificates/NR_Certificates.pdf';
 const ptPdf = '/Certificates/PT.pdf';
 const socPdf = '/Certificates/soc_Certificates.pdf';
 const winForensicsPdf = '/Certificates/Wf_Certificates.pdf';
-const cityGuildsIntroPdf = '/Certificates/City_Guilds_Intro_Certificate.pdf';
 
 // Project Manual PDF Paths
 const linuxInfoManual = '/script_manual/Linux_Info_Automation.pdf';
@@ -109,7 +108,7 @@ export const CERTIFICATES: Certificate[] = [
   {
     id: 'intro-cyber',
     title: 'Intro to Cyber Security',
-    issuer: 'ThinkCyber',
+    issuer: 'John Bryce Cyberium Certificate',
     date: '2025',
     description: 'Comprehensive introduction to cybersecurity fundamentals and core concepts.',
     url: 'https://thinkcyber.co.il',
@@ -118,7 +117,7 @@ export const CERTIFICATES: Certificate[] = [
   {
     id: 'linux-fund',
     title: 'Linux Fundamentals',
-    issuer: 'ThinkCyber',
+    issuer: 'John Bryce Cyberium Certificate',
     date: '2025',
     description: 'Essential Linux system administration, command line usage, and permissions management.',
     url: 'https://thinkcyber.co.il',
@@ -127,7 +126,7 @@ export const CERTIFICATES: Certificate[] = [
   {
     id: 'net-sec',
     title: 'Network Security',
-    issuer: 'ThinkCyber',
+    issuer: 'John Bryce Cyberium Certificate',
     date: '2025',
     description: 'Deep dive into network protocols, secure architecture, and defense mechanisms.',
     url: 'https://thinkcyber.co.il',
@@ -136,7 +135,7 @@ export const CERTIFICATES: Certificate[] = [
   {
     id: 'net-research',
     title: 'Network Research',
-    issuer: 'ThinkCyber',
+    issuer: 'John Bryce Cyberium Certificate',
     date: '2025',
     description: 'Advanced methodologies for network reconnaissance and traffic analysis.',
     url: 'https://thinkcyber.co.il',
@@ -145,7 +144,7 @@ export const CERTIFICATES: Certificate[] = [
   {
     id: 'pt',
     title: 'Penetration Testing',
-    issuer: 'ThinkCyber',
+    issuer: 'John Bryce Cyberium Certificate',
     date: '2026',
     description: 'Practical offensive security techniques, vulnerability assessment, and exploitation.',
     url: 'https://thinkcyber.co.il',
@@ -154,7 +153,7 @@ export const CERTIFICATES: Certificate[] = [
   {
     id: 'soc',
     title: 'SOC Analyst',
-    issuer: 'ThinkCyber',
+    issuer: 'John Bryce Cyberium Certificate',
     date: '2026',
     description: 'Security Operations Center workflows, incident detection, and response strategies.',
     url: 'https://thinkcyber.co.il',
@@ -163,20 +162,19 @@ export const CERTIFICATES: Certificate[] = [
   {
     id: 'win-forensics',
     title: 'Windows Forensics',
-    issuer: 'ThinkCyber',
+    issuer: 'John Bryce Cyberium Certificate',
     date: '2026',
     description: 'Investigative techniques for Windows systems, memory analysis, and artifact recovery.',
     url: 'https://thinkcyber.co.il',
     pdf: winForensicsPdf
   },
   {
-    id: 'city-guilds-intro',
-    title: 'Intro to Cyber Security',
-    issuer: 'City & Guilds',
+    id: 'think-cyber-badge',
+    title: 'Think Cyber Certified',
+    issuer: 'Think Cyber',
     date: '2026',
-    description: 'Accredited qualification covering fundamental cybersecurity concepts, threats, and defensive strategies.',
-    url: 'https://www.cityandguilds.com',
-    pdf: cityGuildsIntroPdf
+    description: 'Official digital credential verification.',
+    url: 'https://digitalcredentials.cityandguilds.com/profile/eu-reutabergel850454/wallet'
   }
 ];
 

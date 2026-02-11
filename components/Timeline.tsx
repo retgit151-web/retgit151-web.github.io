@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { motion } from 'framer-motion';
 import { CERTIFICATES } from '../constants';
@@ -40,7 +39,7 @@ const Timeline: React.FC<TimelineProps> = ({ onIssuerClick }) => {
                 </h4>
                 <div className="flex items-center gap-2 mt-1">
                   <span className="text-[10px] font-mono text-zinc-500 bg-zinc-900 px-2 py-0.5 rounded border border-white/5">
-                    {certs.length} Files
+                    {issuer === 'Think Cyber' ? 'Link to Certificate' : `${certs.length} Files`}
                   </span>
                   <span className="text-[10px] text-zinc-600">
                     Latest: {certs.reduce((latest, c) => (c.date > latest ? c.date : latest), '')}
