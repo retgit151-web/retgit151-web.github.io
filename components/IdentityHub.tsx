@@ -164,6 +164,25 @@ const IdentityHub: React.FC<IdentityHubProps> = () => {
           animation: raw-static-flash 2.5s steps(1) infinite;
         }
         
+        /* 
+           STATUS LED BREATHING ANIMATION
+        */
+        @keyframes led-breathe {
+          0%, 100% { 
+            opacity: 0.6; 
+            transform: scale(0.8); 
+            box-shadow: 0 0 4px rgba(56, 189, 248, 0.4); 
+          }
+          50% { 
+            opacity: 1; 
+            transform: scale(1.2); 
+            box-shadow: 0 0 12px rgba(56, 189, 248, 0.9), 0 0 20px rgba(56, 189, 248, 0.4); 
+          }
+        }
+        .animate-led-breathe {
+          animation: led-breathe 2.5s ease-in-out infinite;
+        }
+        
       `}</style>
       
       {/* Background Abstract Element - Kept subtle */}
@@ -220,13 +239,15 @@ const IdentityHub: React.FC<IdentityHubProps> = () => {
 
         {/* Action Dashboard */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto">
-           {/* Status Indicator - Refactored: Removed "Status" label, larger text, green dot only */}
-           <div className="flex items-center justify-center gap-3 px-6 h-14 bg-zinc-900/80 border border-emerald-500/30 shadow-[0_0_15px_rgba(16,185,129,0.2)] rounded-xl backdrop-blur-md w-full sm:w-auto">
-              <span className="flex h-3 w-3 relative shrink-0">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
+           {/* Status Indicator - SOC Dashboard Style */}
+           <div className="flex items-center justify-center gap-4 px-6 py-2 h-14 bg-zinc-900/80 border border-brand-accent/30 shadow-[0_0_15px_rgba(56,189,248,0.15)] rounded-xl backdrop-blur-md w-full sm:w-auto">
+              <span className="flex h-3 w-3 relative shrink-0 items-center justify-center">
+                <span className="absolute inline-flex h-full w-full rounded-full bg-brand-accent animate-led-breathe"></span>
               </span>
-              <span className="text-sm md:text-base text-emerald-500 font-black uppercase tracking-widest">Open to Work</span>
+              <div className="flex flex-col items-start justify-center">
+                <span className="text-sm text-brand-accent font-black uppercase tracking-widest leading-tight drop-shadow-[0_0_8px_rgba(56,189,248,0.8)]">CURRENTLY WORKING</span>
+                <span className="text-[10px] text-brand-accent/80 font-mono uppercase tracking-wider leading-tight">Not Available to Work</span>
+              </div>
            </div>
            
            <div className="flex items-center gap-3 w-full sm:w-auto justify-center">
