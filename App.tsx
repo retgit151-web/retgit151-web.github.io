@@ -17,6 +17,7 @@ import ProjectModal from './components/ProjectModal';
 import SkillDetailModal from './components/SkillDetailModal';
 import CertificateModal from './components/CertificateModal';
 import ExecutionInterface from './components/ExecutionInterface';
+import ScrollToTop from './components/ScrollToTop';
 import { PROJECTS, iconMap, FULL_SKILLS_DETAILED, DetailedSkill } from './constants';
 import { Project } from './types';
 
@@ -97,10 +98,10 @@ const App: React.FC = () => {
             <IdentityHub />
           </GlassCard>
 
-          {/* Academic Foundation (1x1) */}
+          {/* Experience & Education (1x1) */}
           <GlassCard hoverable={false} className="lg:col-span-1 flex flex-col h-full min-h-[300px] md:min-h-full bg-zinc-900/40 relative overflow-hidden">
             <div className="flex justify-between items-center mb-6 relative z-10">
-              <span className="text-base font-black text-zinc-100 uppercase tracking-widest transition-colors">Education</span>
+              <span className="text-base font-black text-zinc-100 uppercase tracking-widest transition-colors">Experience & Education</span>
               <div className="p-2.5 rounded-xl bg-zinc-800/50 border border-white/5 transition-colors">
                 <Trophy size={20} className="text-brand-accent transition-transform" />
               </div>
@@ -109,15 +110,30 @@ const App: React.FC = () => {
             <div className="relative h-full flex flex-col justify-center z-10 px-2 pb-4">
               <div className="flex flex-col h-full justify-around relative gap-8 md:gap-0">
                 {/* Connecting Line */}
-                <div className="absolute left-[5px] top-6 bottom-6 w-[1px] bg-gradient-to-b from-transparent via-zinc-700 to-transparent" />
+                <div className="absolute left-[5px] top-6 bottom-6 w-[1px] bg-gradient-to-b from-brand-accent/50 via-zinc-700 to-transparent" />
                 
-                {/* Top: Offensive (RTX) */}
+                {/* Top: SOC Analyst */}
                 <div className="relative pl-6">
                   {/* Node */}
-                  <div className="absolute left-[1px] top-1.5 w-[9px] h-[9px] rounded-full bg-zinc-900 border border-zinc-500 z-20" />
+                  <div className="absolute left-[1px] top-1.5 w-[9px] h-[9px] rounded-full bg-zinc-900 border border-brand-accent shadow-[0_0_8px_rgba(56,189,248,0.4)] z-20" />
                   
                   <div className="flex flex-col">
-                    <span className="text-xs font-mono text-zinc-500 mb-1">2026 - 2027</span>
+                    <span className="text-xs font-mono text-brand-accent mb-1">Mar 2026 - Present</span>
+                    <h4 className="text-sm font-black text-zinc-100 uppercase leading-tight mb-2">SOC Analyst</h4>
+                    <div className="text-xs text-zinc-400 font-medium mb-2">WeAnkor</div>
+                    <div className="text-[10px] text-zinc-500 leading-relaxed mb-3">
+                      Monitoring security events, analyzing threats, and responding to incidents to protect enterprise infrastructure.
+                    </div>
+                  </div>
+                </div>
+
+                {/* Middle: Offensive (RTX) */}
+                <div className="relative pl-6">
+                  {/* Node */}
+                  <div className="absolute left-[1px] top-1.5 w-[9px] h-[9px] rounded-full bg-zinc-900 border border-brand-accent shadow-[0_0_8px_rgba(56,189,248,0.4)] z-20" />
+                  
+                  <div className="flex flex-col">
+                    <span className="text-xs font-mono text-brand-accent mb-1">2026 - 2027</span>
                     <h4 className="text-sm font-black text-zinc-100 uppercase leading-tight mb-2">Offensive Security (RTX)</h4>
                     <div className="text-xs text-zinc-400 font-medium mb-3">John Bryce Academy</div>
                   </div>
@@ -126,10 +142,10 @@ const App: React.FC = () => {
                 {/* Bottom: Defensive Security */}
                 <div className="relative pl-6">
                   {/* Node */}
-                  <div className="absolute left-[1px] top-1.5 w-[9px] h-[9px] rounded-full bg-zinc-900 border border-brand-accent shadow-[0_0_8px_rgba(56,189,248,0.4)] z-20" />
+                  <div className="absolute left-[1px] top-1.5 w-[9px] h-[9px] rounded-full bg-zinc-900 border border-zinc-500 z-20" />
 
                   <div className="flex flex-col">
-                     <span className="text-xs font-mono text-brand-accent mb-1">2025 - 2026</span>
+                     <span className="text-xs font-mono text-zinc-500 mb-1">2025 - 2026</span>
                      <h4 className="text-sm font-black text-zinc-100 uppercase leading-tight mb-2">
                       Defensive Security
                      </h4>
@@ -328,6 +344,8 @@ const App: React.FC = () => {
         issuer={selectedIssuer}
         onClose={() => setSelectedIssuer(null)}
       />
+
+      <ScrollToTop />
     </div>
   );
 };
